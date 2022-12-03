@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 22:48:59 by sanghupa          #+#    #+#              #
-#    Updated: 2022/12/03 00:26:10 by sanghupa         ###   ########.fr        #
+#    Updated: 2022/12/03 01:04:01 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ NAME		= libft.a
 
 INCLUDE		= .
 
-SRC			= ft_isalnum.c ft_isalpha.c ft_isdigit.c ft_isascii \
+SRC			= ft_isalnum.c ft_isalpha.c ft_isdigit.c ft_isascii.c \
+				ft_isprint.c ft_strlen.c \
 
 SRC_B		= ft_strjoin.c \
 
@@ -36,7 +37,7 @@ all: $(NAME)
 		$(CC) $(CFLAGS) -c -o $@ $< -I $(INCLUDE)
 
 $(NAME): $(OBJ)
-		$(AR) $@ $<
+		$(AR) $@ $^
 
 clean:
 		$(RM) $(OBJ) $(OBJ_B)
@@ -46,7 +47,7 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(NAME) $(OBJ_B)
-		$(AR) $^
+bonus: $(OBJ_B)
+		$(AR) $(NAME) $^
 
 .PHONY: all clean fclean re bonus

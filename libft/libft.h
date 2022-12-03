@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:00:38 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/03 00:25:46 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/03 00:46:37 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int		ft_isdigit(int c);
 int		ft_isalpha(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
+int		ft_isprint(int c);
+size_t	ft_strlen(const char *s);
 
 char	*ft_strjoin(char const *s1, char const *s2);
 

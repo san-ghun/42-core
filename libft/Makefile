@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 22:48:59 by sanghupa          #+#    #+#              #
-#    Updated: 2022/12/03 01:04:01 by sanghupa         ###   ########.fr        #
+#    Updated: 2022/12/04 21:48:48 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ NAME		= libft.a
 INCLUDE		= .
 
 SRC			= ft_isalnum.c ft_isalpha.c ft_isdigit.c ft_isascii.c \
-				ft_isprint.c ft_strlen.c \
+				ft_isprint.c ft_strlen.c ft_strlcpy.c ft_strlcat.c \
 
 SRC_B		= ft_strjoin.c \
 

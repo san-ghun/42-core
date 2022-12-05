@@ -6,12 +6,19 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:40:57 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/05 21:18:48 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/05 23:02:13 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/// @brief copy `n` characters from `src` to `dst`, 
+/// but for overlapping memory blocks, 
+/// memmove() is a safer approach than memcpy().
+/// @param dst pointer to destination memory area where content is to be pasted.
+/// @param src pointer to the source of data to be copied.
+/// @param len the number of bytes to be copied.
+/// @return a pointer to the destination, which is `dst`.
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	char	*tmp;

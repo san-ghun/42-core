@@ -6,12 +6,16 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 13:37:46 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/05 13:45:15 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/05 22:37:20 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/// @brief convert ASCII string to integer
+/// @param str the string representation of an integral number
+/// @return the converted inegral number as an int value. 
+/// 		If no valid conversion could be performed, return zero.
 int	ft_atoi(const char *str)
 {
 	int	i;

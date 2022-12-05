@@ -6,12 +6,16 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 13:47:47 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/05 19:40:57 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/05 23:13:08 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/// @brief duplicate string
+/// @param s1 pointer to the null-terminated byte string to duplicate.
+/// @return a pointer to the newly allocated string, 
+/// or a NULL pointer if an error occurred.
 char	*ft_strdup(const char *s1)
 {
 	int		i;

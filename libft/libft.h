@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:00:38 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/05 13:37:40 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/05 13:47:37 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int		ft_atoi(const char *str);
+
+char	*ft_strdup(const char *s1);
 
 char	*ft_strjoin(char const *s1, char const *s2);
 

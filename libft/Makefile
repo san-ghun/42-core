@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 22:48:59 by sanghupa          #+#    #+#              #
-#    Updated: 2022/12/06 15:30:32 by sanghupa         ###   ########.fr        #
+#    Updated: 2022/12/06 15:56:01 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRC			= ft_isalnum.c ft_isalpha.c ft_isdigit.c ft_isascii.c \
 				
 
 SRC_B		= ft_substr.c ft_strjoin.c ft_strtrim.c ft_itoa.c \
-				ft_strmapi.c \
+				ft_strmapi.c ft_striteri.c \
 
 SRC_i		= ft_split.c \
 

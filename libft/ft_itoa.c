@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:22:22 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/06 14:46:43 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/06 15:26:31 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,23 @@
 
 static int	ft_itoa_len(int n, int len)
 {
-	while (n /= 10)
+	while (n / 10)
+	{
+		n /= 10;
 		len++;
+	}
 	return (len);
 }
 
 static char	*ft_itoa_tmp(char *tmp, unsigned int nb, int len)
 {
-	tmp[--len] = nb % 10 + '0';
-	while (nb /= 10)
+	if (nb == 0)
+		tmp[0] = '0';
+	while (nb / 10 || nb % 10)
+	{
 		tmp[--len] = nb % 10 + '0';
+		nb /= 10;
+	}
 	return (tmp);
 }
 

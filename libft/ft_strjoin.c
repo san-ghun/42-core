@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 23:19:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/03 00:50:12 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/06 12:33:21 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		tmp[i] = s1[i];
 		i++;
 	}
-	while (s2[i])
+	while (s2[j])
 		tmp[i++] = s2[j++];
 	tmp[i] = '\0';
 	return (tmp);

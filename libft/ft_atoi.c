@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 13:37:46 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/05 22:37:20 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/14 00:01:03 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,24 @@ int	ft_atoi(const char *str)
 	}
 	return (sign * result);
 }
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+int	main(int ac, char **av)
+{
+	char	str1[50];
+	int		res_org;
+	int		res_ft;
+
+	strcpy(str1, "98099874");
+
+	res_org = atoi(str1);
+	res_ft = ft_atoi(str1);
+	printf("str1 is |%s| \n", str1);
+	printf("src: result is - |%d|\n", res_org);
+	printf("ft_: result is - |%d|\n\n", res_ft);
+	return (0);
+}
+*/

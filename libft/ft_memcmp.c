@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 21:38:01 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/05 22:54:34 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/16 14:24:39 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,29 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	return (0);
 }
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+int	main(int ac, char **av)
+{
+	char	str1[50];
+	char	str2[50];
+	int		n;
+	int		res_org;
+	int		res_ft;
+
+	strcpy(str1, "This is an example.");
+	strcpy(str2, "THIS IS AN EXAMPLE.");
+	n = 1;
+
+	res_org = memcmp(str1, str2, n);
+	res_ft = ft_memcmp(str1, str2, n);
+	printf("str1 is |%s| \n", str1);
+	printf("str2 is |%s| \n", str2);
+	printf("src: result is - |%d|\n", res_org);
+	printf("ft_: result is - |%d|\n\n", res_ft);
+	return (0);
+}
+*/

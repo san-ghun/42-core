@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:57:26 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/06 21:36:26 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/16 15:59:27 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,26 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	s[i] = '\0';
 	return ;
 }
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+// Not working properly may have to find other way to test.
+void	f(unsigned int i, char *c)
+{
+	c[i] += 1;
+	return ;
+}
+int	main(int ac, char **av)
+{
+	char	*str1;
+
+	// strcpy(str1, "abcdefghijklmnopqrstuvwxyz");
+	str1 = &av[1][0];
+	ft_striteri(str1, *f);
+	printf("%s\n", str1);
+
+	return (0);
+}
+*/

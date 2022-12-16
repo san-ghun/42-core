@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 23:19:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/06 13:06:15 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/16 15:23:15 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,22 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	tmp[i] = '\0';
 	return (tmp);
 }
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+int	main(int ac, char **av)
+{
+	char	*str1;
+	char	*str2;
+	char	*tmp;
+
+	// strcpy(s, "This is an example.");
+	tmp = ft_strjoin(&av[1][0], &av[2][0]);
+	printf("%s\n", tmp);
+
+	free(tmp);
+	return (0);
+}
+*/

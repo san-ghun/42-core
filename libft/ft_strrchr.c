@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:21:34 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/13 23:43:40 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:38:16 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ char	*ft_strrchr(const char *s, int c)
 	i = ft_strlen(s);
 	while (i > 0)
 	{
-		if (s[i] == c)
+		if (s[i] == (char)c)
 			return ((char *)s + i);
 		i--;
 	}
-	if (s[i] == c)
+	if (s[i] == (char)c)
 		return ((char *)s + i);
 	return (0);
 }

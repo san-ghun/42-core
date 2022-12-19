@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:04:31 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/07 02:01:23 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/16 16:22:36 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,3 +75,26 @@ char	**ft_split(char const *s, char c)
 	tmp = ft_split_process(s, c, tmp, i);
 	return (tmp);
 }
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+int	main(int ac, char **av)
+{
+	int		i;
+	int		n;
+	char	*input = "     split      this    for   me  !     ";
+	char	**expected = ((char *[6]){"split", "this", "for", "me", "!", NULL});
+	char	**result;
+
+	result = ft_split(input, ' ');
+
+	for (; *expected; expected++, result++) {
+		printf("exp: %s \n", *expected);
+		printf("res: %s \n\n", *result);
+	}
+
+	return (0);
+}
+*/

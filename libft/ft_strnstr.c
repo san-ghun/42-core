@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:44:43 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/05 23:30:38 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/13 23:57:14 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,30 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (0);
 }
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+int	main(int ac, char **av)
+{
+	char	str1[50];
+	char	str2[50];
+	size_t	n;
+	char	*res_org;
+	char	*res_ft;
+
+	strcpy(str1, "This is an example.");
+	strcpy(str2, "This");
+	// n = 1;
+	n = 4;
+
+	res_org = strnstr(str1, str2, n);
+	res_ft = ft_strnstr(str1, str2, n);
+	printf("str1 is |%s| \n", str1);
+	printf("str2 is |%s| \n", str2);
+	printf("src: result is - |%s|\n", res_org);
+	printf("ft_: result is - |%s|\n\n", res_ft);
+	return (0);
+}
+*/

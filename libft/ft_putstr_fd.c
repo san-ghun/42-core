@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 21:49:30 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/06 23:01:44 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/16 14:50:57 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,14 @@ void	ft_putstr_fd(char *s, int fd)
 		s++;
 	}
 }
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+int	main(int ac, char **av)
+{
+	ft_putstr_fd(&av[1][0], 1);
+	return (0);
+}
+*/

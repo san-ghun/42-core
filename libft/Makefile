@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 22:48:59 by sanghupa          #+#    #+#              #
-#    Updated: 2022/12/19 14:03:12 by sanghupa         ###   ########.fr        #
+#    Updated: 2022/12/19 14:13:24 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,10 @@ CFLAGS		= -Wall -Werror -Wextra
 RM			= rm -f
 
 AR			= ar -rcv
+# -r : replace or add the specified files to the archive.
+# -c : create archive without message. `ar: creating archive libft.a`
+# -v : provide verbose output. `a` if the file is added and \
+		`r` if the file replace a file already in the archive.
 
 NAME		= libft.a
 
@@ -41,7 +45,7 @@ OBJ 		= $(SRC:.c=.o)
 
 OBJ_B 		= $(SRC_B:.c=.o)
 
-all: $(NAME) #bonus
+all: $(NAME) 
 
 %.o: %.c
 		$(CC) $(CFLAGS) -c -o $@ $< -I $(INCLUDE)

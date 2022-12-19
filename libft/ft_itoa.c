@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:22:22 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/06 15:26:31 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/16 15:32:24 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,3 +65,16 @@ char	*ft_itoa(int n)
 	tmp[len] = '\0';
 	return (ft_itoa_tmp(tmp, nb, len));
 }
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+int	main(int ac, char **av)
+{
+	printf("%s\n", ft_itoa(0));
+	printf("%s\n", ft_itoa(123453309));
+	printf("%s\n", ft_itoa(-231200401));
+	return (0);
+}
+*/

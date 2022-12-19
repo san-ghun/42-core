@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 23:07:33 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/06 23:29:00 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:04:45 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@
 void	ft_putnbr_fd(int n, int fd)
 {
 	if (n == INT_MIN)
+	{
 		write(fd, INT_MIN_STR, 11);
+		return ;
+	}
 	if (n < 0)
 	{
 		write(fd, "-", 1);

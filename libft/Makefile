@@ -6,11 +6,11 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 22:48:59 by sanghupa          #+#    #+#              #
-#    Updated: 2022/12/13 19:56:27 by sanghupa         ###   ########.fr        #
+#    Updated: 2022/12/19 14:03:12 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC			= gcc
+CC			= cc
 
 CFLAGS		= -Wall -Werror -Wextra
 

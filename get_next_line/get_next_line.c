@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:22:56 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/20 13:22:25 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/20 16:14:44 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*get_next_line(int fd)
 {
 	return (NULL);
 }
-/*
+
 #include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
@@ -28,16 +28,18 @@ int	main(int ac, char **av)
 {
 	int		fd;
 	char	*line;
+	char	buf[20];   // BUFFER_SIZE?
+	size_t	nbytes;
+	int		trsh;
 
-	fd = open("", O_RDONLY);
+	fd = open("./testfile/test_nN.txt", O_RDONLY);
 	line = get_next_line(fd);
+	nbytes = sizeof(buf);
+	trsh = read(fd, buf, nbytes);
 
-	strcpy(src, "This is an example.");
-	res_org = strchr(src, ch);
-	res_ft = ft_strchr(src, ch);
-	printf("Origin string is |%s| \n", src);
-	printf("src: String after |%c| is - |%s|\n", ch, res_org);
-	printf("ft_: String after |%c| is - |%s|\n\n", ch, res_ft);
+	printf("called read(%d, buf[20], sizeof(buf))\n", fd);
+	printf("%d bytes were read.\n", trsh);
+	buf[trsh] = '\0';
+	printf("bytes are as follows: %s\n", buf);
 	return (0);
 }
-*/

@@ -6,15 +6,34 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:22:56 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/21 01:44:48 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/23 18:18:44 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// #include <stdio.h>
 #include "get_next_line.h"
 
 char	*ft_update_bufs(char *bufs)
 {
-	return (NULL);
+	size_t	i;
+	size_t	j;
+	char	*updated;
+
+	if (!bufs)
+		return (NULL);
+	i = 0;
+	while (bufs[i] && bufs[i] != '\n')
+		i++;
+	updated = (char *)malloc(sizeof(char) * (ft_strlen_gnl(bufs) - i + 1));
+	if (!updated)
+		return (NULL);
+	i++;
+	j = 0;
+	while (bufs[i])
+		updated[j++] = bufs[i++];
+	bufs = updated;
+	free(updated);
+	return (bufs);
 }
 
 char	*ft_get_line(char *bufs)
@@ -41,7 +60,7 @@ char	*ft_get_line(char *bufs)
 		line[i] = bufs[i];
 		i++;
 	}
-	bufs[i] = '\0';
+	line[i] = '\0';
 	return (line);
 }
 
@@ -54,7 +73,9 @@ char	*ft_add_bufs(int fd, char *bufs)
 	if (!buf)
 		return (NULL);
 	byte_read = 1;
-	while (!ft_strchr(bufs, '\n') && byte_read != 0)
+	if (!bufs)
+		bufs = NULL;
+	while (!ft_strchr_gnl(bufs, '\n') && byte_read != 0)
 	{
 		byte_read = read(fd, buf, BUFFER_SIZE);
 		if (byte_read == -1)
@@ -63,7 +84,7 @@ char	*ft_add_bufs(int fd, char *bufs)
 			return (NULL);
 		}
 		buf[byte_read] = '\0';
-		bufs = ft_strjoin(bufs, buf);
+		bufs = ft_strjoin_gnl(bufs, buf);
 	}
 	free(buf);
 	return (bufs);
@@ -75,7 +96,7 @@ char	*ft_add_bufs(int fd, char *bufs)
 /// or a NULL if there is nothing else to read, or an error occurred.
 char	*get_next_line(int fd)
 {
-	char	*bufs;
+	static char	*bufs;
 	char	*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
@@ -83,29 +104,32 @@ char	*get_next_line(int fd)
 	bufs = ft_add_bufs(fd, bufs);
 	if (!bufs)
 		return (NULL);
+	// printf("bufs before: %s\n", bufs);
 	line = ft_get_line(bufs);
+	// printf("bufs during: %s\n", bufs);
 	bufs = ft_update_bufs(bufs);
+	// printf("bufs after: %s\n", bufs);
 	return (line);
 }
 
-#include <fcntl.h>
-#include <stdio.h>
-#include <string.h>
-int	main(int ac, char **av)
-{
-	int		fd;
-	char	*line;
+// #include <fcntl.h>
+// // #include <stdio.h>
+// #include <string.h>
+// int	main(int ac, char **av)
+// {
+// 	int		fd;
+// 	char	*line;
 
-	fd = open("./testfile/test_nN.txt", O_RDONLY);
-	printf("called read(%d, buf, BUFFER_SIZE=%d)\n", fd, BUFFER_SIZE);
-	line = get_next_line(fd);
-	printf("line read: \n%s\n", line);
-	free(line);
-	lseek(fd, 5, SEEK_CUR);
-	printf("%c", '\n');
-	line = get_next_line(fd);
-	printf("line read: \n%s\n", line);
-	free(line);
-	close(fd);
-	return (0);
-}
+// 	fd = open("./testfile/test_42N.txt", O_RDONLY);
+// 	printf("called read(%d, buf, BUFFER_SIZE=%d)\n", fd, BUFFER_SIZE);
+// 	line = get_next_line(fd);
+// 	printf("line read: \n%s\n", line);
+// 	// free(line);
+// 	// lseek(fd, 5, SEEK_CUR);
+// 	printf("%c", '\n');
+// 	line = get_next_line(fd);
+// 	printf("line read: \n%s\n", line);
+// 	free(line);
+// 	close(fd);
+// 	return (0);
+// }

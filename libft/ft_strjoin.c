@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 23:19:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/16 15:23:15 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/24 21:00:23 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	while (s2[j])
-		tmp[i++] = s2[j++];
-	tmp[i] = '\0';
+	{
+		tmp[i + j] = s2[j];
+		j++;
+	}
+	tmp[i + j] = '\0';
 	return (tmp);
 }
 /*

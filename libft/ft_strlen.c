@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 00:46:47 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/13 23:22:54 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:04:58 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
-	if (s == 0)
-		return (i);
 	while (s[i])
 		i++;
 	return (i);

@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 21:48:55 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/16 14:41:49 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/23 16:16:36 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
+	size_t	res;
 
+	res = size * count;
+	if (res / size != count)
+		return (NULL);
 	ptr = malloc(size * count);
 	if (ptr == 0)
 		return (0);

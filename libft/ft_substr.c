@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:42:15 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/16 15:23:04 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/23 16:33:48 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,21 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
+	size_t	strlen;
 	char	*tmp;
 
-	if (start >= ft_strlen(s))
+	strlen = ft_strlen(s);
+	if (start >= strlen)
 		return (ft_strdup(""));
+	if (strlen < len)
+		len = strlen;
 	i = 0;
 	tmp = (char *)malloc(sizeof(char) * (len + 1));
 	if (!tmp)
 		return (NULL);
-	tmp[len] = '\0';
-	while (len--)
+	while (len-- && s[start])
 		tmp[i++] = s[start++];
+	tmp[i] = '\0';
 	return (tmp);
 }
 /*

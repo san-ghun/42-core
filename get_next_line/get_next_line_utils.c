@@ -6,11 +6,27 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:23:26 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/23 18:34:23 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/24 21:27:23 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+/// @brief compute the length of the string, 
+/// but not including the terminating null character
+/// @param s the string whose length is to be found.
+/// @return the length of the string.
+size_t	ft_strlen_gnl(char *s)
+{
+	size_t	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+		i++;
+	return (i);
+}
 
 /// @brief search for the first occurrence of the character `c` 
 /// in the string pointed to by the argument `s`.
@@ -20,26 +36,25 @@
 /// or NULL if no such occurrence
 char	*ft_strchr_gnl(char *s, int c)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (!s)
 		return (NULL);
+	if (c == 0)
+	{
+		i = ft_strlen_gnl((char *)s);
+		return (&s[i]);
+	}
 	while (s[i] != '\0')
 	{
 		if (s[i] == (char)c)
-			return ((char *)s + i);
+			return (&s[i]);
 		i++;
 	}
-	if (s[i] == (char)c)
-		return ((char *)s + i);
-	return (0);
+	return (NULL);
 }
 
-/// @brief duplicate string
-/// @param s1 pointer to the null-terminated byte string to duplicate.
-/// @return a pointer to the newly allocated string, 
-/// or a NULL pointer if an error occurred.
 char	*ft_strdup_gnl(char *s1)
 {
 	int		i;
@@ -48,7 +63,7 @@ char	*ft_strdup_gnl(char *s1)
 
 	i = 0;
 	len = ft_strlen_gnl(s1);
-	dst = (char *)malloc(sizeof(char) * (len + 1));
+	dst = (char *)malloc(sizeof(char) * len + 1);
 	if (dst == NULL)
 		return (NULL);
 	while (s1[i] != '\0')
@@ -71,16 +86,11 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	size_t	j;
 	char	*tmp;
 
-	if (!s1 && !s2)
-		return (NULL);
 	if (!s1)
-	{
-		s1 = (char *)malloc(sizeof(char) * 1);
-		s1[0] = '\0';
-	}
+		return (ft_strdup_gnl(s2));
 	i = 0;
 	j = 0;
-	tmp = (char *)malloc(sizeof(char) * (ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1));
+	tmp = (char *)malloc(ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1);
 	if (!tmp)
 		return (NULL);
 	while (s1[i])
@@ -89,24 +99,11 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 		i++;
 	}
 	while (s2[j])
-		tmp[i++] = s2[j++];
-	tmp[i] = '\0';
+	{
+		tmp[i + j] = s2[j];
+		j++;
+	}
+	tmp[i + j] = '\0';
 	free(s1);
 	return (tmp);
-}
-
-/// @brief compute the length of the string, 
-/// but not including the terminating null character
-/// @param s the string whose length is to be found.
-/// @return the length of the string.
-size_t	ft_strlen_gnl(char *s)
-{
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-		i++;
-	return (i);
 }

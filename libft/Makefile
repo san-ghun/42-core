@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 22:48:59 by sanghupa          #+#    #+#              #
-#    Updated: 2022/12/19 14:13:24 by sanghupa         ###   ########.fr        #
+#    Updated: 2022/12/26 20:57:43 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ AR			= ar -rcv
 
 NAME		= libft.a
 
-INCLUDE		= .
+INCLUDE		= libft.h
 
 SRC			= ft_isalnum.c ft_isalpha.c ft_isdigit.c ft_isascii.c \
 				ft_isprint.c ft_strlen.c ft_strlcpy.c ft_strlcat.c \
@@ -45,7 +45,7 @@ OBJ 		= $(SRC:.c=.o)
 
 OBJ_B 		= $(SRC_B:.c=.o)
 
-all: $(NAME) 
+all: $(NAME) bonus
 
 %.o: %.c
 		$(CC) $(CFLAGS) -c -o $@ $< -I $(INCLUDE)

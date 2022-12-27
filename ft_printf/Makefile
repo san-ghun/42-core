@@ -6,12 +6,13 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 17:17:29 by sanghupa          #+#    #+#              #
-#    Updated: 2022/12/26 20:28:53 by sanghupa         ###   ########.fr        #
+#    Updated: 2022/12/27 01:13:52 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC			= cc
+NAME		= libftprintf.a
 
+CC			= cc
 CFLAGS		= -Wall -Werror -Wextra
 
 RM			= rm -f
@@ -22,42 +23,50 @@ AR			= ar -rcv
 # -v : provide verbose output. `a` if the file is added and \
 		`r` if the file replace a file already in the archive.
 
-NAME		= libftprintf.a
+INC_DIR	= ./include
 
-INCLUDE		= ./include
+LIBFT		= libft.a
+LIBFT_DIR	= ./libft
+LIBFT_PATH	= $(LIBFT_DIR)/$(LIBFT)
 
-LIBFT_PATH	= ./libft
-
-LIBFT	= $(LIBFT_PATH)/libft.a
-
-SRC_PATH	= ./src
-
-SRC			= $(SRC_PATH)/ft_printf.c 
+SRC_DIR	= ./src
+SRC			= $(SRC_DIR)/ft_printf.c 
 
 OBJ 		= $(SRC:.c=.o)
 
 all: $(LIBFT) $(NAME)
 
-%.o: %.c
-		$(CC) $(CFLAGS) -c -o $@ $< -I $(INCLUDE)
-
-$(LIBFT):
-		make -C $(LIBFT_PATH)
-
-$(NAME): $(OBJ)
-		cp $(LIBFT) $(NAME)
-		$(AR) $@ $^
+bonus: $(LIBFT) $(NAME)
 
 clean:
-		make clean -C $(LIBFT_PATH)
+		make clean -C $(LIBFT_DIR)
 		$(RM) $(OBJ)
 
 fclean: clean
-		make fclean -C $(LIBFT_PATH)
+		make fclean -C $(LIBFT_DIR)
 		$(RM) $(NAME)
 
 re: fclean all
 
-bonus: $(NAME)
+%.o: %.c
+		$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR) -I $(LIBFT_DIR)
 
-.PHONY: all clean fclean re bonus
+$(NAME): $(OBJ)
+		cp $(LIBFT_PATH) $(NAME)
+		$(AR) $@ $^
+
+$(LIBFT):
+		make -C $(LIBFT_DIR)
+
+# Test Code
+
+TEST = test.c
+
+test: $(LIBFT) $(NAME) $(TEST)
+		$(CC) $(TEST) -o $(TEST:.c=.out) $(NAME) -I $(INC_DIR) -I $(LIBFT_DIR) -g
+		./$(TEST:.c=.out)
+		rm $(TEST:.c=.out)
+		rm -rf $(TEST:.c=.out.dSYM)
+
+.PHONY: all clean fclean re bonus \
+		test

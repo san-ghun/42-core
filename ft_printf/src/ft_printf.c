@@ -6,11 +6,11 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 20:20:17 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/26 20:46:02 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/26 23:57:24 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_printf(const char *format, ...)
 {

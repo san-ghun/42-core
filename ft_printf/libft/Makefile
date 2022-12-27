@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 22:48:59 by sanghupa          #+#    #+#              #
-#    Updated: 2022/12/26 20:30:40 by sanghupa         ###   ########.fr        #
+#    Updated: 2022/12/27 01:07:05 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,17 +35,14 @@ SRC			= ft_isalnum.c ft_isalpha.c ft_isdigit.c ft_isascii.c \
 				ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c \
 				ft_itoa.c ft_strmapi.c ft_striteri.c \
 				ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
-				ft_putnbr_fd.c 
-
-SRC_B		= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
+				ft_putnbr_fd.c \
+				ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
 				ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \
 				ft_lstclear.c ft_lstiter.c ft_lstmap.c 
 
 OBJ 		= $(SRC:.c=.o)
 
-OBJ_B 		= $(SRC_B:.c=.o)
-
-all: $(NAME) bonus
+all: $(NAME)
 
 %.o: %.c
 		$(CC) $(CFLAGS) -c -o $@ $< -I $(INCLUDE)
@@ -61,7 +58,4 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(OBJ_B)
-		$(AR) $(NAME) $^
-
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re

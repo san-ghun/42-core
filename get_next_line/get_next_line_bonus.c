@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:22:56 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/24 22:37:10 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/28 15:37:21 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
+/* ----- TEST ----- */
 // #include <fcntl.h>
 // #include <stdio.h>
 // #include <string.h>
@@ -121,40 +122,59 @@ char	*get_next_line(int fd)
 
 // 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 511)
 // 		return (NULL);
-// 	printf("bufs init: %s(BUF_END)\n", bufs[fd]);
+// 	// printf("bufs init: %s(BUF_END)\n", bufs[fd]);
 // 	bufs[fd] = ft_add_bufs(fd, bufs[fd]);
 // 	if (!bufs[fd])
 // 		return (NULL);
-// 	printf("bufs before read: %s(BUF_END)\n", bufs[fd]);
+// 	// printf("bufs before read: %s(BUF_END)\n", bufs[fd]);
 // 	line = ft_get_line(bufs[fd]);
 // 	bufs[fd] = ft_update_bufs(bufs[fd]);
-// 	printf("bufs after read: %s(BUF_END)\n", bufs[fd]);
+// 	// printf("bufs after read: %s(BUF_END)\n", bufs[fd]);
 // 	return (line);
+// }
+// int	get_line(int fd, char *line)
+// {
+// 	static int	lnumber[10];
+
+// 	line = get_next_line_DEBUG(fd);
+// 	if (line == NULL)
+// 		lnumber[fd] = 0;
+// 	else
+// 		lnumber[fd]++;
+// 	printf("fd:%d / line:%d: line read: %s(EOL)\n", fd, lnumber[fd], line);
+// 	// free(line);
+// 	// lseek(fd, 5, SEEK_CUR);
+// 	printf("%c", '\n');
+// 	return (line != NULL);
 // }
 // int	main(int ac, char **av)
 // {
 // 	int		fd;
-// 	int		lnumber;
+// 	int		fd01;
+// 	int		fd02;
 // 	char	*line;
+// 	int		sign;
 
 // 	fd = open("./testfile/test_nN.txt", O_RDONLY);
+// 	fd01 = open("./testfile/test_42.txt", O_RDONLY);
+// 	fd02 = open("./testfile/test_tmp.txt", O_RDONLY);
 // 	printf("called read(%d, buf, BUFFER_SIZE=%d)\n\n", fd, BUFFER_SIZE);
-// 	lnumber = 0;
 // 	line = "";
-// 	while (line)
+// 	sign = 1;
+// 	while (sign)
 // 	{
-// 		line = get_next_line_DEBUG(fd);
-// 		if (line == NULL)
-// 			lnumber = 0;
-// 		else
-// 			lnumber++;
-// 		printf("%d: line read: %s(EOL)\n", lnumber, line);
-// 		// free(line);
-// 		// lseek(fd, 5, SEEK_CUR);
-// 		printf("%c", '\n');
+// 		// line = get_line(fd, line, lnumber);
+// 		// line = get_line(fd01, line, lnumber);
+// 		// line = get_line(fd02, line, lnumber);
+// 		sign = get_line(fd, line);
+// 		sign += get_line(fd01, line);
+// 		sign += get_line(fd02, line);
+// 		printf("---\n\n");
 // 	}
 // 	printf("EOF!");
-// 	free(line);
+// 	// free(line);
 // 	close(fd);
+// 	close(fd01);
+// 	close(fd02);
 // 	return (0);
 // }

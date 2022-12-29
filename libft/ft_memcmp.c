@@ -6,16 +6,12 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 21:38:01 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/16 14:24:39 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/29 22:44:46 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/// @brief compare the first `n` bytes of memory area `s1` and memory are `s2`.
-/// @param s1 the pointer to a block of memory.
-/// @param s2 the pointer to a block of memory.
-/// @param n the number of bytes to be compared.
-/// @return rv > 0 : s1 > s2, rv < 0 : s1 < s2, rv == 0 : s1 == s2
+
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	size_t			i;

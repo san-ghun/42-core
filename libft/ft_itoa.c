@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:22:22 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/16 15:32:24 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/29 22:42:05 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@ static char	*ft_itoa_tmp(char *tmp, unsigned int nb, int len)
 	return (tmp);
 }
 
-/// @brief allocate with malloc() and returns a string representing 
-/// the integer received as a argument. Negative numbers must be handled.
-/// @param n the integer to convert.
-/// @return the string representing the integer. NULL if the allocation fails.
 char	*ft_itoa(int n)
 {
 	unsigned int	nb;

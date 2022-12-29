@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 17:17:29 by sanghupa          #+#    #+#              #
-#    Updated: 2022/12/27 01:28:53 by sanghupa         ###   ########.fr        #
+#    Updated: 2022/12/29 16:01:04 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ $(LIBFT):
 
 TEST = test.c
 
-test: $(TEST)
+test: $(NAME) $(TEST)
 		$(CC) $(TEST) -o $(TEST:.c=.out) $(NAME) -I $(INC_DIR) -I $(LIBFT_DIR) -g
 		./$(TEST:.c=.out)
 		rm $(TEST:.c=.out)

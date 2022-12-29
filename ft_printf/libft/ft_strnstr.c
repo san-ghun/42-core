@@ -6,21 +6,12 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:44:43 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/13 23:57:14 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/29 22:40:09 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/// @brief finds the first occurrence of the substring `needle` 
-/// in the string `haystack`, where not more than `len`. 
-/// The terminating '\0' characters are not compared.
-/// @param haystack the main C string to be scanned.
-/// @param needle the small string to be searched with-in haystack.
-/// @param len the maximum number of characters to search.
-/// @return a pointer to the first occurrence of `needle` 
-/// in the string `haystack`. If `needle` is empty, `haystack` is returned;
-/// if `needle` is not occurs in `haystack`, NULL is returned.
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	len_hs;

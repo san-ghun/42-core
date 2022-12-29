@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 22:48:59 by sanghupa          #+#    #+#              #
-#    Updated: 2022/12/27 01:07:05 by sanghupa         ###   ########.fr        #
+#    Updated: 2022/12/29 22:52:17 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,9 +40,16 @@ SRC			= ft_isalnum.c ft_isalpha.c ft_isdigit.c ft_isascii.c \
 				ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \
 				ft_lstclear.c ft_lstiter.c ft_lstmap.c 
 
+# SRC_B		= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
+				ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \
+				ft_lstclear.c ft_lstiter.c ft_lstmap.c 
+
 OBJ 		= $(SRC:.c=.o)
 
+# OBJ_B 		= $(SRC_B:.c=.o)
+
 all: $(NAME)
+# all: $(NAME) bonus
 
 %.o: %.c
 		$(CC) $(CFLAGS) -c -o $@ $< -I $(INCLUDE)
@@ -51,11 +58,15 @@ $(NAME): $(OBJ)
 		$(AR) $@ $^
 
 clean:
-		$(RM) $(OBJ) $(OBJ_B)
+		$(RM) $(OBJ)
+#		$(RM) $(OBJ) $(OBJ_B)
 
 fclean: clean
 		$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+# bonus: $(OBJ_B)
+# 		$(AR) $(NAME) $^
+
+.PHONY: all clean fclean re #bonus

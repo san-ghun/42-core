@@ -6,17 +6,12 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:48:14 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/13 23:49:44 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/29 22:39:53 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/// @brief compare at most the first `n` bytes of `s1` and `s2`.
-/// @param s1 the first string to compare
-/// @param s2 the second string to compare
-/// @param n the maximum number of characters to be compared.
-/// @return rv > 0 : s1 > s2, rv < 0 : s1 < s2, rv == 0 : s1 == s2
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t			i;

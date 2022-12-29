@@ -6,18 +6,12 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:21:34 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/19 14:38:16 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/29 22:39:36 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/// @brief search for the last occurrence of the character `c` 
-/// in the string pointed to, by the argument `s`.
-/// @param s the C string.
-/// @param c the character to search
-/// @return a pointer to the last occurrence of the character in `s`.
-/// If no such character is found, NULL is returned.
 char	*ft_strrchr(const char *s, int c)
 {
 	int	i;

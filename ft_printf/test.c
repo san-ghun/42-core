@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 01:15:13 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/29 15:22:29 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/30 02:36:56 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,48 @@ int	main(void)
 	char buf1[100000] = {0, };
 	char buf2[100000] = {0, };
 
-	const char *format = "%042.1d";
+	// const char *format = "This is test";
+	// const char *format = "This is tes%b";
+	// char testin = 't';
+
+	const char *format = "This is %cest";
+	char testin = 't';
+
+	// const char *format = "Hello, %s to the string";
+	// char *testin = "welcome";
+
+	// const char *format = "%p";
+	// int testin = 0;
+	// char *testin = "";
+	// void *testin = (void *)12231;
+	// void *testin = (void *)-12231;
+
+	// const char *format = "%d";
+	// const char *format = "%i";
+	// int testin = -2147483648;
+	// int testin = 21474;
+
+	// const char *format = "%u";
+	// unsigned int testin = 0;
+	// unsigned int testin = 4294967295;
+
+	// const char *format = "%x";
+	// const char *format = "%X";
+	// int testin = 16782;
+
+	// const char *format = "100%%";
+	// int testin = 1;
+
+	// const char *format = "%042.1d";
+	// int testin = 42;
 
 	printf("-- call ft_printf() --\n");
-	c1 = ft_printf(format, 42);
+	c1 = ft_printf(format, testin);
 	printf("\n----------------------\n");
 	printf("$\n[ft_printf - count] : %d\n", c1);
 	printf("");
 	printf("\n-- call printf() --\n");
-	c2 = printf(format, 42);
+	c2 = printf(format, testin);
 	printf("\n-------------------\n");
 	printf("$\n[printf - count] : %d\n", c2);
 

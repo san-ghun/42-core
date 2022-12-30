@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 17:17:29 by sanghupa          #+#    #+#              #
-#    Updated: 2022/12/29 16:01:04 by sanghupa         ###   ########.fr        #
+#    Updated: 2022/12/29 23:22:44 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,11 @@ LIBFT_DIR	= ./libft
 LIBFT_PATH	= $(LIBFT_DIR)/$(LIBFT)
 
 SRC_DIR	= ./src
-SRC			= $(SRC_DIR)/ft_printf.c 
+SRC			= $(SRC_DIR)/ft_printf.c \
+				$(SRC_DIR)/ft_printf_cs.c \
+				$(SRC_DIR)/ft_printf_p.c \
+				$(SRC_DIR)/ft_printf_diu.c \
+				$(SRC_DIR)/ft_printf_hex.c \
 
 OBJ 		= $(SRC:.c=.o)
 
@@ -62,7 +66,7 @@ $(LIBFT):
 
 TEST = test.c
 
-test: $(NAME) $(TEST)
+test: $(LIBFT) $(NAME) $(TEST)
 		$(CC) $(TEST) -o $(TEST:.c=.out) $(NAME) -I $(INC_DIR) -I $(LIBFT_DIR) -g
 		./$(TEST:.c=.out)
 		rm $(TEST:.c=.out)

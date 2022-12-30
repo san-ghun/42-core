@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_printf_cs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/13 13:50:46 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/29 22:47:39 by sanghupa         ###   ########.fr       */
+/*   Created: 2022/12/29 22:17:15 by sanghupa          #+#    #+#             */
+/*   Updated: 2022/12/29 23:20:03 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	ft_put_c(int c)
 {
-	t_list	*last;
+	ft_putchar_fd(c, 1);
+	return (1);
+}
 
-	if (!lst || !new)
-		return ;
-	if (*lst == NULL)
+int	ft_put_s(char *s)
+{
+	int	i;
+
+	if (!s)
+		return (0);
+	i = 0;
+	while (*s != '\0')
 	{
-		*lst = new;
-		return ;
+		write(1, s, 1);
+		s++;
+		i++;
 	}
-	last = ft_lstlast(*lst);
-	last->next = new;
+	return (i);
 }

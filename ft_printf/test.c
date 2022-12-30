@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 01:15:13 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/30 15:01:48 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/30 23:15:20 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int	main(void)
 	// char *testin = "welcome";
 	// char *testin = NULL;
 
-	const char *format = "%p";
+	// const char *format = "%p";
 	// int testin = 0;
 	// int testin = -1;
-	long testin = LONG_MAX;
+	// long testin = LONG_MAX;
 	// long long testin = LLONG_MIN;
 	// char *testin = "";
 	// void *testin = (void *)12231;
@@ -57,11 +57,12 @@ int	main(void)
 	// long long testin = LLONG_MAX;
 	// long long testin = LLONG_MIN;
 
-	// const char *format = "%x";
+	const char *format = "%x";
 	// const char *format = "%X";
 	// int testin = 16782;
 	// int testin = -1;
-	// long testin = -16;
+	long testin = -192883;
+	// long testin = -9223372036854775807;
 	// long long testin = LLONG_MAX;
 	// long long testin = LLONG_MIN;
 

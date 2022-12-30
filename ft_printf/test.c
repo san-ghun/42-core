@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 01:15:13 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/30 02:36:56 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/30 15:01:48 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <limits.h>
 #include "ft_printf.h"
 
 // int	main(int ac, char **av)
@@ -29,14 +30,18 @@ int	main(void)
 	// const char *format = "This is tes%b";
 	// char testin = 't';
 
-	const char *format = "This is %cest";
-	char testin = 't';
+	// const char *format = "This is %cest";
+	// char testin = 't';
 
 	// const char *format = "Hello, %s to the string";
 	// char *testin = "welcome";
+	// char *testin = NULL;
 
-	// const char *format = "%p";
+	const char *format = "%p";
 	// int testin = 0;
+	// int testin = -1;
+	long testin = LONG_MAX;
+	// long long testin = LLONG_MIN;
 	// char *testin = "";
 	// void *testin = (void *)12231;
 	// void *testin = (void *)-12231;
@@ -49,10 +54,16 @@ int	main(void)
 	// const char *format = "%u";
 	// unsigned int testin = 0;
 	// unsigned int testin = 4294967295;
+	// long long testin = LLONG_MAX;
+	// long long testin = LLONG_MIN;
 
 	// const char *format = "%x";
 	// const char *format = "%X";
 	// int testin = 16782;
+	// int testin = -1;
+	// long testin = -16;
+	// long long testin = LLONG_MAX;
+	// long long testin = LLONG_MIN;
 
 	// const char *format = "100%%";
 	// int testin = 1;

@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 22:17:41 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/30 02:02:04 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:39:00 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	ft_put_hex(long long x, int uppercase)
 	len = 0;
 	if (x == -9223372036854775807)
 	{
-		write(1, "-9223372036854775807", 20);
-		return (20);
+		write(1, "-7fffffffffffffff", 17);
+		return (17);
 	}
 	base = "0123456789abcdef";
 	if (uppercase)

@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 22:17:41 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/30 02:17:43 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:51:13 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,11 @@ int	ft_put_p(unsigned long long p)
 	char	*base;
 
 	len = 0;
-	write(1, "0x", 2);
-	len += 2;
 	base = "0123456789abcdef";
 	if (p > 15)
 	{
-		ft_put_hex(p / 16, 0);
-		ft_put_hex(p % 16, 0);
+		ft_put_p(p / 16);
+		ft_put_p(p % 16);
 	}
 	else
 		write(1, &base[p], 1);

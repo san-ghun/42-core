@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 22:17:15 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/29 23:20:03 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/30 12:36:43 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int	ft_put_s(char *s)
 	int	i;
 
 	if (!s)
-		return (0);
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	i = 0;
 	while (*s != '\0')
 	{

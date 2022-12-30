@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:00:38 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/29 22:48:34 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/30 12:43:06 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
-# define INT_MAX 2147483647
-# define INT_MIN -2147483648
-# define INT_MAX_STR "2147483647"
-# define INT_MIN_STR "-2147483648"
+// # define INT_MAX 2147483647
+// # define INT_MIN -2147483648
+// # define INT_MAX_STR "2147483647"
+// # define INT_MIN_STR "-2147483648"
 
 typedef struct s_list
 {

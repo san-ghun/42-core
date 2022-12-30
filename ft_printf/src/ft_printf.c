@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 20:20:17 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/30 15:01:15 by sanghupa         ###   ########.fr       */
+/*   Updated: 2022/12/30 23:14:22 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ static int	ft_convert(va_list args, const char spec)
 		return (ft_put_diu(va_arg(args, int)));
 	else if (spec == 'u')
 		return (ft_put_diu(va_arg(args, unsigned int)));
-	else if (spec == 'x')
-		return (ft_put_hex(va_arg(args, unsigned int), 0));
-	else if (spec == 'X')
-		return (ft_put_hex(va_arg(args, unsigned int), 1));
+	else if (spec == 'x' || spec == 'X')
+		return (ft_put_hex(va_arg(args, unsigned int), 'x' - spec));
 	else if (spec == '%')
 		return (ft_put_c('%'));
 	else

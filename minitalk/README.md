@@ -29,20 +29,12 @@
             - The string to send.
         - The client must send the string passed as a parameter to the server. Once the string has been received, the server must print it.
         - The server has to  display the string pretty quickly. Quickly means that if you think it takes too long, then it is probably too long.
-            
-            <aside>
             > 💡 1 second for displaying 100 characters is way too much.
-            
-            </aside>
             
         - The server should be able to receive strings from several clients in a row without needing to restart.
         - The communication between your client and your server has to be done **only** using UNIX signals.
         - Can only use these two signals: `SIGUSR1` AND `SIGUSR2` .
-            
-            <aside>
             > ℹ️ Linux system does NOT queue signals when you already have pending signals of this type.
-            
-            </aside>
 
     - **Bonus**:  
         - The server acknowledge every message received by sending back a signal to the client.

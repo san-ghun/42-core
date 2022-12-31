@@ -2,6 +2,8 @@
 
 ### Summary
 
+- Keywords: `Makefile` `library` `linked list` 
+
 1. Objective
     - coding a C library to create my own library with highly useful standard functions.
     - the functions will be allowed to use in other projects.

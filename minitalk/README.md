@@ -20,7 +20,7 @@
         - **Handling errors** thoroughly. The program should not quit unexpectedly *(segmentation fault, bus error, double free, and so forth).*
 
 3. Requirements
-    - Mandatory: 
+    - **Mandatory**: 
         You must create a communication program in the form of a **client** and a **server**.
 
         - The server must be started first. After its launch, it has to print its `PID` .
@@ -31,7 +31,7 @@
         - The server has to  display the string pretty quickly. Quickly means that if you think it takes too long, then it is probably too long.
             
             <aside>
-            💡 1 second for displaying 100 characters is way too much.
+            > 💡 1 second for displaying 100 characters is way too much.
             
             </aside>
             
@@ -40,11 +40,11 @@
         - Can only use these two signals: `SIGUSR1` AND `SIGUSR2` .
             
             <aside>
-            ℹ️ Linux system does NOT queue signals when you already have pending signals of this type.
+            > ℹ️ Linux system does NOT queue signals when you already have pending signals of this type.
             
             </aside>
 
-    - Bonus:  
+    - **Bonus**:  
         - The server acknowledge every message received by sending back a signal to the client.
         - Unicode characters support.
 

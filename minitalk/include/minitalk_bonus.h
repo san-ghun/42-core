@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 21:55:46 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/31 22:10:36 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/01/04 23:54:40 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <signal.h>
-# include "libft.h"
+// # include "libft.h"
 
 /* server.c */
 

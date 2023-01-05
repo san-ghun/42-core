@@ -6,16 +6,12 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:23:26 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/24 21:27:23 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/01/05 11:52:00 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/// @brief compute the length of the string, 
-/// but not including the terminating null character
-/// @param s the string whose length is to be found.
-/// @return the length of the string.
 size_t	ft_strlen_gnl(char *s)
 {
 	size_t	i;
@@ -28,12 +24,6 @@ size_t	ft_strlen_gnl(char *s)
 	return (i);
 }
 
-/// @brief search for the first occurrence of the character `c` 
-/// in the string pointed to by the argument `s`.
-/// @param s the C string to be scanned.
-/// @param c the character to be searched in `s`.
-/// @return a pointer to the first occurrence of the character, 
-/// or NULL if no such occurrence
 char	*ft_strchr_gnl(char *s, int c)
 {
 	size_t	i;
@@ -75,11 +65,6 @@ char	*ft_strdup_gnl(char *s1)
 	return (dst);
 }
 
-/// @brief allocate with malloc() and returns a new string, 
-/// which is the result of the concatenation of `s1` and `s2`.
-/// @param s1 the prefix string to concatenate
-/// @param s2 the suffix string to concatenate
-/// @return the new string. NULL if the allocation fails.
 char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	size_t	i;

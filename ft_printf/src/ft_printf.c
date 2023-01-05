@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 20:20:17 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/30 23:14:22 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/01/05 12:27:01 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_convert(va_list args, const char spec)
 {
-	unsigned int	ptr;
+	unsigned long	ptr;
 
 	if (spec == 'c')
 		return (ft_put_c(va_arg(args, int)));
@@ -24,7 +24,7 @@ static int	ft_convert(va_list args, const char spec)
 	{
 		ptr = va_arg(args, unsigned long long);
 		if (!ptr)
-			return (ft_put_s("0x0"));
+			return (ft_put_s("(nil)"));
 		write(1, "0x", 2);
 		return (ft_put_p(ptr) + 2);
 	}

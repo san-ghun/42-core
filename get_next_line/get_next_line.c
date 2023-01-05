@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:22:56 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/01/05 11:35:59 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/01/05 11:51:09 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,6 @@ char	*ft_add_bufs(int fd, char *bufs)
 	return (bufs);
 }
 
-/// @brief return a line read from a file descriptor `fd`.
-/// @param fd the file descriptor to read from.
-/// @return read line if correctly behave, 
-/// or a NULL if there is nothing else to read, or an error occurred.
 char	*get_next_line(int fd)
 {
 	static char	*bufs;

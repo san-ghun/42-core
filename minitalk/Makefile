@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 17:17:29 by sanghupa          #+#    #+#              #
-#    Updated: 2023/01/05 11:32:50 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/01/05 17:28:29 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,34 +24,34 @@ LIBFT_DIR	= ./
 
 SRC_DIR	= ./src
 
-SERVER = server
-SRC_SERVER = $(SRC_DIR)/$(SERVER).c
-OBJ_SERVER = $(SRC_SERVER:.c=.o)
-# SERVER_B = server_bonus
-# SRC_SERVER_B = $(SRC_DIR)/$(SERVER_B)_bonus.c
-# OBJ_SERVER_B = $(SRC_SERVER_B:.c=.o)
+NAME = server
+SRC_NAME = $(SRC_DIR)/$(NAME).c
+OBJ_NAME = $(SRC_NAME:.c=.o)
+# NAME_SB = server_bonus
+# SRC_NAME_SB = $(SRC_DIR)/$(NAME_SB).c
+# OBJ_NAME_SB = $(SRC_NAME_SB:.c=.o)
 
-CLIENT = client
-SRC_CLIENT = $(SRC_DIR)/$(CLIENT).c
-OBJ_CLIENT = $(SRC_CLIENT:.c=.o)
-# CLIENT_B = client_bonus
-# SRC_CLIENT_B = $(SRC_DIR)/$(CLIENT_B)_bonus.c
-# OBJ_CLIENT_B = $(SRC_CLIENT_B:.c=.o)
+NAME_C = client
+SRC_NAME_C = $(SRC_DIR)/$(NAME_C).c
+OBJ_NAME_C = $(SRC_NAME_C:.c=.o)
+# NAME_CB = client_bonus
+# SRC_NAME_CB = $(SRC_DIR)/$(NAME_CB).c
+# OBJ_NAME_CB = $(SRC_NAME_CB:.c=.o)
 
-all: $(SERVER) $(CLIENT)
+all: $(NAME) $(NAME_C)
 
-bonus: $(LIBFT) $(SERVER_B) $(CLIENT_B)
+bonus: $(NAME_SB) $(NAME_CB)
 
 clean:
 #		make clean -C $(LIBFT_DIR)
-		$(RM) $(OBJ_SERVER) $(OBJ_CLIENT)
-		$(RM) $(OBJ_SERVER_B) $(OBJ_CLIENT_B)
+		$(RM) $(OBJ_NAME) $(OBJ_NAME_C)
+#		$(RM) $(OBJ_NAME_SB) $(OBJ_NAME_CB)
 
 fclean: clean
 #		make fclean -C $(LIBFT_DIR)
-		$(RM) $(OBJ_SERVER) $(OBJ_CLIENT)
-		$(RM) $(OBJ_SERVER_B) $(OBJ_CLIENT_B)
-		$(RM) $(SERVER) $(CLIENT)
+		$(RM) $(OBJ_NAME) $(OBJ_NAME_C)
+#		$(RM) $(OBJ_NAME_SB) $(OBJ_NAME_CB)
+		$(RM) $(NAME) $(NAME_C)
 
 re: fclean all
 
@@ -61,16 +61,16 @@ re: fclean all
 # $(LIBFT):
 # 		make -C $(LIBFT_DIR)
 
-$(SERVER): $(OBJ_SERVER) $(LIBFT)
+$(NAME): $(OBJ_NAME) $(LIBFT)
 		$(CC) $(CFLAGS) -o $@ $< -I $(INC_DIR) -I $(LIBFT_DIR)
 
-$(CLIENT): $(OBJ_CLIENT) $(LIBFT)
+$(NAME_C): $(OBJ_NAME_C) $(LIBFT)
 		$(CC) $(CFLAGS) -o $@ $< -I $(INC_DIR) -I $(LIBFT_DIR)
 
-$(SERVER_B): $(OBJ_SERVER_B) $(LIBFT)
+$(NAME_SB): $(OBJ_NAME_SB) $(LIBFT)
 		$(CC) $(CFLAGS) -o $@ $< -I $(INC_DIR) -I $(LIBFT_DIR)
 
-$(CLIENT_B): $(OBJ_CLIENT_B) $(LIBFT)
+$(NAME_CB): $(OBJ_NAME_CB) $(LIBFT)
 		$(CC) $(CFLAGS) -o $@ $< -I $(INC_DIR) -I $(LIBFT_DIR)
 
 .PHONY: all clean fclean re bonus 

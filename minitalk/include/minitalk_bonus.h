@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 21:55:46 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/01/04 23:54:40 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/01/05 21:43:06 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <signal.h>
 // # include "libft.h"
 
-/* server.c */
+/* server_bonus.c */
 
-/* client.c */
+/* client_bonus.c */
 
 #endif

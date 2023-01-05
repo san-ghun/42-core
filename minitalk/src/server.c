@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 22:06:33 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/01/05 01:47:55 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/01/05 22:13:54 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@ int	main(int argc, char **argv)
 	(void)argv;
 	if (argc != 1)
 	{
-		printf("Wrong start.\n");
+		printf("Error: Failed to start server.\n");
 		printf("Try: ./server\n");
 		return (1);
 	}
 	pid = getpid();
 	printf("PID: %d\n", pid);
+	printf("Wating for message from client...\n\n------------\n\n");
 	while (argc == 1)
 	{
 		signal(SIGUSR1, ft_message_handler);

@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 23:22:56 by sanghupa          #+#    #+#             */
-/*   Updated: 2022/12/28 15:37:21 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/01/05 11:36:13 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ char	*ft_add_bufs(int fd, char *bufs)
 		if (byte_read == -1)
 		{
 			free(buf);
+			free(bufs);
 			return (NULL);
 		}
 		buf[byte_read] = '\0';

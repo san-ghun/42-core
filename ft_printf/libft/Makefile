@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 22:48:59 by sanghupa          #+#    #+#              #
-#    Updated: 2022/12/29 22:52:17 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/01/05 12:11:02 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ AR			= ar -rcv
 
 NAME		= libft.a
 
-INCLUDE		= libft.h
+INCLUDE		= .
 
 SRC			= ft_isalnum.c ft_isalpha.c ft_isdigit.c ft_isascii.c \
 				ft_isprint.c ft_strlen.c ft_strlcpy.c ft_strlcat.c \

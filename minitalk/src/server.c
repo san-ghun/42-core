@@ -6,11 +6,31 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 22:06:33 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/01/06 01:25:48 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:13:08 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+static int	ft_server_error(int pid_s, int f(void))
+{
+	int		err;
+	char	*res_msg;
+
+	err = f();
+	if (!pid_s)
+	{
+		res_msg = "Result: Failed to start server.\n";
+		printf("%s", res_msg);
+		printf("Try: ./server\n");
+	}
+	else
+	{
+		res_msg = "Result: server #%d failed to receive message from client\n";
+		printf(res_msg, pid_s);
+	}
+	return (err);
+}
 
 static void	ft_message_handler(int signal)
 {

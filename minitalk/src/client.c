@@ -6,11 +6,31 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 22:08:42 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/01/06 00:56:16 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:11:39 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+static int	ft_client_error(int pid_c, int pid_s, int f(void))
+{
+	int		err;
+	char	*res_msg;
+
+	err = f();
+	if (!pid_s)
+	{
+		res_msg = "Result: client #%d failed to send message\n";
+		printf(res_msg, pid_c);
+	}
+	else
+	{
+		res_msg = "Result: client #%d failed to send message to server #%d\n";
+		printf(res_msg, pid_c, pid_s);
+	}
+	printf("Try: ./client <PID> \"<message>\"\n");
+	return (err);
+}
 
 static void	ft_send_message(pid_t pid, int c)
 {

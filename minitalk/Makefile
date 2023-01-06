@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 17:17:29 by sanghupa          #+#    #+#              #
-#    Updated: 2023/01/05 21:51:38 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/01/06 01:26:41 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,14 +25,14 @@ LIBFT_DIR	= ./
 SRC_DIR	= ./src
 
 NAME = server
-SRC_NAME = $(SRC_DIR)/$(NAME).c
+SRC_NAME = $(SRC_DIR)/$(NAME).c $(SRC_DIR)/minitalk_error.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 NAME_SB = server_bonus
 SRC_NAME_SB = $(SRC_DIR)/$(NAME_SB).c
 OBJ_NAME_SB = $(SRC_NAME_SB:.c=.o)
 
 NAME_C = client
-SRC_NAME_C = $(SRC_DIR)/$(NAME_C).c
+SRC_NAME_C = $(SRC_DIR)/$(NAME_C).c $(SRC_DIR)/minitalk_error.c
 OBJ_NAME_C = $(SRC_NAME_C:.c=.o)
 NAME_CB = client_bonus
 SRC_NAME_CB = $(SRC_DIR)/$(NAME_CB).c
@@ -56,21 +56,21 @@ fclean: clean
 re: fclean all
 
 %.o: %.c
-		$(CC) $(CFLAGS) -c -o $@ $^ -I $(INC_DIR) -I $(LIBFT_DIR)
+		$(CC) $(CFLAGS) -c -o $@ $< -I $(INC_DIR) -I $(LIBFT_DIR)
 
 # $(LIBFT):
 # 		make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ_NAME) $(LIBFT)
-		$(CC) $(CFLAGS) -o $@ $< -I $(INC_DIR) -I $(LIBFT_DIR)
+		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_DIR)
 
 $(NAME_C): $(OBJ_NAME_C) $(LIBFT)
-		$(CC) $(CFLAGS) -o $@ $< -I $(INC_DIR) -I $(LIBFT_DIR)
+		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_DIR)
 
 $(NAME_SB): $(OBJ_NAME_SB) $(LIBFT)
-		$(CC) $(CFLAGS) -o $@ $< -I $(INC_DIR) -I $(LIBFT_DIR)
+		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_DIR)
 
 $(NAME_CB): $(OBJ_NAME_CB) $(LIBFT)
-		$(CC) $(CFLAGS) -o $@ $< -I $(INC_DIR) -I $(LIBFT_DIR)
+		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_DIR)
 
 .PHONY: all clean fclean re bonus 

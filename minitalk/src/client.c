@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 22:08:42 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/01/05 22:22:32 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:56:16 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ int	main(int argc, char **argv)
 
 	i = 0;
 	pid_c = getpid();
-	if (argc == 3)
+	if (argc != 3)
+		return (ft_client_error(pid_c, 0, ft_error_argc));
+	else if (!ft_str_isdigit(argv[1]))
+		return (ft_client_error(pid_c, 0, ft_error_argv));
+	else
 	{
 		pid_s = atoi(argv[1]);
 		while (argv[2][i] != '\0')
@@ -46,12 +50,6 @@ int	main(int argc, char **argv)
 			i++;
 		}
 		ft_send_message(pid_s, '\n');
-	}
-	else
-	{
-		printf("Error: client #%d failed to send message to server\n", pid_c);
-		printf("Try: ./client <PID> \"<message>\"\n");
-		return (1);
 	}
 	return (0);
 }

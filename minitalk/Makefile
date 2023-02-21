@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 17:17:29 by sanghupa          #+#    #+#              #
-#    Updated: 2023/01/06 01:26:41 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/02/21 16:08:22 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ RM			= rm -f
 
 INC_DIR	= ./include
 
-# LIBFT		= libft.a
-# LIBFT_DIR	= ./libft
-# LIBFT_PATH	= $(LIBFT_DIR)/$(LIBFT)
-LIBFT_DIR	= ./
+LIBFT		= libft.a
+LIBFT_DIR	= ./libft
+LIBFT_I_DIR	= $(LIBFT_DIR)/include
+LIBFT_PATH	= $(LIBFT_DIR)/$(LIBFT)
 
 SRC_DIR	= ./src
 
@@ -43,12 +43,13 @@ all: $(NAME) $(NAME_C)
 bonus: $(NAME_SB) $(NAME_CB)
 
 clean:
-#		make clean -C $(LIBFT_DIR)
+		make clean -C $(LIBFT_DIR)
 		$(RM) $(OBJ_NAME) $(OBJ_NAME_C)
 		$(RM) $(OBJ_NAME_SB) $(OBJ_NAME_CB)
 
 fclean: clean
-#		make fclean -C $(LIBFT_DIR)
+		make fclean -C $(LIBFT_DIR)
+		$(RM) $(LIBFT)
 		$(RM) $(OBJ_NAME) $(OBJ_NAME_C)
 		$(RM) $(OBJ_NAME_SB) $(OBJ_NAME_CB)
 		$(RM) $(NAME) $(NAME_C)
@@ -56,21 +57,22 @@ fclean: clean
 re: fclean all
 
 %.o: %.c
-		$(CC) $(CFLAGS) -c -o $@ $< -I $(INC_DIR) -I $(LIBFT_DIR)
+		$(CC) $(CFLAGS) -c -o $@ $< -I $(INC_DIR) -I $(LIBFT_I_DIR)
 
-# $(LIBFT):
-# 		make -C $(LIBFT_DIR)
+$(LIBFT):
+		make -C $(LIBFT_DIR)
+		mv $(LIBFT_PATH) ./
 
-$(NAME): $(OBJ_NAME) $(LIBFT)
-		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_DIR)
+$(NAME): $(OBJ_NAME) $(LIBFT) 
+		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
 
-$(NAME_C): $(OBJ_NAME_C) $(LIBFT)
-		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_DIR)
+$(NAME_C): $(OBJ_NAME_C) $(LIBFT) 
+		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
 
-$(NAME_SB): $(OBJ_NAME_SB) $(LIBFT)
-		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_DIR)
+$(NAME_SB): $(OBJ_NAME_SB) $(LIBFT) 
+		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
 
-$(NAME_CB): $(OBJ_NAME_CB) $(LIBFT)
-		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_DIR)
+$(NAME_CB): $(OBJ_NAME_CB) $(LIBFT) 
+		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
 
 .PHONY: all clean fclean re bonus 

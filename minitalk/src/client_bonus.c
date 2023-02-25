@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 22:08:42 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/02/21 15:31:40 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/02/25 21:15:33 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,24 @@ static void	ft_send_message(pid_t pid, int c)
 			kill(pid, SIGUSR2);
 		usleep(1000);
 		bit++;
+	}
+}
+
+static void	ft_response_handler(int signal)
+{
+	static int	bit;
+	static int	i;
+
+	if (signal == SIGUSR1)
+	{
+		i |= (1 << bit);
+	}
+	bit++;
+	if (bit == 8)
+	{
+		ft_printf("%c", i);
+		bit = 0;
+		i = 0;
 	}
 }
 

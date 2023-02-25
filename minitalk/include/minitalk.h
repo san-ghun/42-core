@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 21:55:46 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/02/21 15:58:57 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/02/25 21:06:59 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 /* client.c */
 
-/* client_error.c */
+/* minitalk_error.c */
 
 int	ft_str_isdigit(char *str);
 

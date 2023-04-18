@@ -4,7 +4,7 @@
 
 * VirtualBox: New
 * Name: {Anyname}
-* Machine folder: /sgoinfre/goinfre/Perso/\{yourlogin}
+* Machine folder: `/sgoinfre/goinfre/Perso/{yourlogin}`
 * Type: Linux
 * Version: Debian 64-bit
 
@@ -24,7 +24,7 @@
 2. Language: English
 3. Choose **your** area
 4. Choose United State (en_US.UTF-8) and American English for keyboard
-5. Hostname: {yourlogin}+42 (ex. sanghupa42)
+5. Hostname: {yourlogin} + 42 (ex. `sanghupa42`)
 6. Domain: *leave empty*
 
 **Now configure your account and root** 

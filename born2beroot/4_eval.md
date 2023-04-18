@@ -77,7 +77,8 @@ $ getent group sudo                 # sudo group users
 $ getent group user42               # user42 group users
 $ sudo service ssh status           # ssh status, yep
 $ sudo ufw status                   # ufw status
-$ ssh username@ipadress -p 4242     # connect to VM from your host (physical) machine via SSH
+$ hostname -I                       # to get ip address
+$ ssh username@ipaddress -p 4242    # connect to VM from your host (physical) machine via SSH
 $ nano /etc/sudoers.d/<filename>    # yes, sudo config file. You can $ ls /etc/sudoers.d first
 $ nano /etc/login.defs              # password expire policy
 $ nano /etc/pam.d/common-password   # password policy
@@ -97,7 +98,7 @@ $ sudo groupadd <groupname>
 $ sudo usermod -aG <groupname> <username>
 $ sudo chage -l <username>  # check password expire rules
 $ hostnamectl
-$ hostnamectl <set-hostname> <new_hostname>     # to change the current hostname, and Restart your Virtual Machine.
+$ hostnamectl set-hostname <new_hostname>     # to change the current hostname, and Restart your Virtual Machine.
 $ sudo nano /etc/hosts      # change current hostname to new hostname
 $ lsblk     # to display the partitions
 $ dpkg -l | grep sudo   # to show that sudo is installed

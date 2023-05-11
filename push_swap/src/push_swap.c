@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 12:43:11 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/05/05 12:56:29 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/05/05 13:16:47 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,7 @@ int	main(int argc, char **argv)
 	int	i;
 
 	i = 0;
+	(void)argc;
+	(void)argv;
 	return (0);
 }

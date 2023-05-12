@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:48:23 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/05/12 12:13:39 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:49:00 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <math.h>
+# include "MLX42/MLX42.h"
 # include "libft.h"
 # include "ft_printf.h"
 
@@ -22,8 +24,6 @@
 # include <ctype.h>
 
 /* fractol_val_input.c */
-/* fractol_rules.c */
-/* fractol_sort.c */
 
 /* fractol_error.c */
 

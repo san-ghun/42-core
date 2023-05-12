@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
+#    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 12:23:52 by sanghupa          #+#    #+#              #
-#    Updated: 2023/05/11 12:25:20 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/05/12 14:25:23 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,11 @@ LIBFT		= libft.a
 LIBFT_DIR	= ./libft
 LIBFT_I_DIR	= $(LIBFT_DIR)/include
 LIBFT_PATH	= $(LIBFT_DIR)/$(LIBFT)
+
+MLX42		= libmlx42.a 
+MLX42_DIR	= ./MLX42 
+MLX42_I_DIR	= $(MLX42_DIR)/include
+MLX42_PATH	= $(MLX42_DIR)/$(MLX42)
 
 SRC_DIR		= ./src
 
@@ -41,7 +46,9 @@ OBJ_NAME_B 	= $(SRC_NAME_B:.c=.o)
 
 # Main Command
 
-all: $(NAME)
+all: 
+		git submodule init && git submodule update 
+		$(NAME)
 
 bonus: $(NAME_B)
 
@@ -63,17 +70,22 @@ re: fclean all
 # Sub Command
 
 %.o: %.c
-		$(CC) $(CFLAGS) -c -o $@ $< -I $(INC_DIR) -I $(LIBFT_I_DIR)
+		$(CC) $(CFLAGS) -c -o $@ $< -I $(INC_DIR) -I $(LIBFT_I_DIR) -I $(MLX42_I_DIR)
 
 $(LIBFT):
 		make -C $(LIBFT_DIR)
 		mv $(LIBFT_PATH) ./
 
-$(NAME): $(OBJ_NAME) $(LIBFT) 
-		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
+$(MLX42):
+		cmake -C $(MLX42_DIR) -B $(MLX42_DIR)
+		cmake --build $(MLX42_DIR) -j4
+		mv $(MLX42_PATH) ./
+
+$(NAME): $(OBJ_NAME) $(LIBFT) $(MLX42)
+		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR) -I $(MLX42_I_DIR)
 
 $(NAME_B): $(OBJ_NAME_B) $(LIBFT) 
-		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
+		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR) -I $(MLX42_I_DIR)
 
 
 # Phony target

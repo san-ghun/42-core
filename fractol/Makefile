@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 12:23:52 by sanghupa          #+#    #+#              #
-#    Updated: 2023/05/12 15:26:38 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/05/12 16:16:13 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,6 +94,9 @@ TEST = test.c
 test: $(MLX42)
 		$(CC) $(TEST) -o $(TEST:.c=.out) $^ -I $(MLX42_I_DIR) -ldl -lglfw -pthread -lm
 		./$(TEST:.c=.out)
+
+tclean: 
+		$(RM) test.o test.out
 
 # Phony target
 

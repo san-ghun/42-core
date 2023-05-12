@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 12:23:52 by sanghupa          #+#    #+#              #
-#    Updated: 2023/05/12 15:06:14 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/05/12 15:26:38 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIBFT_I_DIR	= $(LIBFT_DIR)/include
 LIBFT_PATH	= $(LIBFT_DIR)/$(LIBFT)
 
 MLX42		= libmlx42.a 
-MLX42_DIR	= ./MLX42 
+MLX42_DIR	= ./MLX42
 MLX42_I_DIR	= $(MLX42_DIR)/include
 MLX42_PATH	= $(MLX42_DIR)/build/$(MLX42)
 
@@ -87,6 +87,13 @@ $(NAME): $(OBJ_NAME) $(LIBFT) $(MLX42)
 $(NAME_B): $(OBJ_NAME_B) $(LIBFT) 
 		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR) -I $(MLX42_I_DIR) -ldl -lglfw -pthread -lm
 
+# Test Code 
+
+TEST = test.c
+
+test: $(MLX42)
+		$(CC) $(TEST) -o $(TEST:.c=.out) $^ -I $(MLX42_I_DIR) -ldl -lglfw -pthread -lm
+		./$(TEST:.c=.out)
 
 # Phony target
 

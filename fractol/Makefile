@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 12:23:52 by sanghupa          #+#    #+#              #
-#    Updated: 2023/05/19 13:16:58 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/05/19 13:52:26 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 CC			= cc
 CFLAGS		= -Wall -Werror -Wextra
 
-RM			= rm -f
+RM			= rm
 
 INC_DIR		= ./include
 
@@ -56,17 +56,17 @@ bonus: $(NAME_B)
 
 clean:
 		@make clean -C $(LIBFT_DIR)
-		@$(RM) $(OBJ_NAME)
-		@$(RM) $(OBJ_NAME_B)
-		@$(RM) $(MLX42_DIR)/build
+		@$(RM) -f $(OBJ_NAME)
+		@$(RM) -f $(OBJ_NAME_B)
+		@$(RM) -rf $(MLX42_DIR)/build
 
 fclean: clean
 		@make fclean -C $(LIBFT_DIR)
-		@$(RM) $(LIBFT)
-		@$(RM) $(MLX42)
-		@$(RM) $(OBJ_NAME)
-		@$(RM) $(OBJ_NAME_B)
-		@$(RM) $(NAME)
+		@$(RM) -f $(LIBFT)
+		@$(RM) -f $(MLX42)
+		@$(RM) -f $(OBJ_NAME)
+		@$(RM) -f $(OBJ_NAME_B)
+		@$(RM) -f $(NAME)
 
 re: fclean all
 
@@ -74,7 +74,7 @@ re: fclean all
 # Sub Command
 
 %.o: %.c
-		@$(CC) $(CFLAGS) -c -o $@ $< $(HEADERS) && printf "Compiling: $(notdir $<)"
+		@$(CC) $(CFLAGS) -c -o $@ $< $(HEADERS)
 
 $(LIBFT):
 		@make -C $(LIBFT_DIR)
@@ -100,7 +100,7 @@ test: $(MLX42)
 		./$(TEST:.c=.out)
 
 tclean: 
-		$(RM) test.o test.out
+		$(RM) -f test.o test.out
 
 # Phony target
 

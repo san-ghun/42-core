@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:48:02 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/05/14 19:33:00 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:02:24 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ static int	ft_target_error(int request, int response, int f(void))
 
 int	main(int argc, char **argv)
 {
-	mlx_t* mlx;
+	mlx_t*	mlx;
 
+	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	// Gotta error check this stuff
-	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
+	if (!(mlx))
 	{
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);

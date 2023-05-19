@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:48:23 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/05/12 16:49:00 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:03:12 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 
 # include <stdio.h>
 # include <ctype.h>
+
+#define WIDTH 512
+#define HEIGHT 512
 
 /* fractol_val_input.c */
 

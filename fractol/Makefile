@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 12:23:52 by sanghupa          #+#    #+#              #
-#    Updated: 2023/05/12 16:16:13 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/05/19 13:16:58 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,9 @@ MLX42		= libmlx42.a
 MLX42_DIR	= ./MLX42
 MLX42_I_DIR	= $(MLX42_DIR)/include
 MLX42_PATH	= $(MLX42_DIR)/build/$(MLX42)
+
+HEADERS		= -I $(INC_DIR) -I $(LIBFT_I_DIR) -I $(MLX42_I_DIR)
+LINUX_LINK	= -ldl -lglfw -pthread -lm
 
 SRC_DIR		= ./src
 
@@ -52,17 +55,18 @@ all: $(NAME)
 bonus: $(NAME_B)
 
 clean:
-		make clean -C $(LIBFT_DIR)
-		$(RM) $(OBJ_NAME)
-		$(RM) $(OBJ_NAME_B)
+		@make clean -C $(LIBFT_DIR)
+		@$(RM) $(OBJ_NAME)
+		@$(RM) $(OBJ_NAME_B)
+		@$(RM) $(MLX42_DIR)/build
 
 fclean: clean
-		make fclean -C $(LIBFT_DIR)
-		$(RM) $(LIBFT)
-		$(RM) $(MLX42)
-		$(RM) $(OBJ_NAME)
-		$(RM) $(OBJ_NAME_B)
-		$(RM) $(NAME)
+		@make fclean -C $(LIBFT_DIR)
+		@$(RM) $(LIBFT)
+		@$(RM) $(MLX42)
+		@$(RM) $(OBJ_NAME)
+		@$(RM) $(OBJ_NAME_B)
+		@$(RM) $(NAME)
 
 re: fclean all
 
@@ -70,29 +74,29 @@ re: fclean all
 # Sub Command
 
 %.o: %.c
-		$(CC) $(CFLAGS) -c -o $@ $< -I $(INC_DIR) -I $(LIBFT_I_DIR) -I $(MLX42_I_DIR)
+		@$(CC) $(CFLAGS) -c -o $@ $< $(HEADERS) && printf "Compiling: $(notdir $<)"
 
 $(LIBFT):
-		make -C $(LIBFT_DIR)
-		mv $(LIBFT_PATH) ./
+		@make -C $(LIBFT_DIR)
+		@mv $(LIBFT_PATH) ./
 
 $(MLX42):
-		cmake -S $(MLX42_DIR) -B $(MLX42_DIR)/build
-		cmake --build $(MLX42_DIR)/build -j4
-		mv $(MLX42_PATH) ./
+		@cmake -S $(MLX42_DIR) -B $(MLX42_DIR)/build
+		@cmake --build $(MLX42_DIR)/build -j4
+		@mv $(MLX42_PATH) ./
 
 $(NAME): $(OBJ_NAME) $(LIBFT) $(MLX42)
-		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR) -I $(MLX42_I_DIR) -ldl -lglfw -pthread -lm
+		@$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) $(LINUX_LINK)
 
 $(NAME_B): $(OBJ_NAME_B) $(LIBFT) 
-		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR) -I $(MLX42_I_DIR) -ldl -lglfw -pthread -lm
+		@$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) $(LINUX_LINK)
 
 # Test Code 
 
 TEST = test.c
 
 test: $(MLX42)
-		$(CC) $(TEST) -o $(TEST:.c=.out) $^ -I $(MLX42_I_DIR) -ldl -lglfw -pthread -lm
+		$(CC) $(TEST) -o $(TEST:.c=.out) $^ -I $(MLX42_I_DIR) $(LINUX_LINK)
 		./$(TEST:.c=.out)
 
 tclean: 

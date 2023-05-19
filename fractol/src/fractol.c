@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:48:02 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/05/12 16:51:41 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/05/14 19:33:00 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static int	ft_target_error(int request, int response, int f(void))
 	err = f();
 	if (!response)
 	{
-		res_msg = "Result: target request #%d failed to do something with response\n";
+		res_msg = "Result: target request %d failed with response\n";
 		ft_printf(res_msg, request);
 	}
 	if (!request)
 	{
-		res_msg = "Result: target request #%d failed to do something with response #%d\n";
+		res_msg = "Result: target request %d failed with response #%d\n";
 		ft_printf(res_msg, request, response);
 	}
 	ft_printf("Try: {recommendation message}\n");

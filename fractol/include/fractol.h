@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:48:23 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/05/19 13:03:12 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:15:25 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,37 @@
 # include <stdio.h>
 # include <ctype.h>
 
-#define WIDTH 512
-#define HEIGHT 512
+# define WIDTH 512
+# define HEIGHT 512
+
+typedef struct s_rgba
+{
+	int		r;
+	int		g;
+	int		b;
+	int		a;
+}				t_rgba;
+
+typedef struct s_type
+{
+	int		type;
+	int		depth;
+	int		iteration;
+	double	width;
+	double	height;
+	double	scale;
+	double	xr;
+	double	yi;
+	double	cr;
+	double	ci;
+}				t_type;
+
+typedef struct s_fractol
+{
+	mlx_t	mlx;
+	t_rgba	rgba;
+	t_type	fractol;
+}				t_fractol;
 
 /* fractol_val_input.c */
 

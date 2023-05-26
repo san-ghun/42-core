@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:48:23 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/05/26 15:15:25 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/05/26 16:05:29 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_fractol
 {
 	mlx_t	mlx;
 	t_rgba	rgba;
-	t_type	fractol;
+	t_type	fractal;
 }				t_fractol;
 
 /* fractol_val_input.c */

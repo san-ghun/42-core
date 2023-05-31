@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:48:02 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/05/26 16:57:22 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/05/31 17:35:04 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // Exit the program as failure.
 static void	ft_mlx_error(void)
 {
-	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
+	ft_printf("%s", mlx_strerror(mlx_errno));
 	exit(EXIT_FAILURE);
 }
 
@@ -26,10 +26,10 @@ static void	show_options(void)
 	ft_printf("        Julia................1\n");
 	ft_printf("        Mandelbrot...........2\n");
 	ft_printf("        Rabbit...............3\n");
-	ft_printf("        Monster..............4\n");
+	ft_printf("        Monster..............4\n\n");
 	ft_printf("  (Optional) :\n");
-	ft_printf("    Arg 2 : Iteration from 20 to 1000\n");
-	ft_printf("    (For Julia Only) :\n");
+	ft_printf("    Arg 2 : Iteration from 20 to 1000\n\n");
+	ft_printf("  (For Julia Only) :\n");
 	ft_printf("    Arg 3 : Real complex number\n");
 	ft_printf("    Arg 4 : Imaginary complex number\n\n");
 	ft_printf("Commands :\n");
@@ -53,7 +53,7 @@ static void	choose_option(t_fractol *f, char **av)
 	{
 		ft_error_argv();
 		show_options();
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 }
 
@@ -90,17 +90,20 @@ int	main(int argc, char **argv)
 	{
 		choose_option(&f, argv);
 		// MLX allows you to define its core behaviour before startup.
-		mlx_set_setting(MLX_MAXIMIZED, true);
-		mlx = mlx_init(WIDTH, HEIGHT, "42s", true);
+		// mlx_set_setting(MLX_MAXIMIZED, true);
+		mlx = mlx_init(WIDTH, HEIGHT, "Fractol", true);
 		if (!mlx)
 			ft_mlx_error();
 		/* Do stuff */
 		// Create and display the image.
-		img = mlx_new_image(mlx, 256, 256);
+		img = mlx_new_image(mlx, WIDTH, HEIGHT);
 		if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
+		{
+			mlx_close_window(mlx);
 			ft_mlx_error();
+		}
 		// Even after the image is being displayed, we can still modify the buffer.
-		mlx_put_pixel(img, 0, 0, 0xFF0000FF);
+		mlx_put_pixel(img, WIDTH/2, HEIGHT/2, 0xFF0000FF);
 		// Register a hook and pass mlx as an optional param.
 		// NOTE: Do this before calling mlx_loop!
 		mlx_key_hook(mlx, &ft_keyhook, NULL);
@@ -112,7 +115,6 @@ int	main(int argc, char **argv)
 	{
 		ft_error_argc();
 		show_options();
-		exit(0);
 	}
 	return (EXIT_SUCCESS);
 }

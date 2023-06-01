@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:48:02 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/05/31 17:35:04 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:39:16 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,33 +57,8 @@ static void	choose_option(t_fractol *f, char **av)
 	}
 }
 
-// Print the window width and height.
-// static void	ft_hook(void *param)
-// {
-// 	const mlx_t	*mlx = param;
-
-// 	ft_printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
-// }
-
-// Hook for key input
-static void	ft_keyhook(mlx_key_data_t keydata, void *param)
-{
-	(void)param;
-	// If we PRESS the 'J' key, print "Hello".
-	if (keydata.key == MLX_KEY_J && keydata.action == MLX_PRESS)
-		puts("Hello ");
-	// If we RELEASE the 'K' key, print "World".
-	if (keydata.key == MLX_KEY_K && keydata.action == MLX_RELEASE)
-		puts("World");
-	// If we HOLD the 'L' key, print "!".
-	if (keydata.key == MLX_KEY_L && keydata.action == MLX_REPEAT)
-		puts("!");
-}
-
 int	main(int argc, char **argv)
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
 	t_fractol	f;
 
 	if (argc >= 2)
@@ -91,25 +66,28 @@ int	main(int argc, char **argv)
 		choose_option(&f, argv);
 		// MLX allows you to define its core behaviour before startup.
 		// mlx_set_setting(MLX_MAXIMIZED, true);
-		mlx = mlx_init(WIDTH, HEIGHT, "Fractol", true);
-		if (!mlx)
+		f.mlx = mlx_init(WIDTH, HEIGHT, "Fractol", true);
+		if (!f.mlx)
 			ft_mlx_error();
 		/* Do stuff */
 		// Create and display the image.
-		img = mlx_new_image(mlx, WIDTH, HEIGHT);
-		if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
+		f.img = mlx_new_image(f.mlx, WIDTH, HEIGHT);
+		if (!f.img || (mlx_image_to_window(f.mlx, f.img, 0, 0) < 0))
 		{
-			mlx_close_window(mlx);
+			mlx_close_window(f.mlx);
 			ft_mlx_error();
 		}
 		// Even after the image is being displayed, we can still modify the buffer.
-		mlx_put_pixel(img, WIDTH/2, HEIGHT/2, 0xFF0000FF);
+		// mlx_put_pixel(f.img, WIDTH/2, HEIGHT/2, 0xFF0000FF);
+		init_fractol(&f, argv);
+		draw_fractol(&f);
+		
 		// Register a hook and pass mlx as an optional param.
 		// NOTE: Do this before calling mlx_loop!
-		mlx_key_hook(mlx, &ft_keyhook, NULL);
-		// mlx_loop_hook(mlx, ft_hook, mlx);
-		mlx_loop(mlx);
-		mlx_terminate(mlx);
+		mlx_key_hook(f.mlx, &ft_keyhook_general, f.mlx);
+		mlx_loop_hook(f.mlx, ft_hook, &f);
+		mlx_loop(f.mlx);
+		mlx_terminate(f.mlx);
 	}
 	else
 	{

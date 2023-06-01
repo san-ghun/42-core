@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 12:23:52 by sanghupa          #+#    #+#              #
-#    Updated: 2023/05/19 13:52:26 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/06/01 17:39:45 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,11 @@ SRC_DIR		= ./src
 
 NAME 		= fractol
 SRC_NAME 	= $(SRC_DIR)/$(NAME).c \
-				$(SRC_DIR)/fractol_error.c \
+				$(SRC_DIR)/$(NAME)_init.c \
+				$(SRC_DIR)/$(NAME)_draw.c \
+				$(SRC_DIR)/$(NAME)_control.c \
+				$(SRC_DIR)/$(NAME)_utils.c \
+				$(SRC_DIR)/$(NAME)_error.c \
 
 OBJ_NAME 	= $(SRC_NAME:.c=.o)
 

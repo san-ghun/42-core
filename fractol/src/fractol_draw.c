@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol_draw.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:11:53 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/01 16:20:44 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/01 22:36:57 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_pixel(int r, int g, int b, int a)
 {
-    return (r << 24 | g << 16 | b << 8 | a);
+	return (r << 24 | g << 16 | b << 8 | a);
 }
 
 void	randomize_color(t_rgba *color)
@@ -46,8 +46,13 @@ void	put_pixel(t_fractol *f, int depth)
 {
 	int	color;
 
-	color = ft_pixel(f->rgba.r + (depth * 2), f->rgba.g + (depth * 4), f->rgba.b + (depth * 3), f->rgba.a);
-	if (f->fractal.height < WIDTH && f->fractal.width < HEIGHT && depth == f->fractal.iteration)
+	color = ft_pixel(f->rgba.r + (depth * 2), \
+						f->rgba.g + (depth * 4), \
+						f->rgba.b + (depth * 3), \
+						f->rgba.a);
+	if (f->fractal.height < WIDTH && \
+			f->fractal.width < HEIGHT && \
+			depth == f->fractal.iteration)
 		mlx_put_pixel(f->img, f->fractal.width, f->fractal.height, 0x00);
 	else if (f->fractal.height < WIDTH && f->fractal.width < HEIGHT)
 		mlx_put_pixel(f->img, f->fractal.width, f->fractal.height, color);

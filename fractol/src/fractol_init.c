@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 16:39:56 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/01 17:30:47 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/01 22:39:12 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	julia(t_fractol *fractol)
 		cr = fractol->fractal.cr;
 		ci = fractol->fractal.ci;
 	}
-	while ((zr * zr) + (zi * zi) < 4 && fractol->fractal.depth \
-	 < fractol->fractal.iteration)
+	while ((zr * zr) + (zi * zi) < 4 && \
+			fractol->fractal.depth < fractol->fractal.iteration)
 	{
 		tmp_zr = zr;
 		zr = (zr * zr) - (zi * zi) + cr;
@@ -111,8 +111,8 @@ int	rabbit(t_fractol *fractol)
 		cr = fractol->fractal.cr;
 		ci = fractol->fractal.ci;
 	}
-	while ((zr * zr) + (zi * zi) < 4 && fractol->fractal.depth \
-	 < fractol->fractal.iteration)
+	while ((zr * zr) + (zi * zi) < 4 && \
+			fractol->fractal.depth < fractol->fractal.iteration)
 	{
 		tmp_zr = zr;
 		zr = (zr * zr) - (zi * zi) + cr;

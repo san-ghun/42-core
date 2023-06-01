@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:48:02 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/01 17:39:16 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/01 22:59:49 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-// Exit the program as failure.
-static void	ft_mlx_error(void)
-{
-	ft_printf("%s", mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
-}
 
 static void	show_options(void)
 {
@@ -64,28 +57,20 @@ int	main(int argc, char **argv)
 	if (argc >= 2)
 	{
 		choose_option(&f, argv);
-		// MLX allows you to define its core behaviour before startup.
 		// mlx_set_setting(MLX_MAXIMIZED, true);
 		f.mlx = mlx_init(WIDTH, HEIGHT, "Fractol", true);
 		if (!f.mlx)
 			ft_mlx_error();
-		/* Do stuff */
-		// Create and display the image.
 		f.img = mlx_new_image(f.mlx, WIDTH, HEIGHT);
 		if (!f.img || (mlx_image_to_window(f.mlx, f.img, 0, 0) < 0))
 		{
 			mlx_close_window(f.mlx);
 			ft_mlx_error();
 		}
-		// Even after the image is being displayed, we can still modify the buffer.
-		// mlx_put_pixel(f.img, WIDTH/2, HEIGHT/2, 0xFF0000FF);
 		init_fractol(&f, argv);
 		draw_fractol(&f);
-		
-		// Register a hook and pass mlx as an optional param.
-		// NOTE: Do this before calling mlx_loop!
-		mlx_key_hook(f.mlx, &ft_keyhook_general, f.mlx);
 		mlx_loop_hook(f.mlx, ft_hook, &f);
+		mlx_scroll_hook(f.mlx, ft_scrollhook, &f);
 		mlx_loop(f.mlx);
 		mlx_terminate(f.mlx);
 	}

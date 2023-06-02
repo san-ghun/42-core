@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 12:23:52 by sanghupa          #+#    #+#              #
-#    Updated: 2023/06/01 17:39:45 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/06/02 15:32:07 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,6 +96,7 @@ $(NAME_B): $(OBJ_NAME_B) $(LIBFT)
 		@$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) $(LINUX_LINK)
 
 # Test Code 
+# to test the installation of MLX42
 
 TEST = test.c
 

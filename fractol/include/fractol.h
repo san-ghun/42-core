@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:48:23 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/02 15:43:32 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/02 23:47:00 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define WIDTH		800
 # define HEIGHT		800
 # define ZOOMRATE	1.2
-# define ISITER		false
+# define ISITER		0
 # define ITER		2
 
 typedef struct s_rgba

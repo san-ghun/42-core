@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 12:23:52 by sanghupa          #+#    #+#              #
-#    Updated: 2023/06/02 15:32:07 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/06/02 16:35:01 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,8 +45,12 @@ SRC_NAME 	= $(SRC_DIR)/$(NAME).c \
 OBJ_NAME 	= $(SRC_NAME:.c=.o)
 
 NAME_B 		= fractol_bonus
-SRC_NAME_B 	= $(SRC_DIR)/$(NAME_B).c \
-				$(SRC_DIR)/fractol_error.c \
+SRC_NAME_B 	= $(SRC_DIR)/$(NAME).c \
+				$(SRC_DIR)/$(NAME)_init.c \
+				$(SRC_DIR)/$(NAME)_draw.c \
+				$(SRC_DIR)/$(NAME)_control.c \
+				$(SRC_DIR)/$(NAME)_utils.c \
+				$(SRC_DIR)/$(NAME)_error.c \
 
 OBJ_NAME_B 	= $(SRC_NAME_B:.c=.o)
 
@@ -71,6 +75,7 @@ fclean: clean
 		@$(RM) -f $(OBJ_NAME)
 		@$(RM) -f $(OBJ_NAME_B)
 		@$(RM) -f $(NAME)
+		@$(RM) -f $(NAME_B)
 
 re: fclean all
 
@@ -92,7 +97,7 @@ $(MLX42):
 $(NAME): $(OBJ_NAME) $(LIBFT) $(MLX42)
 		@$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) $(LINUX_LINK)
 
-$(NAME_B): $(OBJ_NAME_B) $(LIBFT) 
+$(NAME_B): $(OBJ_NAME_B) $(LIBFT) $(MLX42)
 		@$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) $(LINUX_LINK)
 
 # Test Code 

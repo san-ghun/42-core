@@ -3,45 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   fractol_control.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 17:37:50 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/02 00:44:02 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:43:14 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	zoom_in(int x, int y, t_fractol *f)
+void	zoom_in(int x, int y, t_fractol *f)
 {
-	double	zoom;
 	double	new_scale;
 
-	zoom = 1.5;
-	new_scale = f->fractal.scale * zoom;
-	// TODO: Have to manipulate to find optimal value.
+	new_scale = f->fractal.scale * ZOOMRATE;
 	f->fractal.xr = ((double)x / f->fractal.scale + f->fractal.xr) \
 						- (double)x / new_scale;
 	f->fractal.yi = ((double)y / f->fractal.scale + f->fractal.yi) \
 						- (double)y / new_scale;
 	f->fractal.scale = new_scale;
-	f->fractal.iteration += 5;
+	if (ISITER)
+		f->fractal.iteration += ITER;
 }
 
-static void	zoom_out(int x, int y, t_fractol *f)
+void	zoom_out(int x, int y, t_fractol *f)
 {
-	double	zoom;
 	double	new_scale;
 
-	zoom = 1.5;
-	new_scale = f->fractal.scale / zoom;
-	// TODO: Have to manipulate to find optimal value.
+	new_scale = f->fractal.scale / ZOOMRATE;
 	f->fractal.xr = ((double)x / f->fractal.scale + f->fractal.xr) \
 						- (double)x / new_scale;
 	f->fractal.yi = ((double)y / f->fractal.scale + f->fractal.yi) \
 						- (double)y / new_scale;
 	f->fractal.scale = new_scale;
-	f->fractal.iteration -= 5;
+	if (ISITER)
+		f->fractal.iteration -= ITER;
 }
 
 void	ft_hook(void *param)
@@ -73,7 +69,7 @@ void	ft_scrollhook(double xdelta, double ydelta, void *param)
 	int			y;
 
 	f = param;
-	mlx_get_mouse_pos(f->mlx, x, y);
+	mlx_get_mouse_pos(f->mlx, &x, &y);
 	if (ydelta > 0 || xdelta > 0)
 		zoom_in(x, y, f);
 	if (ydelta < 0 || xdelta < 0)

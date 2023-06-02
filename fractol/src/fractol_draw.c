@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol_draw.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:11:53 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/01 22:36:57 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:09:29 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	draw_fractol(t_fractol *f)
 			else if (f->fractal.type == 3)
 				depth = rabbit(f);
 			else if (f->fractal.type == 4)
-				depth = monster(f);
+				depth = san_marco(f);
 			put_pixel(f, depth);
 			f->fractal.width += 1;
 		}

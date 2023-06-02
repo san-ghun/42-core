@@ -6,13 +6,13 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 13:17:42 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/01 13:48:02 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:40:54 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double	ft_atod(const char *str)
+double	ft_atof(const char *str)
 {
 	double	left;
 	double	right;
@@ -46,21 +46,21 @@ double	ft_atod(const char *str)
 // int main()
 // {
 // 	double d;
-// 	d = ft_atod("0");
+// 	d = ft_atof("0");
 // 	printf("%f\n", d);
-// 	d = ft_atod("0.0");
+// 	d = ft_atof("0.0");
 // 	printf("%f\n", d);
-// 	d = ft_atod("0.1");
+// 	d = ft_atof("0.1");
 // 	printf("%f\n", d);
-// 	d = ft_atod("0.123");
+// 	d = ft_atof("0.123");
 // 	printf("%f\n", d);
-// 	d = ft_atod("123.45");
+// 	d = ft_atof("123.45");
 // 	printf("%f\n", d);
-// 	d = ft_atod("12.34");
+// 	d = ft_atof("12.34");
 // 	printf("%f\n", d);
-// 	d = ft_atod("-0.34");
+// 	d = ft_atof("-0.34");
 // 	printf("%f\n", d);
-// 	d = ft_atod("-12.34");
+// 	d = ft_atof("-12.34");
 // 	printf("%f\n", d);
 // 	return (0);
 // }

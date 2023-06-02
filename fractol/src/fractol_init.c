@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 16:39:56 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/01 22:39:12 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:40:54 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	init_fractol(t_fractol *fractol, char **av)
 	fractol->fractal.ci = 0;
 	if (av[3] && av[4])
 	{
-		fractol->fractal.cr = ft_atod(av[3]);
-		fractol->fractal.ci = ft_atod(av[4]);
+		fractol->fractal.cr = ft_atof(av[3]);
+		fractol->fractal.ci = ft_atof(av[4]);
 	}
 	fractol->fractal.scale = 200.00;
 	fractol->rgba.r = 0x42;
@@ -104,7 +104,7 @@ int	rabbit(t_fractol *fractol)
 	fractol->fractal.depth = 0;
 	zi = fractol->fractal.height / fractol->fractal.scale + fractol->fractal.yi;
 	zr = fractol->fractal.width / fractol->fractal.scale + fractol->fractal.xr;
-	cr = -0.0123;
+	cr = -0.123;
 	ci = 0.745;
 	if (fractol->fractal.ci != 0)
 	{
@@ -122,7 +122,7 @@ int	rabbit(t_fractol *fractol)
 	return (fractol->fractal.depth);
 }
 
-int	monster(t_fractol *fractol)
+int	san_marco(t_fractol *fractol)
 {
 	double	zr;
 	double	zi;
@@ -131,16 +131,17 @@ int	monster(t_fractol *fractol)
 	double	tmp_zr;
 
 	fractol->fractal.depth = 0;
-	zr = 0;
-	zi = 0;
-	ci = fractol->fractal.height / fractol->fractal.scale + fractol->fractal.yi;
-	cr = fractol->fractal.width / fractol->fractal.scale + fractol->fractal.xr;
-	if (ci < 0)
-		ci = -ci;
-	if (cr < 0)
-		cr = -cr;
-	while ((zr * zr) + (zi * zi) < 4 \
-			&& fractol->fractal.depth < fractol->fractal.iteration)
+	zi = fractol->fractal.height / fractol->fractal.scale + fractol->fractal.yi;
+	zr = fractol->fractal.width / fractol->fractal.scale + fractol->fractal.xr;
+	cr = -0.75;
+	ci = 0.0;
+	if (fractol->fractal.ci != 0)
+	{
+		cr = fractol->fractal.cr;
+		ci = fractol->fractal.ci;
+	}
+	while ((zr * zr) + (zi * zi) < 4 && \
+			fractol->fractal.depth < fractol->fractal.iteration)
 	{
 		tmp_zr = zr;
 		zr = (zr * zr) - (zi * zi) + cr;

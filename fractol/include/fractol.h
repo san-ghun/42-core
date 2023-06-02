@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:48:23 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/01 23:01:05 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:43:32 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@
 # include <stdio.h>
 # include <ctype.h>
 
-# define WIDTH 800
-# define HEIGHT 800
+# define WIDTH		800
+# define HEIGHT		800
+# define ZOOMRATE	1.2
+# define ISITER		false
+# define ITER		2
 
 typedef struct s_rgba
 {
@@ -56,15 +59,13 @@ typedef struct s_fractol
 	t_type		fractal;
 }				t_fractol;
 
-/* fractol_error.c */
+/* fractol.c */
 
-int		ft_str_isdigit(char *str);
+void	show_options(void);
 
-int		ft_error_argv(void);
+void	choose_option(t_fractol *f, char **av);
 
-int		ft_error_argc(void);
-
-void	ft_mlx_error(void);
+void	init_fractolmlx(t_fractol *f);
 
 /* fractol_init.c */
 
@@ -76,7 +77,7 @@ int		mandelbrot(t_fractol *fractol);
 
 int		rabbit(t_fractol *fractol);
 
-int		monster(t_fractol *fractol);
+int		san_marco(t_fractol *fractol);
 
 /* fractol_draw.c */
 
@@ -94,12 +95,24 @@ int		draw_fractol(t_fractol *f);
 
 void	ft_hook(void *param);
 
+void	zoom_in(int x, int y, t_fractol *f);
+
+void	zoom_out(int x, int y, t_fractol *f);
+
 void	ft_scrollhook(double xdelta, double ydelta, void *param);
 
 /* fractol_utils.c */
 
-double	ft_atod(const char *str);
+double	ft_atof(const char *str);
 
-/* fractol.c */
+/* fractol_error.c */
+
+int		ft_str_isdigit(char *str);
+
+int		ft_error_argv(void);
+
+int		ft_error_argc(void);
+
+void	ft_mlx_error(void);
 
 #endif

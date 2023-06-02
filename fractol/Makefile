@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
+#    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 12:23:52 by sanghupa          #+#    #+#              #
-#    Updated: 2023/06/02 16:35:01 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/06/02 23:43:38 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ MLX42_PATH	= $(MLX42_DIR)/build/$(MLX42)
 
 HEADERS		= -I $(INC_DIR) -I $(LIBFT_I_DIR) -I $(MLX42_I_DIR)
 LINUX_LINK	= -ldl -lglfw -pthread -lm
+MACOS_LINK	= -Iinclude -lglfw -framework Cocoa -framework OpenGL -framework IOKit
 
 SRC_DIR		= ./src
 
@@ -96,6 +97,7 @@ $(MLX42):
 
 $(NAME): $(OBJ_NAME) $(LIBFT) $(MLX42)
 		@$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) $(LINUX_LINK)
+#		@$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) $(MACOS_LINK)
 
 $(NAME_B): $(OBJ_NAME_B) $(LIBFT) $(MLX42)
 		@$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) $(LINUX_LINK)

@@ -1,49 +1,68 @@
-# minitalk
+# fractol
 
 ### Summary
 
-- Keywords: `UNIX` `signal` `process` 
+- Keywords: `graphics` `mathematical notation` `complex numbers` `optimization` `event handling`
 
 1. Objective
-    - coding a small data exchange program using UNIX signals.
+
+   - creating a small fractal exploration program. First, you have to know what a fractal is.
+   - coding a graphic program that open a window, create images and deal with keyboard and mouse events using the school graphical library.
+     - initial option is using the `MiniLibX`.
+     - BUT, I choose the [MLX42](https://github.com/codam-coding-college/MLX42/tree/master) from codam coding college, one of our community.
+       - warning, the responsibility of using this library is totally up to the decision of the student, and also my campuse allow our students to use the library with their own decision.
 
 2. Instructions
-    - **Program name**: `client` and `server` *(both executable file)*
-    - **Turn in files**: Makefile, \*.h, \*/\*.h, \*.c, \*/\*.c
-    - **Makefile**: NAME, all, clean, fclean, re
-    - **External functions**: `write` `malloc`, `free`, `ft_printf` `signal` `sigemptyset` `sigaddset` `sigaction` `kill` `getpid` `pause` `sleep` `usleep` `exit`
-    - **Libft authorized**: YES
-    - **Limitations**:
-        - `Makefile` must not relink.
-        - Can have **one global variable per program**, but have to justify their use.
-        - The program should not have **memory leaks**.
-        - **Handling errors** thoroughly. The program should not quit unexpectedly *(segmentation fault, bus error, double free, and so forth).*
+
+   - **Program name**: `fractol`
+   - **Turn in files**: Makefile, \*.h, \*/\*.h, \*.c, \*/\*.c
+   - **Makefile**: NAME, all, clean, fclean, re
+   - **Arguments**: The type of fractal to display and any other option available
+   - **External functions**:
+     - `open` `close` `read` `write` `malloc` `free` `perror` `strerror` `exit`
+     - All functions of the math library (-lm compiler option, man man 3 math)
+     - All functions of the MiniLibX (in my case, MLX42)
+     - `ft_printf` and any equivalent YOU coded
+   - **Libft authorized**: YES
+   - **Limitations**:
+     - You **must** user the MiniLibX. Either the version available on the school machines, or installing it using its sources.
+       - (I choose to use MLX42, instead, and I took care about how to implement with Makefile)
+   - You have to turn in a `Makefile` which will compile your source files. It must not relink.
+   - Global variables are forbidden.
 
 3. Requirements
-    - **Mandatory**: 
-        You must create a communication program in the form of a **client** and a **server**.
 
-        - The server must be started first. After its launch, it has to print its `PID` .
-        - The client takes two parameters:
-            - The server `PID` .
-            - The string to send.
-        - The client must send the string passed as a parameter to the server. Once the string has been received, the server must print it.
-        - The server has to  display the string pretty quickly. Quickly means that if you think it takes too long, then it is probably too long.
-            > 💡 1 second for displaying 100 characters is way too much.
-            
-        - The server should be able to receive strings from several clients in a row without needing to restart.
-        - The communication between your client and your server has to be done **only** using UNIX signals.
-        - Can only use these two signals: `SIGUSR1` AND `SIGUSR2` .
-            > ℹ️ Linux system does NOT queue signals when you already have pending signals of this type.
+   - **Mandatory - Rendering**:
 
-    - **Bonus**:  
-        - The server acknowledge every message received by sending back a signal to the client.
-        - Unicode characters support.
+     - Your program must offer the **Julia** set and the **Mandelbrot** set.
+     - The mouse wheel zooms in and out, almost infinitely (within the limits of the computer). This is the very principle of fractals.
+     - You must be able to create different Julia sets by passing different parameters to the program.
+     - A parameter is passed on the command line to define what type of fractal will be displayed in a window.
+       - You can handle more parameters to use them as rendering options.
+       - If no parameter is provided, or if the parameter is invalid, tha program displays a list of available parameters and exits properly.
+     - You must use at least a few **colors** to show the depth of each fractal. It's even better if you hack away on psychedelic effects.
 
-### Tester
+   - **Mandatory - Graphic management**:
 
-- [tester]()
+     - Your program has to display the image in a window.
+     - The menegement of your window must remain smooth (changing to another window, minimizing, and so forth).
+     - Pressing `ESC` must close the window and quit the program in a clean way.
+     - Clicking on the cross on the window's frame must close the window and quit the program ina clean way.
+     - The use of the `images` of the `MiniLibX` (or `MLX42`) is mandatory.
 
-    ```bash
-    git clone <URL>.git
-    ```
+   - **Bonus**:
+     - One more different fractal (more than a hundred different types of fratals are referenced online).
+     - The zoom follows the actual mouse position.
+     - In addition to the zoom: moving the view by pressing the arrows keys.
+     - Make the color range shift.
+
+---
+
+**references)**
+
+- [MLX42 - from the Codam coding college](https://github.com/codam-coding-college/MLX42/tree/master)
+- [Fractal Geometry - for the fundamental of fractal](https://users.math.yale.edu/public_html/People/frame/Fractals/)
+- [Lode's Computer Graphics Tutorial - to turn the math notation into code](https://lodev.org/cgtutor/juliamandelbrot.html)
+- [scipython.com - another code implentation of Julia set](https://scipython.com/book/chapter-7-matplotlib/problems/p72/the-julia-set/)
+- [Examples of Julia set](https://en.wikipedia.org/wiki/Filled_Julia_set)
+- [Douady Rabbit - one more different fractal](https://en.wikipedia.org/wiki/Douady_rabbit)

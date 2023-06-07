@@ -1,0 +1,6 @@
+[submodule "fractol/MLX42"]
+	path = fractol/MLX42
+	url = https://github.com/codam-coding-college/MLX42
+[submodule "fractol/libft"]
+	path = fractol/libft
+	url = https://github.com/san-ghun/libft.git

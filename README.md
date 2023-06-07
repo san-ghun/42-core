@@ -42,4 +42,12 @@
    - **session** of coding: 31.Dec.22 - 04.May.23
    - **complete** in evaluation: 07.Jun.23
 
+1. [**fractol**](https://github.com/san-ghun/42-core/tree/main/fractol)
+
+   > Discover 2D programming and the psychedelic universe of fractals in this project, using minilibX. (MLX42 for me)
+
+   - **keywords**: `graphics` `mathematical notation` `complex numbers` `optimization` `event handling`
+   - **session** of coding: 28.Apr.23 - 03.Jun.23
+   - ~**complete** in evaluation:~ ready to submit
+
 1. continue...

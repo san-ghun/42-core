@@ -39,8 +39,8 @@
    > The purpose of this project is to code a small data exchange program using UNIX signals. It is an introductory project for the bigger UNIX projects that will appear later on in the cursus.
 
    - **keywords**: `UNIX` `signal` `process`
-   - **session** of coding: 31.Dec.22 -
-   - ~**complete** in evaluation:~ NOT ready to submit
+   - **session** of coding: 31.Dec.22 - 04.May.23
+   - **complete** in evaluation: 07.Jun.23
 
 1. [**fractol**](https://github.com/san-ghun/42-core/tree/main/fractol)
 

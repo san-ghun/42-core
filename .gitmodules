@@ -4,3 +4,6 @@
 [submodule "fractol/libft"]
 	path = fractol/libft
 	url = https://github.com/san-ghun/libft.git
+[submodule "push_swap/libft"]
+	path = push_swap/libft
+	url = https://github.com/san-ghun/libft.git

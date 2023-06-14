@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/05 12:32:20 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/05/05 12:43:55 by sanghupa         ###   ########.fr       */
+/*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
+/*   Updated: 2023/06/14 17:50:22 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,26 @@
 # include <stdio.h>
 # include <ctype.h>
 
-/* push_swap_val_input.c */
-/* push_swap_rules.c */
-/* push_swap_sort.c */
+typedef struct s_dbl_list
+{
+	void				*content;
+	struct s_dbl_list	*prev;
+	struct s_dbl_list	*next;
+}				t_dbl_list;
 
 /* push_swap_error.c */
 
+int	ft_error(void);
+
 int	ft_str_isdigit(char *str);
 
-int	ft_error_argv(void);
+int	ft_iserror(char **arg);
 
-int	ft_error_argc(void);
+/* push_swap_val_input.c */
+
+/* push_swap_rules.c */
+
+/* push_swap_sort.c */
 
 /* push_swap.c */
 

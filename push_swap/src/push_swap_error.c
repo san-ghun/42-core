@@ -1,25 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_error.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/05 12:43:11 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/14 17:51:01 by sanghupa         ###   ########.fr       */
+/*   Created: 2023/06/14 13:41:00 by sanghupa          #+#    #+#             */
+/*   Updated: 2023/06/14 14:03:07 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+int	ft_error(void)
 {
-	int	i;
+	ft_printf("Error\n");
+	return (1);
+}
 
-	if (argc == 1)
-		return (0);
-	i = 0;
-	if (ft_iserror(argv))
-		return (ft_error());
-	return (0);
+int	ft_str_isdigit(char *str)
+{
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
+int	ft_str_isinteger(char *str)
+{
+	return (1);
+}
+
+int	ft_str_isduplicate(char *str)
+{
+	return (1);
+}
+
+int	ft_iserror(char **arg)
+{
+	int	result;
+
+	result = 0;
+	return (result);
 }

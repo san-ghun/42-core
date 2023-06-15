@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/15 17:51:08 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/15 23:44:14 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,45 @@
 typedef struct s_dlst
 {
 	void				*content;
-	struct s_dlst	*prev;
-	struct s_dlst	*next;
+	struct s_dlst		*prev;
+	struct s_dlst		*next;
 }				t_dlst;
 
 /* push_swap_dlst_create.c */
 
+t_dlst	*ft_dlstnew(void *content);
+
+t_dlst	**init_dlst(void);
+
+void	ft_dlstadd_front(t_dlst *dlst[], t_dlst *new);
+
+void	ft_dlstadd_back(t_dlst *dlst[], t_dlst *new);
+
 /* push_swap_dlst_read.c */
+
+t_dlst	*ft_dlstget(t_dlst *dlst[], void *content);
 
 /* push_swap_dlst_update.c */
 
+void	ft_dlstupdate(t_dlst *dlst[], void *old, void *new);
+
 /* push_swap_dlst_delete.c */
+
+void	ft_dlstdelone(t_dlst *dlst);
 
 /* push_swap_dlst_util.c */
 
-int	ft_dlstsize(t_dlst *dlst);
+int		ft_dlstsize(t_dlst *dlst);
 
-t_dlst	*ft_dlstlast(t_dlst *dlst);
+t_dlst	*ft_dlstlast(t_dlst *dlst[]);
 
 /* push_swap_error.c */
 
-int	ft_error(void);
+int		ft_error(void);
 
-int	ft_str_isdigit(char *str);
+int		ft_str_isdigit(char *str);
 
-int	ft_iserror(char **arg);
+int		ft_iserror(char **arg);
 
 /* push_swap_val_input.c */
 

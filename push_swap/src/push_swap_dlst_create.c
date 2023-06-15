@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_dlst_create.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:09:25 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/15 17:50:33 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/15 23:44:49 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_dlst	*ft_dlstnew(void *content)
 	return (new);
 }
 
-t_dlst	**init_dlst()
+t_dlst	**init_dlst(void)
 {
 	t_dlst	*head;
 	t_dlst	*tail;
@@ -34,15 +34,18 @@ t_dlst	**init_dlst()
 	tail = ft_dlstnew(NULL);
 	head->next = tail;
 	tail->prev = head;
-	return (&head);
+	return (head);
 }
 
 void	ft_dlstadd_front(t_dlst *dlst[], t_dlst *new)
 {
-	if (!dlst || !new)
+	t_dlst	*head;
+
+	head = *dlst;
+	if (!dlst || !new || !head)
 		return ;
-	new->next = dlst[0]->next;
-	dlst[0]->next = new;
+	new->next = head->next;
+	head->next = new;
 	new->prev = new->next->prev;
 	new->next->next = new;
 }
@@ -51,7 +54,7 @@ void	ft_dlstadd_back(t_dlst *dlst[], t_dlst *new)
 {
 	t_dlst	*tail;
 
-	tail = ft_dlstlast(dlst[1]);
+	tail = ft_dlstlast(*dlst);
 	if (!dlst || !new || !tail)
 		return ;
 	new->prev = tail->prev;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 16:39:56 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/09 19:16:42 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/15 22:29:00 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,6 @@ int	rabbit(t_fractol *fractol)
 	zr = fractol->fractal.width / fractol->fractal.scale + fractol->fractal.xr;
 	cr = -0.123;
 	ci = 0.745;
-	cr = fractol->fractal.cr;
-	ci = fractol->fractal.ci;
 	while ((zr * zr) + (zi * zi) < 4 && \
 			fractol->fractal.depth < fractol->fractal.iteration)
 	{
@@ -132,8 +130,6 @@ int	san_marco(t_fractol *fractol)
 	zr = fractol->fractal.width / fractol->fractal.scale + fractol->fractal.xr;
 	cr = -0.75;
 	ci = 0.0;
-	cr = fractol->fractal.cr;
-	ci = fractol->fractal.ci;
 	while ((zr * zr) + (zi * zi) < 4 && \
 			fractol->fractal.depth < fractol->fractal.iteration)
 	{

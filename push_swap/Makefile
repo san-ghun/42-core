@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 12:24:07 by sanghupa          #+#    #+#              #
-#    Updated: 2023/05/05 12:41:02 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/06/15 17:54:58 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,13 +28,18 @@ SRC_DIR		= ./src
 
 NAME 		= push_swap
 SRC_NAME 	= $(SRC_DIR)/$(NAME).c \
-				$(SRC_DIR)/push_swap_error.c \
+				$(SRC_DIR)/$(NAME)_error.c \
+				$(SRC_DIR)/$(NAME)_dlst_create.c \
+				$(SRC_DIR)/$(NAME)_dlst_read.c \
+				$(SRC_DIR)/$(NAME)_dlst_update.c \
+				$(SRC_DIR)/$(NAME)_dlst_delete.c \
+				$(SRC_DIR)/$(NAME)_dlst_util.c \
 
 OBJ_NAME 	= $(SRC_NAME:.c=.o)
 
 NAME_B 		= checker
 SRC_NAME_B 	= $(SRC_DIR)/$(NAME_B).c \
-				$(SRC_DIR)/push_swap_error.c \
+				$(SRC_DIR)/$(NAME_B)_error.c \
 
 OBJ_NAME_B 	= $(SRC_NAME_B:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/14 17:50:22 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:51:08 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,32 @@
 # include <stdio.h>
 # include <ctype.h>
 
-typedef struct s_dbl_list
+// Limit Loop: use addition to while condition
+# define MAX_ITER	500
+
+// Prevent Heap mem leak: use addition to char or array
+# define DATA_SIZE	500
+
+typedef struct s_dlst
 {
 	void				*content;
-	struct s_dbl_list	*prev;
-	struct s_dbl_list	*next;
-}				t_dbl_list;
+	struct s_dlst	*prev;
+	struct s_dlst	*next;
+}				t_dlst;
+
+/* push_swap_dlst_create.c */
+
+/* push_swap_dlst_read.c */
+
+/* push_swap_dlst_update.c */
+
+/* push_swap_dlst_delete.c */
+
+/* push_swap_dlst_util.c */
+
+int	ft_dlstsize(t_dlst *dlst);
+
+t_dlst	*ft_dlstlast(t_dlst *dlst);
 
 /* push_swap_error.c */
 

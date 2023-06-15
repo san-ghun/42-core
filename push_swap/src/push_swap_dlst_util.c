@@ -1,48 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_error.c                                  :+:      :+:    :+:   */
+/*   push_swap_dlst_util.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 13:41:00 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/15 11:08:54 by sanghupa         ###   ########.fr       */
+/*   Created: 2023/06/15 11:09:27 by sanghupa          #+#    #+#             */
+/*   Updated: 2023/06/15 15:53:29 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_error(void)
+int	ft_dlstsize(t_dlst *dlst)
 {
-	ft_printf("Error\n");
-	return (1);
-}
+	int		size;
+	t_dlst	*tmp;
 
-int	ft_str_isdigit(char *str)
-{
-	while (*str)
+	if (!dlst)
+		return (0);
+	size = 1;
+	tmp = dlst;
+	while (tmp->next != NULL)
 	{
-		if (!ft_isdigit(*str))
-			return (1);
-		str++;
+		tmp = tmp->next;
+		size++;
 	}
-	return (0);
+	return (size);
 }
 
-int	ft_str_isinteger(char *str)
+t_dlst	*ft_dlstlast(t_dlst *dlst)
 {
-	return (0);
-}
+	t_dlst *tmp;
 
-int	ft_str_isduplicate(char *str)
-{
-	return (0);
-}
-
-int	ft_iserror(char **arg)
-{
-	int	result;
-
-	result = 0;
-	return (result);
+	if (!dlst)
+		return (0);
+	tmp = dlst;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	return (tmp);
 }

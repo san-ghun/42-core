@@ -6,13 +6,13 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 12:43:11 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/14 17:51:01 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/15 11:48:07 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+int	main(int argc, char *argv[])
 {
 	int	i;
 

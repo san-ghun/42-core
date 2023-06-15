@@ -1,48 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_error.c                                  :+:      :+:    :+:   */
+/*   push_swap_dlst_read.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 13:41:00 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/15 11:08:54 by sanghupa         ###   ########.fr       */
+/*   Created: 2023/06/15 17:54:12 by sanghupa          #+#    #+#             */
+/*   Updated: 2023/06/15 17:59:28 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_error(void)
+t_dlst	*ft_dlstget(t_dlst *dlst, void *content)
 {
-	ft_printf("Error\n");
-	return (1);
-}
+	int	i;
 
-int	ft_str_isdigit(char *str)
-{
-	while (*str)
+	i = 0;
+	while ((i++ <= MAX_ITER) || (dlst->next != NULL))
 	{
-		if (!ft_isdigit(*str))
-			return (1);
-		str++;
+		if (dlst->content == &content)
+			return (dlst);
 	}
-	return (0);
-}
-
-int	ft_str_isinteger(char *str)
-{
-	return (0);
-}
-
-int	ft_str_isduplicate(char *str)
-{
-	return (0);
-}
-
-int	ft_iserror(char **arg)
-{
-	int	result;
-
-	result = 0;
-	return (result);
+	return (NULL);
 }

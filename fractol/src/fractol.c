@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:48:02 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/02 15:14:06 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/09 21:06:44 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ void	show_options(void)
 	ft_printf("        Rabbit...............3\n");
 	ft_printf("        San Marco............4\n\n");
 	ft_printf("  (Optional) :\n");
-	ft_printf("    Arg 2 : Iteration from 20 to 1000\n\n");
-	ft_printf("  (For Julia & Rabbit & San Marco) :\n");
-	ft_printf("    Arg 3 : Real complex number\n");
-	ft_printf("    Arg 4 : Imaginary complex number\n\n");
+	ft_printf("    Arg 2 : Iteration (default, 50)\n\n");
+	ft_printf("  (Available for Julia) :\n");
+	ft_printf("    (if number invalid, will be ignored to 0.0)\n");
+	ft_printf("    Arg 3 : Real complex number (ex. 0.285)\n");
+	ft_printf("    Arg 4 : Imaginary complex number (ex. -0.01)\n\n");
 	ft_printf("Commands :\n");
 	ft_printf("    ESC..................Quit\n");
 	ft_printf("    Space................Change Color\n");
@@ -67,7 +68,7 @@ int	main(int argc, char **argv)
 {
 	t_fractol	f;
 
-	if (argc >= 2)
+	if ((argc >= 2) && (argc <= 5))
 	{
 		choose_option(&f, argv);
 		init_fractolmlx(&f);

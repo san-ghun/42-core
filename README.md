@@ -48,6 +48,6 @@
 
    - **keywords**: `graphics` `mathematical notation` `complex numbers` `optimization` `event handling`
    - **session** of coding: 28.Apr.23 - 03.Jun.23
-   - ~**complete** in evaluation:~ ready to submit
+   - **complete** in evaluation: 14.Jun.23
 
 1. continue...

@@ -6,13 +6,13 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:03:41 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/15 23:19:26 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/16 23:21:29 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_dlstupdate(t_dlst *dlst[], void *old, void *new)
+void	ft_dlstupdate(t_dlst *dlst[], int old, int new)
 {
 	t_dlst	*tmp;
 

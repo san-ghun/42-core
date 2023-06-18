@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
+#    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 12:24:07 by sanghupa          #+#    #+#              #
-#    Updated: 2023/06/15 17:54:58 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/06/19 00:49:49 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,16 +51,16 @@ all: $(NAME)
 bonus: $(NAME_B)
 
 clean:
-		make clean -C $(LIBFT_DIR)
-		$(RM) $(OBJ_NAME)
-		$(RM) $(OBJ_NAME_B)
+		@make clean -C $(LIBFT_DIR)
+		@$(RM) $(OBJ_NAME)
+		@$(RM) $(OBJ_NAME_B)
 
 fclean: clean
-		make fclean -C $(LIBFT_DIR)
-		$(RM) $(LIBFT)
-		$(RM) $(OBJ_NAME)
-		$(RM) $(OBJ_NAME_B)
-		$(RM) $(NAME)
+		@make fclean -C $(LIBFT_DIR)
+		@$(RM) $(LIBFT)
+		@$(RM) $(OBJ_NAME)
+		@$(RM) $(OBJ_NAME_B)
+		@$(RM) $(NAME)
 
 re: fclean all
 
@@ -68,18 +68,36 @@ re: fclean all
 # Sub Command
 
 %.o: %.c
-		$(CC) $(CFLAGS) -c -o $@ $< -I $(INC_DIR) -I $(LIBFT_I_DIR)
+		@$(CC) $(CFLAGS) -c -o $@ $< -I $(INC_DIR) -I $(LIBFT_I_DIR)
 
 $(LIBFT):
-		make -C $(LIBFT_DIR)
-		mv $(LIBFT_PATH) ./
+		@make -C $(LIBFT_DIR)
+		@mv $(LIBFT_PATH) ./
 
 $(NAME): $(OBJ_NAME) $(LIBFT) 
-		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
+		@$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
 
 $(NAME_B): $(OBJ_NAME_B) $(LIBFT) 
-		$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
+		@$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
 
+
+# Test Code 
+# to test the installation of MLX42
+
+TEST 		= test.c
+DLSTS 		= $(SRC_DIR)/$(NAME)_dlst_create.c \
+				$(SRC_DIR)/$(NAME)_dlst_read.c \
+				$(SRC_DIR)/$(NAME)_dlst_update.c \
+				$(SRC_DIR)/$(NAME)_dlst_delete.c \
+				$(SRC_DIR)/$(NAME)_dlst_util.c \
+
+test: $(LIBFT)
+		$(CC) $(TEST) -o $(TEST:.c=.out) $(DLSTS) $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
+
+tclean: 
+		make fclean -C $(LIBFT_DIR)
+		$(RM) $(LIBFT)
+		$(RM) -f test.o test.out
 
 # Phony target
 

@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:09:27 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/15 23:45:04 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/19 01:13:15 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,13 @@ int	ft_dlstsize(t_dlst *dlst)
 }
 
 // TODO: *dlst or *dlst[] ?
-t_dlst	*ft_dlstlast(t_dlst *dlst[])
+t_dlst	*ft_dlstlast(t_dlst *dlst)
 {
-	t_dlst	*tmp;
-
 	if (!dlst)
-		return (0);
-	tmp = *dlst;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	return (tmp);
+		return (NULL);
+	while (dlst->next != NULL)
+		dlst = dlst->next;
+	return (dlst);
 }
 
 void	ft_dlstprint(t_dlst *dlst[])
@@ -49,7 +46,12 @@ void	ft_dlstprint(t_dlst *dlst[])
 
 	i = 0;
 	tmp = *dlst;
-	while ((i++ <= MAX_ITER) || (tmp->next != NULL))
-		ft_printf("%d\n", tmp->content);
-	return ;
+	if (tmp == NULL)
+		ft_printf("dlst is empty");
+	while ((i++ <= MAX_ITER) && (tmp != NULL))
+	{
+		ft_printf("%d ", tmp->content);
+		tmp = tmp->next;
+	}
+	ft_printf("\n");
 }

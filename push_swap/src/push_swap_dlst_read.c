@@ -6,13 +6,13 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:54:12 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/15 23:38:10 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/19 00:01:38 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_dlst	*ft_dlstget(t_dlst *dlst[], void *content)
+t_dlst	*ft_dlstget(t_dlst *dlst[], int content)
 {
 	int		i;
 	t_dlst	*tmp;
@@ -21,8 +21,9 @@ t_dlst	*ft_dlstget(t_dlst *dlst[], void *content)
 	tmp = *dlst;
 	while ((i++ <= MAX_ITER) || (tmp->next != NULL))
 	{
-		if (tmp->content == &content)
+		if (tmp->content == content)
 			return (tmp);
+		tmp = tmp->next;
 	}
 	return (NULL);
 }

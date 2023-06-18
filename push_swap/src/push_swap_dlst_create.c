@@ -6,35 +6,24 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:09:25 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/15 23:44:49 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/18 23:59:27 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_dlst	*ft_dlstnew(void *content)
+t_dlst	*ft_dlstnew(int content)
 {
 	t_dlst	*new;
 
 	new = (t_dlst *)malloc(sizeof(t_dlst));
 	if (!new)
 		return (NULL);
-	new->prev = 0;
+	new->prev = NULL;
 	new->content = content;
-	new->next = 0;
+	new->index = -1;
+	new->next = NULL;
 	return (new);
-}
-
-t_dlst	**init_dlst(void)
-{
-	t_dlst	*head;
-	t_dlst	*tail;
-
-	head = ft_dlstnew(NULL);
-	tail = ft_dlstnew(NULL);
-	head->next = tail;
-	tail->prev = head;
-	return (head);
 }
 
 void	ft_dlstadd_front(t_dlst *dlst[], t_dlst *new)
@@ -42,23 +31,35 @@ void	ft_dlstadd_front(t_dlst *dlst[], t_dlst *new)
 	t_dlst	*head;
 
 	head = *dlst;
-	if (!dlst || !new || !head)
+	if (!dlst || !new)
 		return ;
-	new->next = head->next;
-	head->next = new;
-	new->prev = new->next->prev;
-	new->next->next = new;
+	if (!head)
+	{
+		head = new;
+		head->prev = NULL;
+		head->next = NULL;
+		return ;
+	}
+	head->prev = new;
+	new->next = head;
+	*dlst = new;
+	new->prev = NULL;
 }
 
 void	ft_dlstadd_back(t_dlst *dlst[], t_dlst *new)
 {
 	t_dlst	*tail;
 
-	tail = ft_dlstlast(*dlst);
-	if (!dlst || !new || !tail)
+	if (!dlst || !new)
 		return ;
-	new->prev = tail->prev;
-	tail->prev = new;
-	new->next = new->prev->next;
-	new->prev->next = new;
+	tail = ft_dlstlast(*dlst);
+	if (!tail)
+	{
+		tail = new;
+		tail->prev = NULL;
+		tail->next = NULL;
+		return ;
+	}
+	tail->next = new;
+	new->prev = tail;
 }

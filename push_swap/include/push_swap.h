@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/19 00:23:11 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:04:41 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,10 @@ int		ft_error(void);
 int		ft_str_isdigit(char *str);
 
 int		ft_iserror(char **arg);
+
+/* push_swap_util.c */
+
+long	ft_atol(const char *str);
 
 /* push_swap_val_input.c */
 

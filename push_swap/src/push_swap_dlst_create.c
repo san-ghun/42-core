@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:09:25 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/18 23:59:27 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/20 00:25:51 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	ft_dlstadd_front(t_dlst *dlst[], t_dlst *new)
 		return ;
 	if (!head)
 	{
-		head = new;
-		head->prev = NULL;
-		head->next = NULL;
+		*dlst = new;
+		new->prev = NULL;
+		new->next = NULL;
 		return ;
 	}
 	head->prev = new;
@@ -55,11 +55,12 @@ void	ft_dlstadd_back(t_dlst *dlst[], t_dlst *new)
 	tail = ft_dlstlast(*dlst);
 	if (!tail)
 	{
-		tail = new;
-		tail->prev = NULL;
-		tail->next = NULL;
+		*dlst = new;
+		new->prev = NULL;
+		new->next = NULL;
 		return ;
 	}
 	tail->next = new;
 	new->prev = tail;
+	new->next = NULL;
 }

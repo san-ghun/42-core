@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:54:12 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/20 00:06:28 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:31:26 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_dlst	*ft_dlstget(t_dlst *dlst[], int content)
 		return (NULL);
 	i = 0;
 	tmp = *dlst;
-	while ((i++ <= MAX_ITER) || (tmp->next != NULL))
+	while ((i++ <= MAX_ITER) && (tmp != NULL))
 	{
 		if (tmp->content == content)
 			return (tmp);

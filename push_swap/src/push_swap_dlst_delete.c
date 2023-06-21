@@ -6,21 +6,37 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:07:08 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/19 01:11:35 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/21 00:05:10 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_dlstdelone(t_dlst *dlst)
+void	ft_dlstdelone(t_dlst *dlst[], t_dlst *elem)
 {
-	if (!dlst)
+	t_dlst	*tmp;
+
+	if (!dlst || !elem)
 		return ;
-	if (dlst->next != NULL)
-		dlst->next->prev = dlst->prev;
-	if (dlst->prev != NULL)
-		dlst->prev->next = dlst->next;
-	free(dlst);
+	if ((elem->prev == NULL) && (elem->next == NULL))
+	{
+		tmp = *dlst;
+		*dlst = NULL;
+		return (free(elem));
+	}
+	else if (elem->next == NULL)
+		elem->prev->next = NULL;
+	else if (elem->prev == NULL)
+	{
+		elem->next->prev = NULL;
+		*dlst = elem->next;
+	}
+	else
+	{
+		elem->prev->next = elem->next;
+		elem->next->prev = elem->prev;
+	}
+	free(elem);
 	return ;
 }
 
@@ -33,12 +49,14 @@ void	ft_dlstclear(t_dlst *dlst[])
 		return ;
 	tmp = *dlst;
 	*dlst = NULL;
+	ft_printf("del dlst:\n");
 	while (tmp != NULL)
 	{
-		ft_putchar_fd('0', 1);
+		ft_printf("%p-%d-%p\n", tmp->prev, tmp->content, tmp->next);
 		after = tmp->next;
-		ft_dlstdelone(tmp);
+		ft_dlstdelone(dlst, tmp);
 		tmp = after;
 	}
+	ft_printf("\n");
 	return ;
 }

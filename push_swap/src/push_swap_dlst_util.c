@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:09:27 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/21 12:08:12 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:36:29 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ void	ft_dlstprint(t_dlst *dlst[])
 		ft_printf("dlst is empty");
 	while ((i++ <= MAX_ITER) && (tmp != NULL))
 	{
-		// ft_printf("%d ", tmp->content);
-		ft_printf("%p-%d-%p ", tmp->prev, tmp->content, tmp->next);
+		ft_printf("%X-%d-%X ", tmp->prev, tmp->content, tmp->next);
 		tmp = tmp->next;
 	}
 	ft_printf("\n");

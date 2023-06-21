@@ -14,20 +14,24 @@ int	main(void)
 	t_dlst	**dlst;
 
 	*dlst = NULL;
-	// *dlst = ft_dlstnew(0);
+	// *dlst = ft_dlstnew(100);
 
 	dlst = init_dlst(dlst);
 	ft_dlstprint(dlst);
 
 	ft_dlstadd_front(dlst, ft_dlstnew(10));
 	ft_dlstadd_front(dlst, ft_dlstnew(20));
+	ft_dlstadd_front(dlst, ft_dlstnew(30));
 	ft_dlstprint(dlst);
 
-	ft_dlstdelone(ft_dlstget(dlst, 1));
-	ft_dlstdelone(ft_dlstget(dlst, 3));
+	ft_dlstdelone(dlst, ft_dlstget(dlst, 1));
+	ft_dlstprint(dlst);
+	ft_dlstdelone(dlst, ft_dlstget(dlst, 3));
 	ft_dlstprint(dlst);
 
-	ft_dlstdelone(ft_dlstget(dlst, 10));
+	ft_dlstdelone(dlst, ft_dlstget(dlst, 30));
+	ft_dlstprint(dlst);
+	ft_dlstdelone(dlst, ft_dlstget(dlst, 4));
 	ft_dlstprint(dlst);
 
 	ft_printf("head is %p\n", *dlst);
@@ -44,12 +48,6 @@ int	main(void)
 	ft_printf("%d\n", ft_dlstget(dlst, 2)->index);
 	ft_printf("%p\n", ft_dlstget(dlst, 2)->prev);
 	ft_printf("%p\n\n", ft_dlstget(dlst, 2)->next);
-
-	ft_printf("%p\n", ft_dlstget(dlst, 4));
-	ft_printf("%d\n", ft_dlstget(dlst, 4)->content);
-	ft_printf("%d\n", ft_dlstget(dlst, 4)->index);
-	ft_printf("%p\n", ft_dlstget(dlst, 4)->prev);
-	ft_printf("%p\n\n", ft_dlstget(dlst, 4)->next);
 
 	ft_dlstprint(dlst);
 	ft_dlstclear(dlst);

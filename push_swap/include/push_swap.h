@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/21 12:14:54 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:59:21 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,12 @@ void	ft_dlstupdate(t_dlst *dlst[], int old, int new);
 /// @param elem A pointer to the node to be deleted.
 void	ft_dlstdelone(t_dlst *dlst[], t_dlst *elem);
 
+/// @brief Pop the top element from a stack (doubly linked list).
+/// This function pops the top element from a stack (doubly linked list) 
+/// and returns it.
+/// @param stack A pointer to a pointer to the head of the stack.
+/// @return A pointer to the popped element (top of the stack).
+t_dlst	*ft_pop(t_dlst *stack[]);
 
 /// @brief Clear a doubly linked list and free all nodes.
 /// This function clears a doubly linked list by freeing all its nodes.

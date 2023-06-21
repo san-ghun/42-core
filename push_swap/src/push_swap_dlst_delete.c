@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:07:08 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/21 00:05:10 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:58:16 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,23 @@ void	ft_dlstdelone(t_dlst *dlst[], t_dlst *elem)
 	return ;
 }
 
+t_dlst	*ft_pop(t_dlst *stack[])
+{
+	t_dlst	*dlst;
+
+	if (!stack)
+		return (NULL);
+	dlst = *stack;
+	if (dlst->prev != NULL)
+	{
+		ft_printf("FAIL: the stack is wrong - you should not have prev node\n");
+		return (NULL);
+	}
+	dlst->next->prev = NULL;
+	*stack = dlst->next;
+	return (dlst);
+}
+
 void	ft_dlstclear(t_dlst *dlst[])
 {
 	t_dlst	*tmp;
@@ -49,10 +66,8 @@ void	ft_dlstclear(t_dlst *dlst[])
 		return ;
 	tmp = *dlst;
 	*dlst = NULL;
-	ft_printf("del dlst:\n");
 	while (tmp != NULL)
 	{
-		ft_printf("%p-%d-%p\n", tmp->prev, tmp->content, tmp->next);
 		after = tmp->next;
 		ft_dlstdelone(dlst, tmp);
 		tmp = after;

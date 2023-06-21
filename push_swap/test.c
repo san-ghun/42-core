@@ -9,12 +9,11 @@ static t_dlst	**init_dlst(t_dlst *dlst[])
 	return (dlst);
 }
 
-int	main(void)
+static void	test_dlst(void)
 {
 	t_dlst	**dlst;
 
 	*dlst = NULL;
-	// *dlst = ft_dlstnew(100);
 
 	dlst = init_dlst(dlst);
 	ft_dlstprint(dlst);
@@ -52,5 +51,45 @@ int	main(void)
 	ft_dlstprint(dlst);
 	ft_dlstclear(dlst);
 	ft_dlstprint(dlst);
+	return ;
+}
+
+static void	test_stack(void)
+{
+	t_dlst	**dlst;
+	t_dlst	*temp;
+
+	*dlst = NULL;
+
+	dlst = init_dlst(dlst);
+	ft_dlstprint(dlst);
+
+	ft_dlstadd_front(dlst, ft_dlstnew(10));
+	ft_dlstadd_front(dlst, ft_dlstnew(20));
+	ft_dlstadd_front(dlst, ft_dlstnew(30));
+	ft_dlstprint(dlst);
+
+	ft_printf("head is %p\n", *dlst);
+	ft_printf("tail is %p\n\n", ft_dlstlast(*dlst));
+
+	temp = ft_pop(dlst);
+	// free(temp);
+	// temp = NULL;
+	ft_dlstadd_back(dlst, temp);
+	ft_dlstprint(dlst);
+
+	ft_printf("head is %p\n", *dlst);
+	ft_printf("tail is %p\n\n", ft_dlstlast(*dlst));
+
+	ft_dlstprint(dlst);
+	ft_dlstclear(dlst);
+	ft_dlstprint(dlst);
+	return ;
+}
+
+int	main(void)
+{
+	// test_dlst();
+	test_stack();
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/21 20:59:21 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/21 21:15:51 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,15 +131,19 @@ void	ft_dlstprint(t_dlst *dlst[]);
 
 int		ft_error(void);
 
-int		ft_str_isdigit(char *str);
-
-int		ft_iserror(char **arg);
+int		ft_iserror(char *arg[]);
 
 /* push_swap_util.c */
 
 long	ft_atol(const char *str);
 
 /* push_swap_val_input.c */
+
+int		ft_str_isdigit(char *str);
+
+int		ft_str_isinteger(char *str);
+
+int		ft_str_isduplicate(char *str);
 
 /* push_swap_rules.c */
 

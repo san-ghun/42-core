@@ -87,54 +87,73 @@ static void	test_stack(void)
 	return ;
 }
 
-static char	**ft_strtoarr(int argc, char *argv[])
+static t_dlst	**ft_strtodlst(t_dlst *dlst[], char *argv[])
 {
 	int		i;
 	int		len;
-	char	*tmp;
+	char	tmp[1];
+	// char	str[500];
 	char	*str;
 	char	**arr;
 
 	i = 0;
-	// tmp = 
-	// while (++i < argc)
-	// {
-	// 	ft_strlcat(str, argv[i], ft_strlen(argv[i]));
-	// 	ft_strlcat(str, *tmp, sizeof(char));
-	// }
-	ft_printf("%s\n", str);
+	ft_strlcpy(tmp, " ", 2);
+	// ft_strlcpy(str, "", 1);
+	while (argv[++i] != NULL)
+	{
+		// ft_strlcat(str, argv[i], ft_strlen(str) + ft_strlen(argv[i]) + 1);
+		// ft_strlcat(str, tmp, ft_strlen(str) + ft_strlen(tmp) + 1);
+		str = ft_strjoin(str, argv[i]);
+		str = ft_strjoin(str, tmp);
+	}
 	len = ft_split_size(str, ' ');
 	arr = ft_split(str, ' ');
+	free(str);
+
+	i = 0;
 	while (i < len)
 	{
-		ft_printf("%s ", arr[i++]);
+		ft_printf("%s", arr[i++]);
+	}
+
+	i = 0;
+	ft_printf("arr to dlst\n");
+	while (i < len)
+	{
 		// validate_input
 		// ft_str_isdigit()
 		// ft_str_isinteger()
 		// ft_str_isduplicate()
+		ft_dlstadd_back(dlst, ft_dlstnew(ft_atoi(arr[i])));
+		ft_printf("int: %d\n", ft_atoi(arr[i]));
+		ft_printf("str: %s\n", arr[i]);
+		i++;
 	}
+
 	i = 0;
 	while (i < len)
 		free(arr[i++]);
 	free(arr);
-	return (NULL);
-}
 
-static t_dlst	**ft_arrtodlst(char **arr)
-{
-	int		i;
-	t_dlst	**dlst;
-
-	i = 0;
-	return (NULL);
+	ft_printf("\n");
+	ft_dlstprint(dlst);
+	return (dlst);
 }
 
 int	main(int argc, char *argv[])
 {
-	// char	**arr;
-	// t_dlst	**stack;
+	int		i;
+	int		len;
+	char	**arr;
+	t_dlst	**stack;
+
 	// test_dlst();
-	test_stack();
-	// arr = ft_strtoarr(argc, argv);
+	// test_stack();
+	*stack = NULL;
+	stack = ft_strtodlst(stack, argv);
+
+	ft_dlstclear(stack);
+	ft_dlstprint(stack);
+
 	return (0);
 }

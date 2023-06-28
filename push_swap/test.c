@@ -99,6 +99,7 @@ static t_dlst	**ft_strtodlst(t_dlst *dlst[], char *argv[])
 	i = 0;
 	ft_strlcpy(tmp, " ", 2);
 	// ft_strlcpy(str, "", 1);
+	ft_printf("str to arr\n");
 	while (argv[++i] != NULL)
 	{
 		// ft_strlcat(str, argv[i], ft_strlen(str) + ft_strlen(argv[i]) + 1);

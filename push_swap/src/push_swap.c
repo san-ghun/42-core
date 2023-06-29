@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 12:43:11 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/29 13:46:44 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:07:11 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,76 @@ int	main(int argc, char *argv[])
 	stack_a = ft_strtodlst(&stack_a, argv);
 	if (!stack_a)
 		return (ft_error());
+	
+	// ft_printf("\nstart opt test\n");
+	// swap(&stack_a, 'a');
+	// swap(&stack_b, 'b');
+	// ft_printf("a is \n");
+	// ft_dlstprint(&stack_a);
+	// ft_printf("\n");
+	// ft_printf("b is \n");
+	// ft_dlstprint(&stack_b);
+	// ft_printf("\n");
+
+	// ss(&stack_a, &stack_b);
+	// ft_printf("a is \n");
+	// ft_dlstprint(&stack_a);
+	// ft_printf("\n");
+	// ft_printf("b is \n");
+	// ft_dlstprint(&stack_b);
+	// ft_printf("\n");
+
+	// push(&stack_a, &stack_b, 'b');
+	// ft_printf("a is \n");
+	// ft_dlstprint(&stack_a);
+	// ft_printf("\n");
+	// ft_printf("b is \n");
+	// ft_dlstprint(&stack_b);
+	// ft_printf("\n");
+	// push(&stack_b, &stack_a, 'a');
+	// ft_printf("a is \n");
+	// ft_dlstprint(&stack_a);
+	// ft_printf("\n");
+	// ft_printf("b is \n");
+	// ft_dlstprint(&stack_b);
+	// ft_printf("\n");
+
+	// rotate(&stack_a, 'a');
+	// rotate(&stack_b, 'b');
+	// ft_printf("a is \n");
+	// ft_dlstprint(&stack_a);
+	// ft_printf("\n");
+	// ft_printf("b is \n");
+	// ft_dlstprint(&stack_b);
+	// ft_printf("\n");
+
+	// rr(&stack_a, &stack_b);
+	// ft_printf("a is \n");
+	// ft_dlstprint(&stack_a);
+	// ft_printf("\n");
+	// ft_printf("b is \n");
+	// ft_dlstprint(&stack_b);
+	// ft_printf("\n");
+
+	// rerotate(&stack_a, 'a');
+	// rerotate(&stack_b, 'b');
+	// ft_printf("a is \n");
+	// ft_dlstprint(&stack_a);
+	// ft_printf("\n");
+	// ft_printf("b is \n");
+	// ft_dlstprint(&stack_b);
+	// ft_printf("\n");
+
+	// rrr(&stack_a, &stack_b);
+	// ft_printf("a is \n");
+	// ft_dlstprint(&stack_a);
+	// ft_printf("\n");
+	// ft_printf("b is \n");
+	// ft_dlstprint(&stack_b);
+	// ft_printf("\n");
+
+	// ft_printf("\nend opt test\n");
+
 	ft_dlstclear(&stack_a);
 	ft_dlstclear(&stack_b);
 	ft_dlstprint(&stack_a);

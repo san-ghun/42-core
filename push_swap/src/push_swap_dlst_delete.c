@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:07:08 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/21 20:58:16 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:04:34 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,11 @@ t_dlst	*ft_pop(t_dlst *stack[])
 		ft_printf("FAIL: the stack is wrong - you should not have prev node\n");
 		return (NULL);
 	}
-	dlst->next->prev = NULL;
+	if (dlst->next != NULL)
+		dlst->next->prev = NULL;
 	*stack = dlst->next;
+	dlst->prev = NULL;
+	dlst->next = NULL;
 	return (dlst);
 }
 

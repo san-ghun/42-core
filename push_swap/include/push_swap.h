@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/29 13:55:57 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/29 15:15:37 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,15 @@ int		ft_str_isinteger(char *str);
 int		ft_str_isduplicate(char *arg[]);
 
 /* push_swap_rules.c */
+
+void    swap(t_dlst *stack[], int ab);
+void    push(t_dlst *stack_from[], t_dlst *stack_to[], int ab);
+void    rotate(t_dlst *stack[], int ab);
+void    rerotate(t_dlst *stack[], int ab);
+
+void    ss(t_dlst *stack_a[], t_dlst *stack_b[]);
+void    rr(t_dlst *stack_a[], t_dlst *stack_b[]);
+void    rrr(t_dlst *stack_a[], t_dlst *stack_b[]);
 
 /* push_swap_sort.c */
 

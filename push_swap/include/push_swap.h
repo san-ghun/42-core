@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/29 15:15:37 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:27:52 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,8 @@ void    rr(t_dlst *stack_a[], t_dlst *stack_b[]);
 void    rrr(t_dlst *stack_a[], t_dlst *stack_b[]);
 
 /* push_swap_sort.c */
+
+void    ft_presort(t_dlst *dlst[], int len);
 
 /* push_swap.c */
 

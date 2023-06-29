@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 12:43:11 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/29 16:07:11 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:29:27 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static t_dlst	*ft_strtodlst(t_dlst *dlst[], char *argv[])
 		free(arr);
 		return (NULL);
 	}
+	ft_presort(dlst, len);
 
 	ft_printf("arr to dlst\n");
 	i = 0;
@@ -65,6 +66,7 @@ static t_dlst	*ft_strtodlst(t_dlst *dlst[], char *argv[])
 	while (i < len)
 		free(arr[i++]);
 	free(arr);
+
 
 	// 
 	ft_printf("\n");

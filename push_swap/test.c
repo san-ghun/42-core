@@ -119,13 +119,13 @@ static t_dlst	**ft_strtodlst(t_dlst *dlst[], char *argv[])
 		i++;
 	}
 	if (ft_iserror(arr))
-		{
-			i = 0;
-			while (i < len)
-				free(arr[i++]);
-			free(arr);
-			return (NULL);
-		}
+	{
+		i = 0;
+		while (i < len)
+			free(arr[i++]);
+		free(arr);
+		return (NULL);
+	}
 
 	i = 0;
 	ft_printf("arr to dlst\n");

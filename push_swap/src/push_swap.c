@@ -6,33 +6,33 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 12:43:11 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/29 12:05:40 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/29 13:46:44 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_dlst	**ft_strtodlst(t_dlst *dlst[], char *argv[])
+static t_dlst	*ft_strtodlst(t_dlst *dlst[], char *argv[])
 {
 	int		i;
 	int		len;
 	char	tmp[1];
-	char	*str;
+	char	str[DATA_SIZE];
 	char	**arr;
 
+	ft_printf("str to arr\n");
 	i = 0;
 	ft_strlcpy(tmp, " ", 2);
-	str = NULL;
-	ft_printf("str to arr\n");
+	ft_strlcpy(str, "", 1);
 	while (argv[++i] != NULL)
 	{
-		str = ft_strjoin(str, argv[i]);
-		str = ft_strjoin(str, tmp);
+		ft_strlcat(str, argv[i], ft_strlen(str) + ft_strlen(argv[i]) + 1);
+		ft_strlcat(str, tmp, ft_strlen(str) + ft_strlen(tmp) + 1);
 	}
 	len = ft_split_size(str, ' ');
 	arr = ft_split(str, ' ');
-	free(str);
 
+	// (temp) print string values
 	i = 0;
 	while (i < len)
 	{
@@ -40,6 +40,7 @@ static t_dlst	**ft_strtodlst(t_dlst *dlst[], char *argv[])
 		i++;
 	}
 	
+	// Check error case
 	if (ft_iserror(arr))
 	{
 		i = 0;
@@ -49,8 +50,8 @@ static t_dlst	**ft_strtodlst(t_dlst *dlst[], char *argv[])
 		return (NULL);
 	}
 
-	i = 0;
 	ft_printf("arr to dlst\n");
+	i = 0;
 	while (i < len)
 	{
 		ft_dlstadd_back(dlst, ft_dlstnew(ft_atoi(arr[i])));
@@ -59,33 +60,35 @@ static t_dlst	**ft_strtodlst(t_dlst *dlst[], char *argv[])
 		i++;
 	}
 
+	// free array
 	i = 0;
 	while (i < len)
 		free(arr[i++]);
 	free(arr);
 
+	// 
 	ft_printf("\n");
 	ft_dlstprint(dlst);
-	return (dlst);
+	return (*dlst);
 }
 
 int	main(int argc, char *argv[])
 {
 	int		i;
-	t_dlst	**stack_a = NULL;
-	t_dlst	**stack_b = NULL;
+	t_dlst	*stack_a;
+	t_dlst	*stack_b;
 
 	if (argc == 1)
 		return (0);
 	i = 0;
-	*stack_a = NULL;
-	*stack_b = NULL;
-	stack_a = ft_strtodlst(stack_a, argv);
+	stack_a = NULL;
+	stack_b = NULL;
+	stack_a = ft_strtodlst(&stack_a, argv);
 	if (!stack_a)
 		return (ft_error());
-	ft_dlstclear(stack_a);
-	ft_dlstclear(stack_b);
-	ft_dlstprint(stack_a);
-	ft_dlstprint(stack_b);
+	ft_dlstclear(&stack_a);
+	ft_dlstclear(&stack_b);
+	ft_dlstprint(&stack_a);
+	ft_dlstprint(&stack_b);
 	return (0);
 }

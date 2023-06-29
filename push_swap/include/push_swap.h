@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/29 12:03:44 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/29 13:55:57 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 
 # define MAX_DLST	512
 
-typedef struct s_stack
-{
-	struct s_dlst	*head;
-	struct s_dlst	*tail;
-}				t_stack;
+// typedef struct s_stack
+// {
+// 	struct s_dlst	*head;
+// 	struct s_dlst	*tail;
+// }				t_stack;
 
 /// @struct t_dlst
 /// @brief Doubly Linked List Node.

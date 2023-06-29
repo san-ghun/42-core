@@ -99,6 +99,7 @@ static t_dlst	**ft_strtodlst(t_dlst *dlst[], char *argv[])
 	i = 0;
 	ft_strlcpy(tmp, " ", 2);
 	// ft_strlcpy(str, "", 1);
+	str = NULL;
 	ft_printf("str to arr\n");
 	while (argv[++i] != NULL)
 	{
@@ -114,8 +115,17 @@ static t_dlst	**ft_strtodlst(t_dlst *dlst[], char *argv[])
 	i = 0;
 	while (i < len)
 	{
-		ft_printf("%s", arr[i++]);
+		ft_printf("value is %s\n", arr[i]);
+		i++;
 	}
+	if (ft_iserror(arr))
+		{
+			i = 0;
+			while (i < len)
+				free(arr[i++]);
+			free(arr);
+			return (NULL);
+		}
 
 	i = 0;
 	ft_printf("arr to dlst\n");
@@ -145,13 +155,16 @@ int	main(int argc, char *argv[])
 {
 	int		i;
 	int		len;
-	char	**arr;
 	t_dlst	**stack;
 
 	// test_dlst();
 	// test_stack();
+	if (argc == 1)
+		return (0);
 	*stack = NULL;
 	stack = ft_strtodlst(stack, argv);
+	if (!stack)
+		return (ft_error());
 
 	ft_dlstclear(stack);
 	ft_dlstprint(stack);

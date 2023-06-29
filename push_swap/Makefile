@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 12:24:07 by sanghupa          #+#    #+#              #
-#    Updated: 2023/06/21 21:17:04 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/06/29 10:59:35 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,6 +94,9 @@ DLSTS 		= $(SRC_DIR)/$(NAME)_dlst_create.c \
 				$(SRC_DIR)/$(NAME)_dlst_update.c \
 				$(SRC_DIR)/$(NAME)_dlst_delete.c \
 				$(SRC_DIR)/$(NAME)_dlst_util.c \
+				$(SRC_DIR)/$(NAME)_val_input.c \
+				$(SRC_DIR)/$(NAME)_error.c \
+				$(SRC_DIR)/$(NAME)_util.c \
 
 test: $(LIBFT)
 		$(CC) $(TEST) -o $(TEST:.c=.out) $(DLSTS) $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)

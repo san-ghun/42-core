@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/21 21:15:51 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/29 12:03:44 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@
 # define DATA_SIZE	1024
 
 # define MAX_DLST	512
+
+typedef struct s_stack
+{
+	struct s_dlst	*head;
+	struct s_dlst	*tail;
+}				t_stack;
 
 /// @struct t_dlst
 /// @brief Doubly Linked List Node.
@@ -143,7 +149,7 @@ int		ft_str_isdigit(char *str);
 
 int		ft_str_isinteger(char *str);
 
-int		ft_str_isduplicate(char *str);
+int		ft_str_isduplicate(char *arg[]);
 
 /* push_swap_rules.c */
 

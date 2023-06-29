@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 12:24:07 by sanghupa          #+#    #+#              #
-#    Updated: 2023/06/29 10:59:35 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/06/29 23:50:02 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ NAME 		= push_swap
 SRC_NAME 	= $(SRC_DIR)/$(NAME).c \
 				$(SRC_DIR)/$(NAME)_sort.c \
 				$(SRC_DIR)/$(NAME)_rules.c \
+				$(SRC_DIR)/$(NAME)_rules_double.c \
 				$(SRC_DIR)/$(NAME)_val_input.c \
 				$(SRC_DIR)/$(NAME)_util.c \
 				$(SRC_DIR)/$(NAME)_error.c \

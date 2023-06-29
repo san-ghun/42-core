@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:15:18 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/29 13:42:38 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/29 23:43:14 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@ int	ft_str_isduplicate(char *arg[])
 {
 	int	i;
 	int	j;
-	int len;
+	int	len;
 
 	i = 0;
-	j = 1;
 	len = 0;
-	while (arg[i+1] != NULL)
+	while (arg[i + 1] != NULL)
 	{
 		j = i + 1;
 		while (arg[j] != NULL)

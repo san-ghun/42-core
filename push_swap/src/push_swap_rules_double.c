@@ -1,44 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_error.c                                  :+:      :+:    :+:   */
+/*   push_swap_rules_double.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 13:41:00 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/29 23:42:00 by sanghupa         ###   ########.fr       */
+/*   Created: 2023/06/21 21:18:01 by sanghupa          #+#    #+#             */
+/*   Updated: 2023/06/29 23:50:18 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_error(void)
+void	ss(t_dlst *stack_a[], t_dlst *stack_b[])
 {
-	ft_printf("Error\n");
-	return (1);
+	swap(stack_a, 0);
+	swap(stack_b, 0);
+	ft_printf("ss\n");
 }
 
-int	ft_iserror(char *arg[], int len)
+void	rr(t_dlst *stack_a[], t_dlst *stack_b[])
 {
-	int	i;
-	int	result;
+	rotate(stack_a, 0);
+	rotate(stack_b, 0);
+	ft_printf("rr\n");
+}
 
-	i = 0;
-	result = 0;
-	while (arg[i] != NULL)
-	{
-		result += ft_str_isdigit(arg[i]);
-		result += ft_str_isinteger(arg[i]) * 100;
-		i++;
-	}
-	result += ft_str_isduplicate(arg) * 10000;
-	if (result > 0)
-	{
-		ft_printf("error result = %d\n", result);
-		i = 0;
-		while (i < len)
-			free(arg[i++]);
-		free(arg);
-	}
-	return (result);
+void	rrr(t_dlst *stack_a[], t_dlst *stack_b[])
+{
+	rerotate(stack_a, 0);
+	rerotate(stack_b, 0);
+	ft_printf("rrr\n");
 }

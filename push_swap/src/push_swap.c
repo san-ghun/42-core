@@ -6,11 +6,32 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 12:43:11 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/29 17:29:27 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/29 23:02:05 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static t_dlst	**ft_arrtodlst(t_dlst *dlst[], char *arr[], int len)
+{
+	int		i;
+
+	i = 0;
+	while (i < len)
+	{
+		ft_dlstadd_back(dlst, ft_dlstnew(ft_atoi(arr[i])));
+		i++;
+	}
+
+	i = 0;
+	while (i < len)
+		free(arr[i++]);
+	free(arr);
+
+	ft_presort(dlst, len, 0);
+	ft_dlstprint(dlst);
+	return (dlst);
+}
 
 static t_dlst	*ft_strtodlst(t_dlst *dlst[], char *argv[])
 {
@@ -20,7 +41,6 @@ static t_dlst	*ft_strtodlst(t_dlst *dlst[], char *argv[])
 	char	str[DATA_SIZE];
 	char	**arr;
 
-	ft_printf("str to arr\n");
 	i = 0;
 	ft_strlcpy(tmp, " ", 2);
 	ft_strlcpy(str, "", 1);
@@ -32,131 +52,24 @@ static t_dlst	*ft_strtodlst(t_dlst *dlst[], char *argv[])
 	len = ft_split_size(str, ' ');
 	arr = ft_split(str, ' ');
 
-	// (temp) print string values
-	i = 0;
-	while (i < len)
-	{
-		ft_printf("value is %s\n", arr[i]);
-		i++;
-	}
-	
-	// Check error case
-	if (ft_iserror(arr))
-	{
-		i = 0;
-		while (i < len)
-			free(arr[i++]);
-		free(arr);
+	if (ft_iserror(arr, len))
 		return (NULL);
-	}
-	ft_presort(dlst, len);
-
-	ft_printf("arr to dlst\n");
-	i = 0;
-	while (i < len)
-	{
-		ft_dlstadd_back(dlst, ft_dlstnew(ft_atoi(arr[i])));
-		ft_printf("int: %d\n", ft_atoi(arr[i]));
-		ft_printf("str: %s\n", arr[i]);
-		i++;
-	}
-
-	// free array
-	i = 0;
-	while (i < len)
-		free(arr[i++]);
-	free(arr);
-
-
-	// 
-	ft_printf("\n");
-	ft_dlstprint(dlst);
+	dlst = ft_arrtodlst(dlst, arr, len);
 	return (*dlst);
 }
 
 int	main(int argc, char *argv[])
 {
-	int		i;
 	t_dlst	*stack_a;
 	t_dlst	*stack_b;
 
 	if (argc == 1)
 		return (0);
-	i = 0;
 	stack_a = NULL;
 	stack_b = NULL;
 	stack_a = ft_strtodlst(&stack_a, argv);
 	if (!stack_a)
 		return (ft_error());
-	
-	// ft_printf("\nstart opt test\n");
-	// swap(&stack_a, 'a');
-	// swap(&stack_b, 'b');
-	// ft_printf("a is \n");
-	// ft_dlstprint(&stack_a);
-	// ft_printf("\n");
-	// ft_printf("b is \n");
-	// ft_dlstprint(&stack_b);
-	// ft_printf("\n");
-
-	// ss(&stack_a, &stack_b);
-	// ft_printf("a is \n");
-	// ft_dlstprint(&stack_a);
-	// ft_printf("\n");
-	// ft_printf("b is \n");
-	// ft_dlstprint(&stack_b);
-	// ft_printf("\n");
-
-	// push(&stack_a, &stack_b, 'b');
-	// ft_printf("a is \n");
-	// ft_dlstprint(&stack_a);
-	// ft_printf("\n");
-	// ft_printf("b is \n");
-	// ft_dlstprint(&stack_b);
-	// ft_printf("\n");
-	// push(&stack_b, &stack_a, 'a');
-	// ft_printf("a is \n");
-	// ft_dlstprint(&stack_a);
-	// ft_printf("\n");
-	// ft_printf("b is \n");
-	// ft_dlstprint(&stack_b);
-	// ft_printf("\n");
-
-	// rotate(&stack_a, 'a');
-	// rotate(&stack_b, 'b');
-	// ft_printf("a is \n");
-	// ft_dlstprint(&stack_a);
-	// ft_printf("\n");
-	// ft_printf("b is \n");
-	// ft_dlstprint(&stack_b);
-	// ft_printf("\n");
-
-	// rr(&stack_a, &stack_b);
-	// ft_printf("a is \n");
-	// ft_dlstprint(&stack_a);
-	// ft_printf("\n");
-	// ft_printf("b is \n");
-	// ft_dlstprint(&stack_b);
-	// ft_printf("\n");
-
-	// rerotate(&stack_a, 'a');
-	// rerotate(&stack_b, 'b');
-	// ft_printf("a is \n");
-	// ft_dlstprint(&stack_a);
-	// ft_printf("\n");
-	// ft_printf("b is \n");
-	// ft_dlstprint(&stack_b);
-	// ft_printf("\n");
-
-	// rrr(&stack_a, &stack_b);
-	// ft_printf("a is \n");
-	// ft_dlstprint(&stack_a);
-	// ft_printf("\n");
-	// ft_printf("b is \n");
-	// ft_dlstprint(&stack_b);
-	// ft_printf("\n");
-
-	// ft_printf("\nend opt test\n");
 
 	ft_dlstclear(&stack_a);
 	ft_dlstclear(&stack_b);

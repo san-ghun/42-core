@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/29 16:27:52 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/29 22:40:27 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void	ft_dlstprint(t_dlst *dlst[]);
 
 int		ft_error(void);
 
-int		ft_iserror(char *arg[]);
+int		ft_iserror(char *arg[], int len);
 
 /* push_swap_util.c */
 
@@ -153,18 +153,18 @@ int		ft_str_isduplicate(char *arg[]);
 
 /* push_swap_rules.c */
 
-void    swap(t_dlst *stack[], int ab);
-void    push(t_dlst *stack_from[], t_dlst *stack_to[], int ab);
-void    rotate(t_dlst *stack[], int ab);
-void    rerotate(t_dlst *stack[], int ab);
+void	swap(t_dlst *stack[], int ab);
+void	push(t_dlst *stack_from[], t_dlst *stack_to[], int ab);
+void	rotate(t_dlst *stack[], int ab);
+void	rerotate(t_dlst *stack[], int ab);
 
-void    ss(t_dlst *stack_a[], t_dlst *stack_b[]);
-void    rr(t_dlst *stack_a[], t_dlst *stack_b[]);
-void    rrr(t_dlst *stack_a[], t_dlst *stack_b[]);
+void	ss(t_dlst *stack_a[], t_dlst *stack_b[]);
+void	rr(t_dlst *stack_a[], t_dlst *stack_b[]);
+void	rrr(t_dlst *stack_a[], t_dlst *stack_b[]);
 
 /* push_swap_sort.c */
 
-void    ft_presort(t_dlst *dlst[], int len);
+void	ft_presort(t_dlst *dlst[], int len, int i);
 
 /* push_swap.c */
 

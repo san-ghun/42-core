@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:07:08 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/29 16:04:34 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/29 22:44:59 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 void	ft_dlstdelone(t_dlst *dlst[], t_dlst *elem)
 {
-	t_dlst	*tmp;
-
 	if (!dlst || !elem)
 		return ;
 	if ((elem->prev == NULL) && (elem->next == NULL))
 	{
-		tmp = *dlst;
 		*dlst = NULL;
 		return (free(elem));
 	}
@@ -75,6 +72,5 @@ void	ft_dlstclear(t_dlst *dlst[])
 		ft_dlstdelone(dlst, tmp);
 		tmp = after;
 	}
-	ft_printf("\n");
 	return ;
 }

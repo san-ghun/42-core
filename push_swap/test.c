@@ -131,10 +131,6 @@ static t_dlst	**ft_strtodlst(t_dlst *dlst[], char *argv[])
 	ft_printf("arr to dlst\n");
 	while (i < len)
 	{
-		// validate_input
-		// ft_str_isdigit()
-		// ft_str_isinteger()
-		// ft_str_isduplicate()
 		ft_dlstadd_back(dlst, ft_dlstnew(ft_atoi(arr[i])));
 		ft_printf("int: %d\n", ft_atoi(arr[i]));
 		ft_printf("str: %s\n", arr[i]);
@@ -154,20 +150,92 @@ static t_dlst	**ft_strtodlst(t_dlst *dlst[], char *argv[])
 int	main(int argc, char *argv[])
 {
 	int		i;
-	int		len;
-	t_dlst	**stack;
+	t_dlst	*stack_a;
+	t_dlst	*stack_b;
 
 	// test_dlst();
 	// test_stack();
 	if (argc == 1)
 		return (0);
-	*stack = NULL;
-	stack = ft_strtodlst(stack, argv);
-	if (!stack)
+	i = 0;
+	stack_a = NULL;
+	stack_b = NULL;
+	stack_a = ft_strtodlst(&stack_a, argv);
+	if (!stack_a)
 		return (ft_error());
+	
+	// ft_printf("\nstart opt test\n");
+	// swap(&stack_a, 'a');
+	// swap(&stack_b, 'b');
+	// ft_printf("a is \n");
+	// ft_dlstprint(&stack_a);
+	// ft_printf("\n");
+	// ft_printf("b is \n");
+	// ft_dlstprint(&stack_b);
+	// ft_printf("\n");
 
-	ft_dlstclear(stack);
-	ft_dlstprint(stack);
+	// ss(&stack_a, &stack_b);
+	// ft_printf("a is \n");
+	// ft_dlstprint(&stack_a);
+	// ft_printf("\n");
+	// ft_printf("b is \n");
+	// ft_dlstprint(&stack_b);
+	// ft_printf("\n");
 
+	// push(&stack_a, &stack_b, 'b');
+	// ft_printf("a is \n");
+	// ft_dlstprint(&stack_a);
+	// ft_printf("\n");
+	// ft_printf("b is \n");
+	// ft_dlstprint(&stack_b);
+	// ft_printf("\n");
+	// push(&stack_b, &stack_a, 'a');
+	// ft_printf("a is \n");
+	// ft_dlstprint(&stack_a);
+	// ft_printf("\n");
+	// ft_printf("b is \n");
+	// ft_dlstprint(&stack_b);
+	// ft_printf("\n");
+
+	// rotate(&stack_a, 'a');
+	// rotate(&stack_b, 'b');
+	// ft_printf("a is \n");
+	// ft_dlstprint(&stack_a);
+	// ft_printf("\n");
+	// ft_printf("b is \n");
+	// ft_dlstprint(&stack_b);
+	// ft_printf("\n");
+
+	// rr(&stack_a, &stack_b);
+	// ft_printf("a is \n");
+	// ft_dlstprint(&stack_a);
+	// ft_printf("\n");
+	// ft_printf("b is \n");
+	// ft_dlstprint(&stack_b);
+	// ft_printf("\n");
+
+	// rerotate(&stack_a, 'a');
+	// rerotate(&stack_b, 'b');
+	// ft_printf("a is \n");
+	// ft_dlstprint(&stack_a);
+	// ft_printf("\n");
+	// ft_printf("b is \n");
+	// ft_dlstprint(&stack_b);
+	// ft_printf("\n");
+
+	// rrr(&stack_a, &stack_b);
+	// ft_printf("a is \n");
+	// ft_dlstprint(&stack_a);
+	// ft_printf("\n");
+	// ft_printf("b is \n");
+	// ft_dlstprint(&stack_b);
+	// ft_printf("\n");
+
+	// ft_printf("\nend opt test\n");
+
+	ft_dlstclear(&stack_a);
+	ft_dlstclear(&stack_b);
+	ft_dlstprint(&stack_a);
+	ft_dlstprint(&stack_b);
 	return (0);
 }

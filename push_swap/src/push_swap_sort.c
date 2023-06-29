@@ -6,36 +6,36 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:17:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/29 17:29:24 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/29 23:03:32 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // TODO: do presort and save the order to index
-void    ft_presort(char *arr[], int len)
+void	ft_presort(t_dlst *dlst[], int len, int i)
 {
-    int i;
-    int j;
-    int min;
-    t_dlst  *mint;
-    t_dlst  *tmp;
+	t_dlst	*small;
+	t_dlst	*large;
+	t_dlst	*tmp;
 
-    i = 0;
-    j = 0;
-    min = INT_MAX;
-    tmp = *dlst;
-    while (i <= len)
-    {
-        while (j <= len)
-        {
-
-        }
-        i++;
-    }
-}
-
-int ft_issorted(t_dlst *dlst[])
-{
-    return (0);
+	len--;
+	while (i <= len)
+	{
+		tmp = *dlst;
+		while (tmp->index != -1)
+			tmp = tmp->next;
+		small = tmp;
+		large = tmp;
+		while (tmp)
+		{
+			if (small->content > tmp->content && tmp->index == -1)
+				small = tmp;
+			if (large->content < tmp->content && tmp->index == -1)
+				large = tmp;
+			tmp = tmp->next;
+		}
+		small->index = i++;
+		large->index = len--;
+	}
 }

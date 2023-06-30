@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 12:24:07 by sanghupa          #+#    #+#              #
-#    Updated: 2023/06/29 23:50:02 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/06/30 11:03:44 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,15 @@ SRC_DIR		= ./src
 NAME 		= push_swap
 SRC_NAME 	= $(SRC_DIR)/$(NAME).c \
 				$(SRC_DIR)/$(NAME)_sort.c \
+				$(SRC_DIR)/$(NAME)_sort_basic.c \
+				$(SRC_DIR)/$(NAME)_sort_small.c \
+				$(SRC_DIR)/$(NAME)_sort_large.c \
+				$(SRC_DIR)/$(NAME)_sort_util.c \
 				$(SRC_DIR)/$(NAME)_rules.c \
 				$(SRC_DIR)/$(NAME)_rules_double.c \
 				$(SRC_DIR)/$(NAME)_val_input.c \
-				$(SRC_DIR)/$(NAME)_util.c \
 				$(SRC_DIR)/$(NAME)_error.c \
+				$(SRC_DIR)/$(NAME)_util.c \
 				$(SRC_DIR)/$(NAME)_dlst_create.c \
 				$(SRC_DIR)/$(NAME)_dlst_read.c \
 				$(SRC_DIR)/$(NAME)_dlst_update.c \
@@ -80,7 +84,8 @@ $(LIBFT):
 		@mv $(LIBFT_PATH) ./
 
 $(NAME): $(OBJ_NAME) $(LIBFT) 
-		@$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
+		@$(CC) $(CFLAGS) -fsanitize=address -g -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
+#		@$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
 
 $(NAME_B): $(OBJ_NAME_B) $(LIBFT) 
 		@$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)

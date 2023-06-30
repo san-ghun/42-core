@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 12:43:11 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/29 23:44:36 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:48:28 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static int	ft_strtodlst(t_dlst *dlst[], char *argv[])
 int	main(int argc, char *argv[])
 {
 	int		len;
+	int		*lens[2];
 	t_dlst	*stack_a;
 	t_dlst	*stack_b;
 
@@ -70,6 +71,8 @@ int	main(int argc, char *argv[])
 	ft_printf("len = %d\n", len);
 	if (!stack_a)
 		return (ft_error());
+	lens[0] = len;
+	lens[1] = 0;
 	ft_printf("is ordered: %d\n", ft_isordered(&stack_a));
 	ft_printf("is sorted: %d\n", ft_issorted(&stack_a, len));
 	ft_dlstclear(&stack_a);

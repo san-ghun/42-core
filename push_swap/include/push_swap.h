@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/29 23:49:34 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:53:50 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@
 
 # define MAX_DLST	512
 
-// typedef struct s_stack
-// {
-// 	struct s_dlst	*head;
-// 	struct s_dlst	*tail;
-// }				t_stack;
+typedef struct s_stack
+{
+	int				len;
+	struct s_dlst	*head;
+	struct s_dlst	*tail;
+}				t_stack;
 
 /// @struct t_dlst
 /// @brief Doubly Linked List Node.
@@ -154,7 +155,7 @@ int		ft_str_isduplicate(char *arg[]);
 /* push_swap_rules.c */
 
 void	swap(t_dlst *stack[], int ab);
-void	push(t_dlst *stack_from[], t_dlst *stack_to[], int ab);
+void	push(t_dlst *stack_from[], t_dlst *stack_to[], int ab, int *lens);
 void	rotate(t_dlst *stack[], int ab);
 void	rerotate(t_dlst *stack[], int ab);
 
@@ -165,6 +166,10 @@ void	rr(t_dlst *stack_a[], t_dlst *stack_b[]);
 void	rrr(t_dlst *stack_a[], t_dlst *stack_b[]);
 
 /* push_swap_sort.c */
+/* push_swap_sort_basic.c */
+/* push_swap_sort_small.c */
+/* push_swap_sort_large.c */
+/* push_swap_sort_util.c */
 
 void	ft_presort(t_dlst *dlst[], int len, int i);
 

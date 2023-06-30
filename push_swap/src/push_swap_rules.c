@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:18:01 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/29 23:50:25 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:51:05 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	swap(t_dlst *stack[], int ab)
 		ft_printf("sb\n");
 }
 
-void	push(t_dlst *stack_from[], t_dlst *stack_to[], int ab)
+void	push(t_dlst *stack_from[], t_dlst *stack_to[], int ab, int *lens)
 {
 	t_dlst	*popped;
 
@@ -46,9 +46,17 @@ void	push(t_dlst *stack_from[], t_dlst *stack_to[], int ab)
 		return ;
 	ft_dlstadd_front(stack_to, popped);
 	if (ab == 'a')
+	{
+		lens[0]++;
+		lens[1]--;
 		ft_printf("pa\n");
+	}
 	else if (ab == 'b')
+	{
+		lens[0]--;
+		lens[1]++;
 		ft_printf("pb\n");
+	}
 	else
 		ft_printf("push what?");
 }

@@ -6,13 +6,12 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:17:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/30 10:27:50 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/30 23:47:36 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// TODO: do presort and save the order to index
 void	ft_presort(t_dlst *dlst[], int len, int i)
 {
 	int		length;

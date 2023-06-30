@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 12:43:11 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/30 12:48:28 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/30 23:54:42 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ static t_dlst	**ft_arrtodlst(t_dlst *dlst[], char *arr[], int len)
 		free(arr[i++]);
 	free(arr);
 	ft_presort(dlst, len, 0);
-
-	ft_dlstprint(dlst);
 	return (dlst);
 }
 
@@ -56,10 +54,18 @@ static int	ft_strtodlst(t_dlst *dlst[], char *argv[])
 	return (len);
 }
 
+int	*make_lens(int len)
+{
+	static int	array[2] = {0, 0};
+
+	array[0] = len;
+	return (array);
+}
+
 int	main(int argc, char *argv[])
 {
 	int		len;
-	int		*lens[2];
+	int		*lens;
 	t_dlst	*stack_a;
 	t_dlst	*stack_b;
 
@@ -68,13 +74,24 @@ int	main(int argc, char *argv[])
 	stack_a = NULL;
 	stack_b = NULL;
 	len = ft_strtodlst(&stack_a, argv);
-	ft_printf("len = %d\n", len);
 	if (!stack_a)
 		return (ft_error());
-	lens[0] = len;
-	lens[1] = 0;
-	ft_printf("is ordered: %d\n", ft_isordered(&stack_a));
-	ft_printf("is sorted: %d\n", ft_issorted(&stack_a, len));
+	lens = make_lens(len);
+
+	ft_printf("len = %d\n", len);
+
+	if (argc == 3)
+		sort_two(&stack_a, 'a');
+	if (argc == 4)
+		sort_three(&stack_a, 'a');
+	if (argc > 4)
+	{
+		preprocess(&stack_a, &stack_b, len, lens);
+		// sort_four(&stack_a, &stack_b, len, lens);
+	}
+	ft_dlstprint(&stack_a);
+	ft_dlstprint(&stack_b);
+
 	ft_dlstclear(&stack_a);
 	ft_dlstclear(&stack_b);
 

@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:18:01 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/30 12:51:05 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:21:41 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	swap(t_dlst *stack[], int ab)
 	newhead = head->next;
 	head->prev = newhead;
 	head->next = newhead->next;
-	newhead->next->prev = head;
+	if (newhead->next != NULL)
+		newhead->next->prev = head;
 	newhead->next = head;
 	*stack = newhead;
 	newhead->prev = NULL;

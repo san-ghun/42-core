@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 12:24:07 by sanghupa          #+#    #+#              #
-#    Updated: 2023/06/30 11:03:44 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/07/06 00:23:14 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC_NAME 	= $(SRC_DIR)/$(NAME).c \
 				$(SRC_DIR)/$(NAME)_sort_basic.c \
 				$(SRC_DIR)/$(NAME)_sort_small.c \
 				$(SRC_DIR)/$(NAME)_sort_large.c \
+				$(SRC_DIR)/$(NAME)_sort_preprocess.c \
 				$(SRC_DIR)/$(NAME)_sort_util.c \
 				$(SRC_DIR)/$(NAME)_rules.c \
 				$(SRC_DIR)/$(NAME)_rules_double.c \

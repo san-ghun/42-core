@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/05 15:45:19 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/06 00:24:28 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,23 +165,24 @@ void	ss(t_dlst *stack_a[], t_dlst *stack_b[]);
 void	rr(t_dlst *stack_a[], t_dlst *stack_b[]);
 void	rrr(t_dlst *stack_a[], t_dlst *stack_b[]);
 
-/* push_swap_sort.c */
+/* push_swap_sort_preprocess.c */
+int		set_threshold(int len, double ratio);
+void	distribute_stacks(
+			t_dlst *stack_a[], t_dlst *stack_b[], int threshold, int *lens);
+void	preprocess(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens);
 
 /* push_swap_sort_basic.c */
 void	sort_two(t_dlst *dlst[], int ab);
 void	sort_three(t_dlst *dlst[], int ab);
-int		set_threshold(int len, double ratio);
-void	distribute_stacks(
-			t_dlst *stack_a[], 
-			t_dlst *stack_b[], 
-			int threshold, 
-			int len, 
-			int *lens
-			);
-void	preprocess(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens);
 
 /* push_swap_sort_small.c */
-int	sort_small(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens);
+int		is_nextorder(
+			t_dlst *a_head, t_dlst *a_tail, t_dlst *b_head, t_dlst *b_tail);
+void	nextorder_3(t_dlst *stack_a[], t_dlst *stack_b[], int *lens);
+void	nextorder_4(t_dlst *stack_a[], t_dlst *stack_b[], int *lens);
+void	nextorder_5(t_dlst *stack_a[], t_dlst *stack_b[], int *lens);
+int		find_nextorder(
+			t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens);
 
 /* push_swap_sort_large.c */
 /* push_swap_sort_util.c */
@@ -191,6 +192,9 @@ void	ft_presort(t_dlst *dlst[], int len, int i);
 int		ft_isordered(t_dlst *dlst[]);
 
 int		ft_issorted(t_dlst *dlst[], int len);
+
+/* push_swap_sort.c */
+int		sort_small(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens);
 
 /* push_swap.c */
 

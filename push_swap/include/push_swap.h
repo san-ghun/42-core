@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/30 22:16:38 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:45:19 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,10 +170,19 @@ void	rrr(t_dlst *stack_a[], t_dlst *stack_b[]);
 /* push_swap_sort_basic.c */
 void	sort_two(t_dlst *dlst[], int ab);
 void	sort_three(t_dlst *dlst[], int ab);
-void	sort_four(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens);
+int		set_threshold(int len, double ratio);
+void	distribute_stacks(
+			t_dlst *stack_a[], 
+			t_dlst *stack_b[], 
+			int threshold, 
+			int len, 
+			int *lens
+			);
 void	preprocess(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens);
 
 /* push_swap_sort_small.c */
+int	sort_small(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens);
+
 /* push_swap_sort_large.c */
 /* push_swap_sort_util.c */
 

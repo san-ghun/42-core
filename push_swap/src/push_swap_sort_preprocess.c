@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:17:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/06 00:13:54 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/06 00:31:07 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	distribute_stacks(
 	int	cnt;
 	int	len;
 
-	len = ft_dlstsize(stack_a);
+	len = ft_dlstsize(*stack_a);
 	while (threshold <= len)
 	{
 		i = lens[0];
@@ -100,7 +100,7 @@ void	preprocess(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens)
 	// ratio = 0.12;
 	// threshold = len * ratio;
 	ft_printf("threshold = %d\n", threshold);
-	distribute_stacks(stack_a, stack_b, threshold, len, lens);
+	distribute_stacks(stack_a, stack_b, threshold, lens);
 	while (lens[0] > 1)
 	{
 		if ((*stack_a)->index == maxi)

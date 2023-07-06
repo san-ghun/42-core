@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:17:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/06 00:14:02 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:53:24 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,31 @@ void	sort_three(t_dlst *dlst[], int ab)
 		rerotate(dlst, ab);
 		sort_three(dlst, ab);
 	}
+}
+
+void	sort_four(t_dlst *stack_a[], t_dlst *stack_b[], int *lens)
+{
+	int	i;
+	int	pos;
+
+	i = 0;
+	pos = find_min(stack_a);
+	if (pos == 0)
+		push(stack_a, stack_b, 'b', lens);
+	else if (pos <= (lens[0] / 2))
+	{
+		while (pos--)
+			rotate(stack_a, 'a');
+		push(stack_a, stack_b, 'b', lens);
+	}
+	else
+	{
+		pos = lens[0] - pos;
+		while (pos--)
+			rerotate(stack_a, 'a');
+		push(stack_a, stack_b, 'b', lens);
+	}
+	sort_three(stack_a, 'a');
+	push(stack_b, stack_a, 'a', lens);
+	return ;
 }

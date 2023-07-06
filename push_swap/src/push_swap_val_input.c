@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:15:18 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/29 23:43:14 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:08:27 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_str_isduplicate(char *arg[])
 				len = ft_strlen(arg[i]);
 			if (ft_strncmp(arg[i], arg[j], len) == 0)
 			{
-				ft_printf("s%d %s, s%d %s\n", i, arg[i], j, arg[j]);
+				// ft_printf("s%d %s, s%d %s\n", i, arg[i], j, arg[j]);
 				return (1);
 			}
 			j++;

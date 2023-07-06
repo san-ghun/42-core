@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 12:43:11 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/06 11:30:00 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:50:24 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,24 +78,27 @@ int	main(int argc, char *argv[])
 		return (ft_error());
 	lens = make_lens(len);
 
-	ft_printf("len = %d\n", len);
+	// ft_printf("len = %d\n", len);
 
-	if (argc == 3)
+	if (len == 2)
 		sort_two(&stack_a, 'a');
-	if (argc == 4)
+	if (len == 3)
 		sort_three(&stack_a, 'a');
-	if (argc > 4)
+	if (len == 4)
+		sort_four(&stack_a, &stack_b, lens);
+	if (len >= 5)
 	{
 		preprocess(&stack_a, &stack_b, len, lens);
-		printf("sorted: %d\n", sort_small(&stack_a, &stack_b, len, lens));
+		sort_small(&stack_a, &stack_b, len, lens);
+		// printf("sorted: %d\n", sort_small(&stack_a, &stack_b, len, lens));
 	}
-	ft_dlstprint(&stack_a);
-	ft_dlstprint(&stack_b);
+	// ft_dlstprint(&stack_a);
+	// ft_dlstprint(&stack_b);
 
 	ft_dlstclear(&stack_a);
 	ft_dlstclear(&stack_b);
 
-	ft_dlstprint(&stack_a);
-	ft_dlstprint(&stack_b);
+	// ft_dlstprint(&stack_a);
+	// ft_dlstprint(&stack_b);
 	return (0);
 }

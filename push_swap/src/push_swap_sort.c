@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:17:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/06 11:36:51 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:22:06 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	sort_small(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens)
 	t_dlst	*a_tail;
 	t_dlst	*b_tail;
 
-	while (lens[1] > 0)
+	while (ft_issorted(stack_a, len) == 0)
 	{
 		a_tail = ft_dlstlast(*stack_a);
 		b_tail = ft_dlstlast(*stack_b);
@@ -61,7 +61,6 @@ int	sort_small(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens)
 			nextorder_5(stack_a, stack_b, lens);
 		else if (is_nextorder(*stack_a, a_tail, *stack_b, b_tail) == 0)
 			find_nextorder(stack_a, stack_b, lens);
-		// do something else
 	}
 	if (ft_issorted(stack_a, len))
 		return (1);

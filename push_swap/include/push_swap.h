@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/06 11:10:43 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:44:41 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define MAX_ITER	1024
 
 // Prevent Heap mem leak: use addition to char or array
-# define DATA_SIZE	1024
+# define DATA_SIZE	3072
 
 # define RATIO		0.14
 

@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:17:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/06 00:21:49 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:13:31 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,32 +52,6 @@
 // 	return (0);
 // }
 
-int	is_nextorder(t_dlst *a_head, t_dlst *a_tail, t_dlst *b_head, t_dlst *b_tail)
-{
-	int	at;
-	int	bh;
-	int	bhn;
-	int	bt;
-	int	btp;
-
-	at = a_tail->index;
-	bh = b_head->index;
-	bhn = b_head->next->index;
-	bt = b_tail->index;
-	btp = b_tail->prev->index;
-	if (a_head->index - at == 1)
-		return (1);
-	if (a_head->index - bh == 1)
-		return (2);
-	if (a_head->index - bhn == 1)
-		return (3);
-	if (a_head->index - bt == 1)
-		return (4);
-	if (a_head->index - btp == 1)
-		return (5);
-	return (0);
-}
-
 void	nextorder_3(t_dlst *stack_a[], t_dlst *stack_b[], int *lens)
 {
 	swap(stack_b, 'b');
@@ -97,8 +71,24 @@ void	nextorder_5(t_dlst *stack_a[], t_dlst *stack_b[], int *lens)
 	push(stack_b, stack_a, 'a', lens);
 }
 
-// TODO:
-int	find_nextorder(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens)
+int	find_nextorder(t_dlst *stack_a[], t_dlst *stack_b[], int *lens)
 {
-	
+	int	i;
+	int	pos;
+
+	i = 0;
+	pos = find_max(stack_b);
+	if (pos == 0)
+		return (0);
+	if (pos <= (lens[1] / 2))
+		while (pos--)
+			rotate(stack_b, 'b');
+	else
+	{
+		pos = lens[1] - pos;
+		while (pos--)
+			rerotate(stack_b, 'b');
+	}
+	push(stack_b, stack_a, 'a', lens);
+	return (1);
 }

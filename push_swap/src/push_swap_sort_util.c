@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:17:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/06/30 23:47:36 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:10:38 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,31 @@ int	ft_issorted(t_dlst *dlst[], int len)
 	if (len != i)
 		return (0);
 	return (1);
+}
+
+int	find_max(t_dlst *stack[])
+{
+	int		i;
+	int		max;
+	int		step;
+	t_dlst	*tmp;
+
+	i = 0;
+	max = 0;
+	step = 0;
+	tmp = *stack;
+	if (tmp == NULL)
+		return (0);
+	max = tmp->index;
+	while ((i <= MAX_ITER) && (tmp->next != NULL))
+	{
+		if (tmp->index > max)
+		{
+			max = tmp->index;
+			step = i;
+		}
+		tmp = tmp->next;
+		i++;
+	}
+	return (step);
 }

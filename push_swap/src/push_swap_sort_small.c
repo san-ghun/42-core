@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:17:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/06 11:13:31 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:38:16 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@
 // 	return (0);
 // }
 
+void	nextorder_2(t_dlst *stack_a[], t_dlst *stack_b[], int *lens)
+{
+	push(stack_b, stack_a, 'a', lens);
+}
+
 void	nextorder_3(t_dlst *stack_a[], t_dlst *stack_b[], int *lens)
 {
 	swap(stack_b, 'b');
@@ -73,10 +78,8 @@ void	nextorder_5(t_dlst *stack_a[], t_dlst *stack_b[], int *lens)
 
 int	find_nextorder(t_dlst *stack_a[], t_dlst *stack_b[], int *lens)
 {
-	int	i;
 	int	pos;
 
-	i = 0;
 	pos = find_max(stack_b);
 	if (pos == 0)
 		return (0);

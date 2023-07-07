@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:17:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/06 17:08:29 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/06 22:09:56 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 int	set_threshold(int len, double ratio)
 {
+	int	val;
 	int	threshold;
 
+	val = 10;
+	if (len > 100)
+		val = 20;
 	threshold = 0;
-	if ((len / 10) <= 1)
+	if ((len / val) <= 1)
 		return (1);
-	while (threshold < (len / 10))
+	while (threshold < (len / val))
 	{
 		threshold += (int)(len * ratio);
-		ratio += 0.02;
+		ratio += 0.005;
 	}
 	return (threshold);
 }
@@ -34,12 +38,14 @@ void	distribute_stacks(
 			int *lens
 	)
 {
-	int	i;
-	int	cnt;
-	int	len;
+	int		i;
+	int		cnt;
+	double	val;
 
-	len = ft_dlstsize(*stack_a);
-	while (threshold <= len)
+	val = 2.9;
+	if (ft_dlstsize(*stack_a) > 100)
+		val = 2.9;
+	while (threshold <= ft_dlstsize(*stack_a))
 	{
 		i = lens[0];
 		cnt = 0;
@@ -55,7 +61,7 @@ void	distribute_stacks(
 			else
 				push(stack_a, stack_b, 'b', lens);
 		}
-		threshold *= 2.9;
+		threshold *= val;
 	}
 }
 // {

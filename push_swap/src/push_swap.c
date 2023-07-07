@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 12:43:11 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/06 17:50:24 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:14:28 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,21 @@ int	main(int argc, char *argv[])
 
 	// ft_printf("len = %d\n", len);
 
+	if (ft_issorted(&stack_a, len))
+	{
+		ft_dlstclear(&stack_a);
+		ft_dlstclear(&stack_b);
+		return (0);
+	}
 	if (len == 2)
 		sort_two(&stack_a, 'a');
 	if (len == 3)
 		sort_three(&stack_a, 'a');
 	if (len == 4)
-		sort_four(&stack_a, &stack_b, lens);
-	if (len >= 5)
+		sort_four(&stack_a, &stack_b, lens, 0);
+	if (len == 5)
+		sort_five(&stack_a, &stack_b, lens);
+	if (len >= 6)
 	{
 		preprocess(&stack_a, &stack_b, len, lens);
 		sort_small(&stack_a, &stack_b, len, lens);

@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/06 17:49:24 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:37:38 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,9 +174,11 @@ void	preprocess(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens);
 /* push_swap_sort_basic.c */
 void	sort_two(t_dlst *dlst[], int ab);
 void	sort_three(t_dlst *dlst[], int ab);
-void	sort_four(t_dlst *stack_a[], t_dlst *stack_b[], int *lens);
+void	sort_four(t_dlst *stack_a[], t_dlst *stack_b[], int *lens, int min);
+void	sort_five(t_dlst *stack_a[], t_dlst *stack_b[], int *lens);
 
 /* push_swap_sort_small.c */
+void	nextorder_2(t_dlst *stack_a[], t_dlst *stack_b[], int *lens);
 void	nextorder_3(t_dlst *stack_a[], t_dlst *stack_b[], int *lens);
 void	nextorder_4(t_dlst *stack_a[], t_dlst *stack_b[], int *lens);
 void	nextorder_5(t_dlst *stack_a[], t_dlst *stack_b[], int *lens);
@@ -191,13 +193,12 @@ int		ft_isordered(t_dlst *dlst[]);
 
 int		ft_issorted(t_dlst *dlst[], int len);
 
-int		find_min(t_dlst *stack[]);
+int		find_min(t_dlst *stack[], int min);
 
 int		find_max(t_dlst *stack[]);
 
 /* push_swap_sort.c */
-int		is_nextorder(
-			t_dlst *a_head, t_dlst *a_tail, t_dlst *b_head, t_dlst *b_tail);
+int		is_nextorder(t_dlst *a_head, t_dlst *b_head);
 int		sort_small(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens);
 
 /* push_swap.c */

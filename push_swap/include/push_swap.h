@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/07 22:59:40 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/07 23:43:13 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,6 @@
 
 // Prevent Heap mem leak: use addition to char or array
 # define DATA_SIZE	3072
-
-# define RATIO		0.14
-
-typedef struct s_stack
-{
-	int				len;
-	struct s_dlst	*head;
-	struct s_dlst	*tail;
-}				t_stack;
 
 /// @struct t_dlst
 /// @brief Doubly Linked List Node.
@@ -137,7 +128,6 @@ void	ft_dlstprint(t_dlst *dlst[]);
 /* push_swap_error.c */
 
 int		ft_error(void);
-
 int		ft_iserror(char *arg[], int len);
 
 /* push_swap_util.c */
@@ -147,9 +137,7 @@ long	ft_atol(const char *str);
 /* push_swap_val_input.c */
 
 int		ft_str_isdigit(char *str);
-
 int		ft_str_isinteger(char *str);
-
 int		ft_str_isduplicate(char *arg[]);
 
 /* push_swap_rules.c */

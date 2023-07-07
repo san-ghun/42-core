@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:17:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/07 22:37:31 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/08 00:09:56 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	set_threshold(int len, double ratio)
 
 	val = 10;
 	if (len > 100)
-		val = 20;
+		val += len / 25;
 	threshold = 0;
 	if ((len / val) <= 1)
 		return (1);

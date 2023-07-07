@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:17:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/06 21:58:33 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:36:52 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,18 @@ int	is_nextorder(t_dlst *a_head, t_dlst *b_head)
 	int	bt;
 	int	btp;
 
+	bh = -1;
+	bhn = -1;
+	btp = -1;
 	at = ft_dlstlast(a_head)->index;
-	bh = b_head->index;
-	bhn = b_head->next->index;
-	bt = ft_dlstlast(b_head)->index;
-	btp = ft_dlstlast(b_head)->prev->index;
+	if (b_head != NULL)
+		bh = b_head->index;
+	if (b_head->next != NULL)
+		bhn = b_head->next->index;
+	if (b_head != NULL)
+		bt = ft_dlstlast(b_head)->index;
+	if (ft_dlstlast(b_head)->prev != NULL)
+		btp = ft_dlstlast(b_head)->prev->index;
 	if (a_head->index - at == 1)
 		return (1);
 	if (a_head->index - bh == 1)
@@ -40,10 +47,13 @@ int	is_nextorder(t_dlst *a_head, t_dlst *b_head)
 
 int	sort_small(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens)
 {
-	while (ft_issorted(stack_a, len) == 0)
+	// while (ft_issorted(stack_a, len) == 0)
+	while (lens[1] > 0)
 	{
-		if (ft_dlstlast(*stack_b) == *stack_b)
+		if ((*stack_b)->next == NULL)
 			push(stack_b, stack_a, 'a', lens);
+		else if (ft_issorted(stack_a, lens[0]))
+			nextorder_2(stack_a, stack_b, lens);
 		else if (is_nextorder(*stack_a, *stack_b) == 1)
 			rerotate(stack_a, 'a');
 		else if (is_nextorder(*stack_a, *stack_b) == 2)
@@ -54,9 +64,13 @@ int	sort_small(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens)
 			nextorder_4(stack_a, stack_b, lens);
 		else if (is_nextorder(*stack_a, *stack_b) == 5)
 			nextorder_5(stack_a, stack_b, lens);
+		else if ((*stack_b)->index > ft_dlstlast(*stack_a)->index)
+			nextorder_2(stack_a, stack_b, lens);
 		else if (is_nextorder(*stack_a, *stack_b) == 0)
 			find_nextorder(stack_a, stack_b, lens);
 	}
+	if (is_nextorder(*stack_a, *stack_b) == 1)
+		rerotate(stack_a, 'a');
 	if (ft_issorted(stack_a, len))
 		return (1);
 	return (0);

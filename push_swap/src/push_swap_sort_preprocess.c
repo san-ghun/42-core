@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:17:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/06 22:09:56 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:09:08 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,28 @@ void	distribute_stacks(
 			int *lens
 	)
 {
-	int		i;
+	int		thres_0;
+	int		len;
 	int		cnt;
-	double	val;
 
-	val = 2.9;
-	if (ft_dlstsize(*stack_a) > 100)
-		val = 2.9;
-	while (threshold <= ft_dlstsize(*stack_a))
+	thres_0 = threshold;
+	len = lens[0];
+	while (threshold <= len)
 	{
-		i = lens[0];
 		cnt = 0;
-		while (++cnt < i)
+		while (++cnt < lens[0])
 		{
 			if (((*stack_a)->index) + 1 < threshold)
 			{
 				push(stack_a, stack_b, 'b', lens);
 				rotate(stack_b, 'b');
 			}
-			else if (((*stack_a)->index) + 1 > (threshold * 2))
+			else if (((*stack_a)->index) + 1 > (threshold + thres_0))
 				rotate(stack_a, 'a');
 			else
 				push(stack_a, stack_b, 'b', lens);
 		}
-		threshold *= val;
+		threshold += thres_0 * 2;
 	}
 }
 // {
@@ -103,9 +101,6 @@ void	preprocess(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens)
 	maxi = len - 1;
 	ratio = 0.01;
 	threshold = set_threshold(len, ratio);
-	// ratio = 0.12;
-	// threshold = len * ratio;
-	// ft_printf("threshold = %d\n", threshold);
 	distribute_stacks(stack_a, stack_b, threshold, lens);
 	while (lens[0] > 1)
 	{

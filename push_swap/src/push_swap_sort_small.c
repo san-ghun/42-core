@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:17:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/06 21:38:16 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/07 12:38:41 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@
 void	nextorder_2(t_dlst *stack_a[], t_dlst *stack_b[], int *lens)
 {
 	push(stack_b, stack_a, 'a', lens);
+	if ((*stack_a)->next->index - (*stack_a)->index != 1)
+		rotate(stack_a, 'a');
+	while ((*stack_a)->index - ft_dlstlast(*stack_a)->index == 1)
+		rerotate(stack_a, 'a');
 }
 
 void	nextorder_3(t_dlst *stack_a[], t_dlst *stack_b[], int *lens)

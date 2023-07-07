@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 12:43:11 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/07 16:47:15 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/07 23:35:02 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,30 @@ static int	ft_strtodlst(t_dlst *dlst[], char *argv[])
 	return (len);
 }
 
-int	*make_lens(int len)
+static int	*make_lens(int len)
 {
-	static int	array[2] = {0, 0};
+	static int	array[3] = {0, 0, 0};
 
 	array[0] = len;
 	return (array);
+}
+
+int	sort(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens)
+{
+	if (len == 2)
+		sort_two(stack_a, 'a');
+	if (len == 3)
+		sort_three(stack_a, 'a');
+	if (len == 4)
+		sort_four(stack_a, stack_b, lens, 0);
+	if (len == 5)
+		sort_five(stack_a, stack_b, lens);
+	if (len >= 6)
+	{
+		preprocess(stack_a, stack_b, len, lens);
+		sort_small(stack_a, stack_b, len, lens);
+	}
+	return (0);
 }
 
 int	main(int argc, char *argv[])
@@ -77,36 +95,14 @@ int	main(int argc, char *argv[])
 	if (!stack_a)
 		return (ft_error());
 	lens = make_lens(len);
-
-	// ft_printf("len = %d\n", len);
-
 	if (ft_issorted(&stack_a, len))
 	{
 		ft_dlstclear(&stack_a);
 		ft_dlstclear(&stack_b);
 		return (0);
 	}
-	if (len == 2)
-		sort_two(&stack_a, 'a');
-	if (len == 3)
-		sort_three(&stack_a, 'a');
-	if (len == 4)
-		sort_four(&stack_a, &stack_b, lens, 0);
-	if (len == 5)
-		sort_five(&stack_a, &stack_b, lens);
-	if (len >= 6)
-	{
-		preprocess(&stack_a, &stack_b, len, lens);
-		sort_small(&stack_a, &stack_b, len, lens);
-		// printf("sorted: %d\n", sort_small(&stack_a, &stack_b, len, lens));
-	}
-	// ft_dlstprint(&stack_a);
-	// ft_dlstprint(&stack_b);
-
+	sort(&stack_a, &stack_b, len, lens);
 	ft_dlstclear(&stack_a);
 	ft_dlstclear(&stack_b);
-
-	// ft_dlstprint(&stack_a);
-	// ft_dlstprint(&stack_b);
 	return (0);
 }

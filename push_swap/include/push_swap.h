@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:48:59 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/06 21:37:38 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/07 22:59:40 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <ctype.h>
 
 // Limit Loop: use addition to while condition
-# define MAX_ITER	1024
+# define MAX_ITER	5000
 
 // Prevent Heap mem leak: use addition to char or array
 # define DATA_SIZE	3072
@@ -185,16 +185,12 @@ void	nextorder_5(t_dlst *stack_a[], t_dlst *stack_b[], int *lens);
 int		find_nextorder(t_dlst *stack_a[], t_dlst *stack_b[], int *lens);
 
 /* push_swap_sort_large.c */
+
 /* push_swap_sort_util.c */
-
 void	ft_presort(t_dlst *dlst[], int len, int i);
-
 int		ft_isordered(t_dlst *dlst[]);
-
 int		ft_issorted(t_dlst *dlst[], int len);
-
 int		find_min(t_dlst *stack[], int min);
-
 int		find_max(t_dlst *stack[]);
 
 /* push_swap_sort.c */
@@ -202,5 +198,6 @@ int		is_nextorder(t_dlst *a_head, t_dlst *b_head);
 int		sort_small(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens);
 
 /* push_swap.c */
+int		sort(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:17:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/07 17:09:08 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/07 22:37:31 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,35 +62,6 @@ void	distribute_stacks(
 		threshold += thres_0 * 2;
 	}
 }
-// {
-// 	int	i;
-// 	int	cnt;
-
-// 	while (threshold <= len)
-// 	{
-// 		i = lens[0];
-// 		cnt = 0;
-// 		while (++cnt < i)
-// 		{
-// 			if (((*stack_a)->index) + 1 < threshold)
-// 			{
-// 				push(stack_a, stack_b, 'b', lens);
-// 				rotate(stack_b, 'b');
-// 			}
-// 			else if (((*stack_a)->index) + 1 <= (threshold * 2))
-// 			{
-// 				push(stack_a, stack_b, 'b', lens);
-// 			}
-// 			else if (((*stack_a)->index) + 1 > (threshold * 2))
-// 			// else
-// 			{
-// 				printf("%d\n", threshold);
-// 				rotate(stack_a, 'a');
-// 			}	
-// 		}
-// 		threshold = threshold + 0.24 * 100;
-// 	}
-// }
 
 void	preprocess(t_dlst *stack_a[], t_dlst *stack_b[], int len, int *lens)
 {

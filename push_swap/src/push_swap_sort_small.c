@@ -6,51 +6,11 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:17:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/07 12:38:41 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/07 22:38:38 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// int	find_max3(t_dlst *a_tail, t_dlst *b_head, t_dlst *b_tail)
-// {
-// 	int	at;
-// 	int	bh;
-// 	int	bt;
-
-// 	at = a_tail->index;
-// 	bh = b_head->index;
-// 	bt = b_tail->index;
-// 	if ((at > bh) && (at > bt))
-// 		return (1);
-// 	if ((bh > at) && (bh > bt))
-// 		return (2);
-// 	if ((bt > at) && (bt > bh))
-// 		return (3);
-// 	return (0);
-// }
-
-// int	find_max4(t_dlst *a_head, t_dlst *a_tail, t_dlst *b_head, t_dlst *b_tail)
-// {
-// 	int	ah;
-// 	int	at;
-// 	int	bh;
-// 	int	bt;
-
-// 	ah = a_head->index;
-// 	at = a_tail->index;
-// 	bh = b_head->index;
-// 	bt = b_tail->index;
-// 	if ((ah > at) && (ah > bh) && (ah > bt))
-// 		return (1);
-// 	if ((at > ah) && (at > bh) && (at > bt))
-// 		return (2);
-// 	if ((bh > ah) && (bh > at) && (bh > bt))
-// 		return (3);
-// 	if ((bt > ah) && (bt > at) && (bt > bh))
-// 		return (4);
-// 	return (0);
-// }
 
 void	nextorder_2(t_dlst *stack_a[], t_dlst *stack_b[], int *lens)
 {

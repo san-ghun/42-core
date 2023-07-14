@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:17:49 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/08 00:09:56 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:02:05 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	distribute_stacks(
 {
 	int		thres_0;
 	int		len;
+	int		len2;
 	int		cnt;
 
 	thres_0 = threshold;
@@ -47,7 +48,8 @@ void	distribute_stacks(
 	while (threshold <= len)
 	{
 		cnt = 0;
-		while (++cnt < lens[0])
+		len2 = lens[0];
+		while (++cnt < len2)
 		{
 			if (((*stack_a)->index) + 1 < threshold)
 			{

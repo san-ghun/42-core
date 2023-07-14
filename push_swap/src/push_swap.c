@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 12:43:11 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/13 12:48:25 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:07:41 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	ft_strtodlst(t_dlst *dlst[], char *argv[])
 	while (argv[++i] != NULL)
 	{
 		ft_strlcat(str, argv[i], ft_strlen(str) + ft_strlen(argv[i]) + 1);
-		ft_strlcat(str, tmp, ft_strlen(tmp) + 1);
+		ft_strlcat(str, tmp, ft_strlen(str) + ft_strlen(tmp) + 1);
 	}
 	len = ft_split_size(str, ' ');
 	arr = ft_split(str, ' ');

@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "__mutex_base": "c",
+    "regex": "c",
+    "variant": "c",
+    "filesystem": "c"
+  }
+}

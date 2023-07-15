@@ -50,4 +50,12 @@
    - **session** of coding: 28.Apr.23 - 03.Jun.23
    - **complete** in evaluation: 14.Jun.23
 
+1. [**push_swap**](https://github.com/san-ghun/42-core/tree/main/push_swap)
+
+   > This project involves sorting data on a stack, with a limited set of instructions, and the smallest number of moves. To make this happen, you will have to manipulate various sorting algorithms and choose the most appropriate solution(s) for optimized data sorting.
+
+   - **keywords**: `sorting` `algorithms` `implementation` `data structure`
+   - **session** of coding: 05.May.23 - 12.Jul.23
+   - ~**complete** in evaluation:~ ready to submit
+
 1. continue...

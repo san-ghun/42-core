@@ -1,6 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/c,macos,visualstudiocode,vim
 # Edit at https://www.toptal.com/developers/gitignore?templates=c,macos,visualstudiocode,vim
 
+push_swap_visualizer/
+checker_linux
+checker_Mac
+
 ### C ###
 # Prerequisites
 *.d

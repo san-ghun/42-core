@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 12:21:54 by sanghupa          #+#    #+#              #
-#    Updated: 2023/07/14 12:25:42 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/07/14 23:26:45 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,7 @@ LIBFT_PATH	= $(LIBFT_DIR)/$(LIBFT)
 SRC_DIR		= ./src
 
 NAME 		= pipex
-SRC_NAME 	= $(SRC_DIR)/$(NAME).c \
-				$(SRC_DIR)/$(NAME)_util.c \
+SRC_NAME 	= $(shell find ./src -iname "*.c")
 
 OBJ_NAME 	= $(SRC_NAME:.c=.o)
 

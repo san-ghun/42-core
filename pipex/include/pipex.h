@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 12:27:45 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/14 12:39:19 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/15 13:04:59 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 // wait waitpid
 # include <sys/wait.h>
 
-// # include "libft.h"
-// # include "ft_printf.h"
+# include "libft.h"
+# include "ft_printf.h"
 
 # include <ctype.h>
 
@@ -44,10 +44,10 @@
 
 /* pipex.c */
 
-
-
 /* pipex_util.c */
-
-
+void	ft_error(void);
+void	ft_exec(char *arg, char *envp[]);
+void	instruction(void);
+int		get_line(char *line[]);
 
 #endif

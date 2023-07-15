@@ -56,6 +56,14 @@
 
    - **keywords**: `sorting` `algorithms` `implementation` `data structure`
    - **session** of coding: 05.May.23 - 12.Jul.23
-   - ~**complete** in evaluation:~ ready to submit
+   - ~~**complete** in evaluation:~~ ready to submit
+
+1. [**pipex**](https://github.com/san-ghun/42-core/tree/main/pipex)
+
+   > This project aims to deepen your understanding of the two concepts that you already know: Redirections and Pipes. It is an introductory project for the bigger UNIX projects that will appear later on in the cursus.
+
+   - **keywords**: `UNIX` `process` `pipe` `folk` `access` `dup2` `execve` `wait` `waitpid`
+   - ~~**complete** in evaluation:~~ Forbidden to try (Cuz I'v done the minitalk)
+     - Worked on the pipex project to study about the `fork`, `pipe`, `access`, `dup2`, `exec`, `wait`, `waitpid`, prior to working on the minishell project.
 
 1. continue...

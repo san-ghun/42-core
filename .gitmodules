@@ -7,3 +7,6 @@
 [submodule "push_swap/libft"]
 	path = push_swap/libft
 	url = https://github.com/san-ghun/libft.git
+[submodule "pipex/libft"]
+	path = pipex/libft
+	url = https://github.com/san-ghun/libft.git

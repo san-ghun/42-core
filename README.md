@@ -56,7 +56,7 @@
 
    - **keywords**: `sorting` `algorithms` `implementation` `data structure`
    - **session** of coding: 05.May.23 - 12.Jul.23
-   - ~~**complete** in evaluation:~~ ready to submit
+   - **complete** in evaluation: 17.Jul.23
 
 1. [**pipex**](https://github.com/san-ghun/42-core/tree/main/pipex)
 

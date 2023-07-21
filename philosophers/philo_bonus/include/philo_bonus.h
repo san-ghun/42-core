@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:55 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/21 22:10:10 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/07/21 22:46:39 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <pthread.h>
+# include <sys/time.h>
+# include <sys/wait.h>
+# include <signal.h>
+# include <semaphore.h>
 
 // Limit Loop: use addition to while condition
 # define MAX_ITER	5000

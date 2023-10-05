@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 12:21:54 by sanghupa          #+#    #+#              #
-#    Updated: 2023/07/21 21:05:39 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/07/27 13:49:39 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,9 @@ fclean: clean
 re: fclean all
 
 #re_bonus: fclean bonus
+
+dev:
+		$(CC) -fsanitize=address -g -o $(NAME) $(SRC_NAME) $^ -I $(INC_DIR)
 
 # Sub Command
 

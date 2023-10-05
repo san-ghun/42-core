@@ -6,95 +6,62 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:53 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/07/27 13:53:22 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:49:00 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_philo	*new_philo(size_t id, \
-					pthread_mutex_t *left, \
-					pthread_mutex_t *right)
-{
-	t_philo	*this;
-
-	this = (t_philo *)malloc(sizeof(t_philo));
-	this->id = id;
-	this->left = left;
-	this->right = right;
-
-	return (this);
-}
-
 // TODO: implement
-void	print(pthread_mutex_t *printlock, size_t id, char *str)
+void	*philosopher(t_philo *philo)
 {
-	pthread_mutex_lock(printlock);
-	printf("%s\n", str);
-	pthread_mutex_unlock(printlock);
-}
+	size_t	meals;
 
-// TODO: implement
-void	jam(size_t id)
-{
-	// sleep_for(get_sleep);
-}
-
-// TODO: implement
-void	think(size_t id)
-{
-	// sleep_for(get_think);
-}
-
-// TODO: implement
-void	eat(size_t id, \
-				pthread_mutex_t *left, \
-				pthread_mutex_t *right)
-{
-	pthread_mutex_lock(left);
-	pthread_mutex_lock(right);
-	// sleep_for(get_eat);
-	pthread_mutex_unlock(left);
-	pthread_mutex_unlock(right);
-}
-
-// TODO: implement
-void	*philosopher(size_t id, \
-					pthread_mutex_t *left, \
-					pthread_mutex_t *right)
-{
-	think(id);
-	eat(id, left, right);
-	jam(id);
+	meals = resource_singleton()->n_eat_opt;
+	while (meals > 0)
+	{
+		think(philo->id);
+		eat(philo->id, philo->left, philo->right);
+		// jam(id);
+		meals--;
+	}
 	return (0);
 }
 
 int	main(int argc, char *argv[])
 {
 	int				i;
-	t_philo			*philos[5];
-	pthread_t		*philosophers[5];
-	pthread_mutex_t	*forks[5];
-	pthread_mutex_t	*left;
-	pthread_mutex_t	*right;
-	pthread_mutex_t	print;
+	size_t			n_philo;
+	t_resource		*rsc;
 
-	(void)argc;
-	(void)argv;
-	i = 0;
-	pthread_mutex_init(&print, NULL);
-	while (i < 5)
+	if ((argc < 5) || (argc > 6))
+		return (err_invalid_args());
+	n_philo = ft_atoi(argv[1]);
+	rsc = init_resource(n_philo, ft_atoi(argv[2]), \
+						ft_atoi(argv[3]), ft_atoi(argv[4]));
+	if (argc == 6)
+		rsc->n_eat_opt = ft_atoi(argv[5]);
+	i = -1;
+	while (++i < n_philo)
 	{
-		pthread_mutex_init(forks[i], NULL);
-		pthread_mutex_init(forks[(i + 1) % 5], NULL);
-		left = forks[i];
-		right = forks[(i + 1) % 5];
-		philos[i] = new_philo(i, left, right);
-		pthread_create(philosophers[i], NULL, philosopher, philos[i]);
-		i++;
+		pthread_create(rsc->philosophers[i], NULL, \
+					(void *)philosopher, rsc->philos[i]);
 	}
-	i = 0;
-	while (i < 5)
-		pthread_join(*philosophers[i++], NULL);
+	i = -1;
+	while (++i < n_philo)
+		pthread_join(*(rsc->philosophers[i]), NULL);
+	free_resource();
+	// i = -1;
+	// n_philo = rsc->n_philos;
+	// while (++i < n_philo)
+	// {
+	// 	free(rsc->philosophers[i]);
+	// 	free(rsc->forks[i]);
+	// 	free(rsc->philos[i]);
+	// }
+	// free(rsc->philos);
+	// free(rsc->philosophers);
+	// free(rsc->forks);
+	// free(rsc->printlock);
 	return (0);
 }

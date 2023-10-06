@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:52 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/05 17:40:00 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/06 00:29:20 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@
 typedef struct s_philo
 {
 	size_t			id;
+	uint8_t			status;
 	size_t			n_ate;
+	long long		t_launch;
+	long long		t_last_meal;
 	pthread_mutex_t	*left;
 	pthread_mutex_t	*right;
 }					t_philo;
@@ -53,16 +56,18 @@ t_resource	*resource_singleton(void);
 void		free_resource(void);
 
 /* philo_init.c */
-t_resource	*init_resource(int n_philo, int t_die, int t_eat, int t_sleep);
+t_resource	*init_resource(int n_philo, int t_die, int t_eat, int t_jam);
 
 /* philo_routine.c */
-void		print(pthread_mutex_t *printlock, size_t id, char *str);
 void		jam(size_t id);
 void		think(size_t id);
 void		eat(size_t id, pthread_mutex_t *left, pthread_mutex_t *right);
+void		die(size_t id);
 
 /* philo_util.c */
-int			err_invalid_args(void);
+int			check_args(int argc, char *argv[]);
 int			ft_atoi(const char *str);
+long long	get_time_ms(void);
+void		print_status(pthread_mutex_t *printlock, size_t id, char *str);
 
 #endif

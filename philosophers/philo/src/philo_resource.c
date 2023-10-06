@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:48 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/05 17:47:36 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/06 00:14:26 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ void	free_resource(void)
 	free(rsc->philosophers);
 	free(rsc->forks);
 	free(rsc->printlock);
-	// return ;
+	return ;
 }

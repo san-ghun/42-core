@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:52 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/06 00:29:20 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/06 10:36:04 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 typedef struct s_philo
 {
 	size_t			id;
-	uint8_t			status;
 	size_t			n_ate;
+	int				status;
 	long long		t_launch;
 	long long		t_last_meal;
 	pthread_mutex_t	*left;
@@ -59,15 +59,15 @@ void		free_resource(void);
 t_resource	*init_resource(int n_philo, int t_die, int t_eat, int t_jam);
 
 /* philo_routine.c */
-void		jam(size_t id);
-void		think(size_t id);
-void		eat(size_t id, pthread_mutex_t *left, pthread_mutex_t *right);
-void		die(size_t id);
+void		jam(t_philo *philo);
+void		think(t_philo *philo);
+void		eat(t_philo *philo);
+void		die(t_philo *philo);
 
 /* philo_util.c */
 int			check_args(int argc, char *argv[]);
 int			ft_atoi(const char *str);
 long long	get_time_ms(void);
-void		print_status(pthread_mutex_t *printlock, size_t id, char *str);
+void		print_status(t_philo *philo, int casenumb);
 
 #endif

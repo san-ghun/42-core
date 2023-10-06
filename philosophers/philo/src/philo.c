@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:53 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/06 00:15:48 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/06 11:02:30 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	*philosopher(t_philo *philo)
 	meals = resource_singleton()->n_eat_opt;
 	while (meals > 0)
 	{
-		eat(philo->id, philo->left, philo->right);
-		// jam(id);
-		think(philo->id);
+		eat(philo);
+		jam(philo);
+		think(philo);
 		meals--;
 	}
 	return (0);
@@ -42,7 +42,8 @@ int	main(int argc, char *argv[])
 	i = -1;
 	while (++i < rsc->n_philos)
 	{
-		pthread_create(rsc->philosophers[i], NULL, philosopher, rsc->philos[i]);
+		pthread_create(rsc->philosophers[i], NULL, \
+			(void *)philosopher, rsc->philos[i]);
 	}
 	i = -1;
 	while (++i < rsc->n_philos)

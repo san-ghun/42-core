@@ -6,41 +6,36 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:46 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/06 00:28:53 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/06 11:02:02 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// TODO: implement
-void	think(size_t id)
+void	think(t_philo *philo)
 {
-	printf("%zu: starts thinking...\n", id);
-	// sleep_for(get_think);
-	printf("%zu: done thinking.\n", id);
+	print_status(philo, 3);
 }
 
-// TODO: implement
-void	eat(size_t id, \
-			pthread_mutex_t *left, \
-			pthread_mutex_t *right)
+void	eat(t_philo *philo)
 {
-	pthread_mutex_lock(left);
-	pthread_mutex_lock(right);
-	printf("%zu: starts eating om nom nom ...\n", id);
-	// sleep_for(get_eat);
-	printf("%zu: done eating.\n", id);
-	pthread_mutex_unlock(left);
-	pthread_mutex_unlock(right);
+	pthread_mutex_lock(philo->left);
+	print_status(philo, 0);
+	pthread_mutex_lock(philo->right);
+	print_status(philo, 0);
+	print_status(philo, 1);
+	usleep(resource_singleton()->time_eat * 1000);
+	pthread_mutex_unlock(philo->left);
+	pthread_mutex_unlock(philo->right);
 }
 
-// TODO: implement
-void	jam(size_t id)
+void	jam(t_philo *philo)
 {
-	// sleep_for(get_sleep);
+	print_status(philo, 2);
+	usleep(resource_singleton()->time_jam * 1000);
 }
 
-void	die(size_t id)
+void	die(t_philo *philo)
 {
-	return ;
+	print_status(philo, 4);
 }

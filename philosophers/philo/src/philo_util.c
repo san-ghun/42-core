@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:12:35 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/06 00:29:25 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/06 11:02:21 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,19 @@ long long	get_time_ms(void)
 	return (time_ms);
 }
 
-// TODO: implement
-void	print_status(pthread_mutex_t *printlock, size_t id, char *str)
+void	print_status(t_philo *philo, int casenumb)
 {
+	static char		*cases[5];
+	pthread_mutex_t	*printlock;
+
+	cases[0] = "has taken a fork";
+	cases[1] = "is eating";
+	cases[2] = "is sleeping";
+	cases[3] = "is thinking";
+	cases[4] = "died";
+	printlock = resource_singleton()->printlock;
 	pthread_mutex_lock(printlock);
-	printf("%s\n", str);
+	printf("%lld %lu %s\n", \
+		get_time_ms() - philo->t_launch, philo->id + 1, cases[casenumb]);
 	pthread_mutex_unlock(printlock);
 }

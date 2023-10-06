@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:43 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/06 00:04:40 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/06 10:16:55 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_philo	*new_philo(size_t id, \
 
 	this = (t_philo *)malloc(sizeof(t_philo));
 	this->id = id;
-	this->status = 1;
 	this->n_ate = 0;
+	this->status = 1;
 	this->t_launch = get_time_ms();
 	this->t_last_meal = 0;
 	this->left = left;

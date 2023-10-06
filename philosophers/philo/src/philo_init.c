@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:43 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/06 10:16:55 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/06 14:34:39 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_philo	*new_philo(size_t id, \
 	this->n_ate = 0;
 	this->status = 1;
 	this->t_launch = get_time_ms();
-	this->t_last_meal = 0;
+	this->t_last_meal = this->t_launch;
 	this->left = left;
 	this->right = right;
 	return (this);
@@ -36,6 +36,7 @@ void	init_thread_mutex(t_resource *rsc, int n_philo)
 	pthread_mutex_t	*right;
 
 	pthread_mutex_init(rsc->printlock, NULL);
+	pthread_mutex_init(rsc->rip, NULL);
 	i = -1;
 	while (++i < n_philo)
 	{
@@ -63,7 +64,7 @@ t_resource	*init_resource(
 	int				i;
 	t_resource		*rsc;
 
-	rsc = resource_singleton();
+	rsc = single_rsc();
 	rsc->n_philos = n_philo;
 	rsc->time_die = t_die;
 	rsc->time_eat = t_eat;
@@ -72,6 +73,7 @@ t_resource	*init_resource(
 	rsc->philosophers = malloc(sizeof(pthread_t *) * n_philo);
 	rsc->forks = malloc(sizeof(pthread_mutex_t *) * n_philo);
 	rsc->printlock = malloc(sizeof(pthread_mutex_t) * 1);
+	rsc->rip = malloc(sizeof(pthread_mutex_t) * 1);
 	init_thread_mutex(rsc, n_philo);
 	return (rsc);
 }

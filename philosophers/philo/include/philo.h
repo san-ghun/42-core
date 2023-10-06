@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:52 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/06 10:36:04 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/06 15:55:27 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,24 @@ typedef struct s_resource
 	pthread_t		**philosophers;
 	pthread_mutex_t	**forks;
 	pthread_mutex_t	*printlock;
+	pthread_mutex_t	*rip;
+	int				funeral;
 }					t_resource;
 
 /* philo.c */
 
 /* philo_resource.c */
-t_resource	*resource_singleton(void);
+t_resource	*single_rsc(void);
 void		free_resource(void);
 
 /* philo_init.c */
 t_resource	*init_resource(int n_philo, int t_die, int t_eat, int t_jam);
 
 /* philo_routine.c */
-void		jam(t_philo *philo);
-void		think(t_philo *philo);
-void		eat(t_philo *philo);
-void		die(t_philo *philo);
+int			eat(t_philo *philo);
+int			jam(t_philo *philo);
+int			think(t_philo *philo);
+int			die(t_philo *philo);
 
 /* philo_util.c */
 int			check_args(int argc, char *argv[]);

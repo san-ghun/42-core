@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:12:35 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/06 11:02:21 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/06 14:18:59 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,16 @@ long long	get_time_ms(void)
 	return (time_ms);
 }
 
+/**
+ * @brief Print status change of a philo.
+ * 0: take a fork
+ * 1: eating
+ * 2: sleeping
+ * 3: thinking
+ * 4: died
+ * @param philo 
+ * @param casenumb 
+ */
 void	print_status(t_philo *philo, int casenumb)
 {
 	static char		*cases[5];
@@ -83,7 +93,7 @@ void	print_status(t_philo *philo, int casenumb)
 	cases[2] = "is sleeping";
 	cases[3] = "is thinking";
 	cases[4] = "died";
-	printlock = resource_singleton()->printlock;
+	printlock = single_rsc()->printlock;
 	pthread_mutex_lock(printlock);
 	printf("%lld %lu %s\n", \
 		get_time_ms() - philo->t_launch, philo->id + 1, cases[casenumb]);

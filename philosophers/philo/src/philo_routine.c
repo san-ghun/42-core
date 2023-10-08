@@ -6,64 +6,48 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:46 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/06 16:21:28 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/08 00:17:40 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	eat(t_philo *philo)
+void	*imkant(long long the_time, t_philo *philo, int meal)
 {
-	if (single_rsc()->funeral)
-		return (1);
+	long long	target_time;
+
+	target_time = the_time + get_time_ms();
+	while (get_time_ms() < target_time)
+		usleep(50);
+	return (0);
+}
+
+void	eat(t_philo *philo, t_resource *rsc)
+{
 	pthread_mutex_lock(philo->left);
-	if (single_rsc()->funeral)
-	{
-		pthread_mutex_unlock(philo->left);
-		return (1);
-	}
-	print_status(philo, 0);
+	print_status(philo, rsc, "has taken a fork");
 	pthread_mutex_lock(philo->right);
-	if (single_rsc()->funeral)
-	{
-		pthread_mutex_unlock(philo->right);
-		return (1);
-	}
-	print_status(philo, 0);
-	print_status(philo, 1);
+	print_status(philo, rsc, "has taken a fork");
+	print_status(philo, rsc, "is eating");
 	philo->t_last_meal = get_time_ms();
-	usleep(single_rsc()->time_eat * 1000);
-	philo->t_last_meal = get_time_ms();
+	imkant(rsc->time_eat, philo, 1);
 	pthread_mutex_unlock(philo->left);
 	pthread_mutex_unlock(philo->right);
-	if (single_rsc()->funeral)
-		return (1);
-	return (0);
+	philo->n_ate++;
+	return ;
 }
 
-int	jam(t_philo *philo)
+void	jam(t_philo *philo, t_resource *rsc)
 {
-	if (single_rsc()->funeral)
-		return (1);
-	print_status(philo, 2);
-	usleep(single_rsc()->time_jam * 1000);
-	return (0);
+	print_status(philo, rsc, "is sleeping");
+	imkant(rsc->time_jam, philo, 0);
+	return ;
 }
 
-int	think(t_philo *philo)
+void	think(t_philo *philo, t_resource *rsc)
 {
-	if (single_rsc()->funeral)
-		return (1);
-	print_status(philo, 3);
-	return (0);
-}
-
-int	die(t_philo *philo)
-{
-	if (single_rsc()->funeral)
-		return (1);
-	print_status(philo, 4);
-	philo->status = 0;
-	single_rsc()->funeral = 1;
-	return (1);
+	(void)rsc;
+	print_status(philo, rsc, "is thinking");
+	usleep(500);
+	return ;
 }

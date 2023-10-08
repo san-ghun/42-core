@@ -6,33 +6,25 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:53 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/06 16:24:00 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/07 23:22:03 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	check_status(void)
+int	check_status(t_philo *philo, t_resource *rsc)
 {
-	int			i;
-	t_philo		**philos;
-	t_resource	*rsc;
-
-	i = -1;
-	rsc = single_rsc();
-	philos = rsc->philos;
-	while (++i < rsc->n_philos)
-		if (get_time_ms() - philos[i]->t_last_meal > rsc->time_die)
-			return (die(philos[i]));
+	if (get_time_ms() > rsc->time_die + philo->t_last_meal)
+		print_dead(philo, rsc);
 	return (0);
 }
 
 void	*died_philosopher(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left);
-	print_status(philo, 0);
-	usleep(single_rsc()->time_die * 1000);
-	check_status();
+	print_status(philo, single_rsc(), "has taken a fork");
+	usleep(single_rsc()->time_die * 1001);
+	check_status(philo, single_rsc());
 	pthread_mutex_unlock(philo->left);
 	return (NULL);
 }
@@ -40,18 +32,27 @@ void	*died_philosopher(t_philo *philo)
 // TODO: implement
 void	*philosopher(t_philo *philo)
 {
-	// size_t	meals;
+	t_resource	*rsc;
 
-	// meals = single_rsc()->n_eat_opt;
-	if (single_rsc()->n_philos == 1)
+	rsc = single_rsc();
+	philo->t_launch = get_time_ms();
+	philo->t_last_meal = philo->t_launch;
+	if (rsc->n_philos == 1)
 		return (died_philosopher(philo));
-	while (single_rsc()->funeral != 1)
+	if (philo->id % 2 == 1)
+		usleep(rsc->time_eat * 100);
+	else if ((philo->id == rsc->n_philos - 1) || (rsc->n_philos % 2 == 1))
+		usleep(rsc->time_eat * 100);
+	while (rsc->funeral != 1)
 	{
-		// TODO: check meals
-		eat(philo);
-		jam(philo);
-		think(philo);
-		check_status();
+		eat(philo, rsc);
+		if (rsc->n_eat_opt && (philo->n_ate == rsc->n_eat_opt))
+			break ;
+		check_status(philo, rsc);
+		jam(philo, rsc);
+		check_status(philo, rsc);
+		think(philo, rsc);
+		check_status(philo, rsc);
 	}
 	return (0);
 }

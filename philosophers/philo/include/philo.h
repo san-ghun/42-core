@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:52 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/06 15:55:27 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/07 23:22:42 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_resource
 }					t_resource;
 
 /* philo.c */
+int			check_status(t_philo *philo, t_resource *rsc);
 
 /* philo_resource.c */
 t_resource	*single_rsc(void);
@@ -61,15 +62,16 @@ void		free_resource(void);
 t_resource	*init_resource(int n_philo, int t_die, int t_eat, int t_jam);
 
 /* philo_routine.c */
-int			eat(t_philo *philo);
-int			jam(t_philo *philo);
-int			think(t_philo *philo);
-int			die(t_philo *philo);
+void		eat(t_philo *philo, t_resource *rsc);
+void		jam(t_philo *philo, t_resource *rsc);
+void		think(t_philo *philo, t_resource *rsc);
+int			die(t_philo *philo, t_resource *rsc);
 
 /* philo_util.c */
 int			check_args(int argc, char *argv[]);
 int			ft_atoi(const char *str);
 long long	get_time_ms(void);
-void		print_status(t_philo *philo, int casenumb);
+void		print_status(t_philo *philo, t_resource *rsc, char *str);
+void		print_dead(t_philo *philo, t_resource *rsc);
 
 #endif

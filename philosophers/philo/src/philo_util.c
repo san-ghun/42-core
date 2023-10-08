@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:12:35 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/06 14:18:59 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/07 23:22:53 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,37 +65,36 @@ int	ft_atoi(const char *str)
 
 long long	get_time_ms(void)
 {
-	struct timeval	tv;
-	long long		time_ms;
+	static struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	time_ms = (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
-	return (time_ms);
+	return ((tv.tv_sec) * 1000 + (tv.tv_usec) / 1000);
 }
 
-/**
- * @brief Print status change of a philo.
- * 0: take a fork
- * 1: eating
- * 2: sleeping
- * 3: thinking
- * 4: died
- * @param philo 
- * @param casenumb 
- */
-void	print_status(t_philo *philo, int casenumb)
+void	print_status(t_philo *philo, t_resource *rsc, char *str)
 {
-	static char		*cases[5];
-	pthread_mutex_t	*printlock;
+	pthread_mutex_lock(rsc->printlock);
+	if (rsc->funeral != 1)
+	{
+		printf("%lld %lu %s\n", get_time_ms() - philo->t_launch, \
+				philo->id + 1, str);
+	}
+	pthread_mutex_unlock(rsc->printlock);
+}
 
-	cases[0] = "has taken a fork";
-	cases[1] = "is eating";
-	cases[2] = "is sleeping";
-	cases[3] = "is thinking";
-	cases[4] = "died";
-	printlock = single_rsc()->printlock;
-	pthread_mutex_lock(printlock);
-	printf("%lld %lu %s\n", \
-		get_time_ms() - philo->t_launch, philo->id + 1, cases[casenumb]);
-	pthread_mutex_unlock(printlock);
+void	print_dead(t_philo *philo, t_resource *rsc)
+{
+	pthread_mutex_t	*printlock;
+	long long		time_ms;
+
+	pthread_mutex_lock(rsc->printlock);
+	if (rsc->funeral != 1)
+	{
+		printf("%lld %lu %s\n", get_time_ms() - philo->t_launch, \
+				philo->id + 1, "died");
+		rsc->funeral = 1;
+		philo->status = 0;
+		usleep(1000);
+	}
+	pthread_mutex_unlock(rsc->printlock);
 }

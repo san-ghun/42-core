@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:12:35 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/07 23:22:53 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/11 11:04:55 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,30 +71,30 @@ long long	get_time_ms(void)
 	return ((tv.tv_sec) * 1000 + (tv.tv_usec) / 1000);
 }
 
-void	print_status(t_philo *philo, t_resource *rsc, char *str)
+void	print_status(t_philo *philo, t_resource *rsc, char *str, int nlock)
 {
-	pthread_mutex_lock(rsc->printlock);
+	pthread_mutex_lock(rsc->printlock[nlock]);
 	if (rsc->funeral != 1)
 	{
-		printf("%lld %lu %s\n", get_time_ms() - philo->t_launch, \
+		printf("%lld %u %s\n", get_time_ms() - philo->t_launch, \
 				philo->id + 1, str);
 	}
-	pthread_mutex_unlock(rsc->printlock);
+	pthread_mutex_unlock(rsc->printlock[nlock]);
 }
 
 void	print_dead(t_philo *philo, t_resource *rsc)
 {
-	pthread_mutex_t	*printlock;
-	long long		time_ms;
+	// pthread_mutex_t	*printlock;
 
-	pthread_mutex_lock(rsc->printlock);
+	// printlock = rsc->printlock[0];
+	// pthread_mutex_lock(printlock);
 	if (rsc->funeral != 1)
 	{
-		printf("%lld %lu %s\n", get_time_ms() - philo->t_launch, \
-				philo->id + 1, "died");
 		rsc->funeral = 1;
 		philo->status = 0;
+		printf("%lld %u %s\n", get_time_ms() - philo->t_launch, \
+				philo->id + 1, "died");
 		usleep(1000);
 	}
-	pthread_mutex_unlock(rsc->printlock);
+	// pthread_mutex_unlock(printlock);
 }

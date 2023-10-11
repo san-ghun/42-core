@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:48 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/07 16:33:53 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/08 22:25:06 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ t_resource	*single_rsc(void)
 		.time_die = 0,
 		.time_eat = 0,
 		.time_jam = 0,
-		.n_eat_opt = 0,
-		.philos = NULL,
-		.philosophers = NULL,
-		.forks = NULL,
-		.printlock = NULL,
-		.rip = NULL,
+		.n_eat_opt = -1,
+		.philos = 0,
+		.philosophers = 0,
+		.forks = 0,
+		.printlock = {},
+		.rip = 0,
 		.funeral = 0,
 	};
 	is_init = 1;
@@ -40,25 +40,26 @@ void	free_resource(void)
 {
 	t_resource	*rsc;
 	int			i;
-	size_t		n_philo;
 
 	rsc = single_rsc();
-	i = 0;
-	n_philo = rsc->n_philos;
-	while (i < n_philo)
+	i = -1;
+	while (++i < rsc->n_philos)
 	{
 		pthread_mutex_destroy(rsc->forks[i]);
 		free(rsc->philosophers[i]);
 		free(rsc->forks[i]);
 		free(rsc->philos[i]);
-		i++;
 	}
-	pthread_mutex_destroy(rsc->printlock);
+	i = -1;
+	while (++i < 5)
+		pthread_mutex_destroy(rsc->printlock[i]);
 	pthread_mutex_destroy(rsc->rip);
 	free(rsc->philos);
 	free(rsc->philosophers);
 	free(rsc->forks);
-	free(rsc->printlock);
+	i = -1;
+	while (++i < 5)
+		free(rsc->printlock[i]);
 	free(rsc->rip);
 	return ;
 }

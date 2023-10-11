@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 12:21:54 by sanghupa          #+#    #+#              #
-#    Updated: 2023/10/05 15:43:13 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/10/11 23:26:33 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,8 +77,8 @@ dev:
 $(NAME): $(OBJ_NAME) #$(LIBFT) 
 #		@$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
 #		@$(CC) $(CFLAGS) -fsanitize=address -g -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
-#		@$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR)
-		@$(CC) $(CFLAGS) -fsanitize=address -g -o $@ $^ -I $(INC_DIR)
+		@$(CC) $(CFLAGS) -g -o $@ $^ -I $(INC_DIR)
+#		@$(CC) $(CFLAGS) -fsanitize=address -g -o $@ $^ -I $(INC_DIR)
 
 # $(NAME_B): $(OBJ_NAME_B) $(LIBFT) 
 # 		@$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)

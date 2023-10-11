@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:52 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/11 10:30:38 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/11 23:30:29 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,12 @@ typedef struct s_resource
 	long long		time_eat;
 	long long		time_jam;
 	int				n_eat_opt;
+	int				*time_table;
+	int				*next;
 	t_philo			**philos;
 	pthread_t		**philosophers;
 	pthread_mutex_t	**forks;
 	pthread_mutex_t	*printlock[5];
-	pthread_mutex_t	*rip;
 	int				funeral;
 }					t_resource;
 

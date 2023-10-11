@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:53 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/11 13:16:35 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/11 23:32:08 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	*died_philosopher(t_philo *philo)
 	return (NULL);
 }
 
-// TODO: implement
 void	*philosopher(t_philo *philo)
 {
 	t_resource	*rsc;
@@ -50,12 +49,17 @@ void	*philosopher(t_philo *philo)
 	rsc = single_rsc();
 	if (rsc->n_philos == 1)
 		return (died_philosopher(philo));
-	if (philo->id % 2 == 1)
-		usleep(rsc->time_eat * 100);
-	else if ((philo->id == rsc->n_philos - 1) && (rsc->n_philos % 2 == 1))
-		usleep(rsc->time_eat * 900);
+	// if (philo->id % 2 == 1)
+	// 	usleep(rsc->time_eat * 100);
+	// else if ((philo->id == rsc->n_philos - 1) && (rsc->n_philos % 2 == 1))
+	// 	usleep(rsc->time_eat * 900);
 	while (rsc->funeral != 1)
 	{
+		if (philo->id != *(rsc->next))
+		{
+			usleep(10);
+			continue ;
+		}
 		eat(philo, rsc);
 		if (philo->n_ate == rsc->n_eat_opt)
 			break ;
@@ -74,12 +78,6 @@ void	init_table(t_resource *rsc)
 	{
 		rsc->philos[i]->t_launch = get_time_ms();
 		rsc->philos[i]->t_last_meal = rsc->philos[i]->t_launch;
-		// pthread_create(rsc->philosophers[i], NULL, 
-		// 	(void *)philosopher, rsc->philos[i]);
-	}
-	i = -1;
-	while (++i < rsc->n_philos)
-	{
 		pthread_create(rsc->philosophers[i], NULL, 
 			(void *)philosopher, rsc->philos[i]);
 	}

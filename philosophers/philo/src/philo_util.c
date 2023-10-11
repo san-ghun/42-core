@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:12:35 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/11 11:04:55 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/11 23:31:52 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,6 @@ void	print_status(t_philo *philo, t_resource *rsc, char *str, int nlock)
 
 void	print_dead(t_philo *philo, t_resource *rsc)
 {
-	// pthread_mutex_t	*printlock;
-
-	// printlock = rsc->printlock[0];
-	// pthread_mutex_lock(printlock);
 	if (rsc->funeral != 1)
 	{
 		rsc->funeral = 1;
@@ -96,5 +92,4 @@ void	print_dead(t_philo *philo, t_resource *rsc)
 				philo->id + 1, "died");
 		usleep(1000);
 	}
-	// pthread_mutex_unlock(printlock);
 }

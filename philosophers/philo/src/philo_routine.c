@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:46 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/11 23:25:46 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/19 12:52:10 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ void	eat(t_philo *philo, t_resource *rsc)
 	pthread_mutex_lock(philo->right);
 	print_status(philo, rsc, "has taken a fork", 0);
 	update_next(rsc);
-	philo->t_last_meal = get_time_ms() + 3;
+	// philo->t_last_meal = get_time_ms() + 3;
+	philo->t_last_meal = get_time_ms();
 	print_status(philo, rsc, "is eating", 0);
-	target_time = rsc->time_eat + philo->t_last_meal - 3;
+	// target_time = rsc->time_eat + philo->t_last_meal - 3;
+	target_time = rsc->time_eat + philo->t_last_meal;
 	while (target_time > get_time_ms())
 		usleep(100);
 	pthread_mutex_unlock(philo->left);
@@ -47,7 +49,8 @@ void	jam(t_philo *philo, t_resource *rsc)
 {
 	long long	target_time;
 
-	target_time = rsc->time_jam + get_time_ms() - 1;
+	// target_time = rsc->time_jam + get_time_ms() - 1;
+	target_time = rsc->time_jam + get_time_ms();
 	print_status(philo, rsc, "is sleeping", 0);
 	while (target_time > get_time_ms())
 		usleep(100);

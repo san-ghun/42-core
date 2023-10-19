@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:55 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/17 14:14:21 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/19 16:15:48 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/time.h>
 # include <sys/wait.h>
 # include <signal.h>
+# include <fcntl.h>
 # include <semaphore.h>
 
 // Limit Loop: use addition to while condition
@@ -28,32 +29,36 @@
 // Prevent Heap mem leak: use addition to char or array
 # define DATA_SIZE	3072
 
+# define SEM_FORKS	"/philo_forks"
+# define SEM_PLOCK	"/philo_printlock"
+# define SEM_QLOCK	"/philo_queuelock"
+
 typedef struct s_philo
 {
-	int				id;
-	int				n_ate;
-	int				status;
-	long long		t_launch;
-	long long		t_last_meal;
-	pthread_mutex_t	*left;
-	pthread_mutex_t	*right;
-}					t_philo;
+	int			id;
+	pid_t		pid;
+	int			n_ate;
+	int			status;
+	long long	t_launch;
+	long long	t_last_meal;
+}				t_philo;
 
 typedef struct s_resource
 {
-	int				n_philos;
-	long long		time_die;
-	long long		time_eat;
-	long long		time_jam;
-	int				n_eat_opt;
-	int				*time_table;
-	int				*next;
-	t_philo			**philos;
-	pthread_t		**philosophers;
-	pthread_mutex_t	**forks;
-	pthread_mutex_t	*printlock[5];
-	int				funeral;
-}					t_resource;
+	int			n_philos;
+	long long	time_die;
+	long long	time_eat;
+	long long	time_jam;
+	int			n_eat_opt;
+	int			*time_table;
+	int			*next;
+	t_philo		**philos;
+	// int			**philosophers;
+	sem_t		*forks;
+	sem_t		*printlock;
+	sem_t		*queuelock;
+	int			funeral;
+}				t_resource;
 
 /* philo_bonus.c */
 int			check_status(t_resource *rsc);
@@ -66,6 +71,7 @@ void		free_resource(void);
 t_resource	*init_resource(int n_philo, int t_die, int t_eat, int t_jam);
 
 /* philo_bonus_routine.c */
+void		update_next(t_resource *rsc);
 void		eat(t_philo *philo, t_resource *rsc);
 void		jam(t_philo *philo, t_resource *rsc);
 void		think(t_philo *philo, t_resource *rsc);
@@ -75,7 +81,7 @@ int			die(t_philo *philo, t_resource *rsc);
 int			check_args(int argc, char *argv[]);
 int			ft_atoi(const char *str);
 long long	get_time_ms(void);
-void		print_status(t_philo *philo, t_resource *rsc, char *str, int nlock);
+void		print_status(t_philo *philo, t_resource *rsc, char *str);
 void		print_dead(t_philo *philo, t_resource *rsc);
 
 #endif

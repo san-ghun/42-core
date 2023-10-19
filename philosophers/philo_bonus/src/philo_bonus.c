@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:57 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/17 14:14:46 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/19 16:45:16 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,32 @@
 
 int	check_status(t_resource *rsc)
 {
-	int				i;
-	pthread_mutex_t	*printlock;
+	int		i;
+	sem_t	*printlock;
 
 	i = -1;
-	printlock = rsc->printlock[0];
-	pthread_mutex_lock(printlock);
+	printlock = rsc->printlock;
+	sem_wait(printlock);
 	while (++i < rsc->n_philos)
 	{
 		if (rsc->time_die + rsc->philos[i]->t_last_meal < get_time_ms())
 		{
 			print_dead(rsc->philos[i], rsc);
-			pthread_mutex_unlock(printlock);
+			sem_post(printlock);
 			return (1);
 		}
 	}
-	pthread_mutex_unlock(printlock);
+	sem_post(printlock);
 	return (0);
 }
 
-void	*died_philosopher(t_philo *philo)
+void	*died_philosopher(t_philo *philo, t_resource *rsc)
 {
-	pthread_mutex_lock(philo->left);
-	print_status(philo, single_rsc(), "has taken a fork", 0);
+	sem_wait(rsc->forks);
+	print_status(philo, single_rsc(), "has taken a fork");
 	usleep(single_rsc()->time_die * 1001);
-	pthread_mutex_unlock(philo->left);
-	return (NULL);
+	sem_post(rsc->forks);
+	exit(EXIT_SUCCESS);
 }
 
 void	*philosopher(t_philo *philo)
@@ -48,7 +48,7 @@ void	*philosopher(t_philo *philo)
 
 	rsc = single_rsc();
 	if (rsc->n_philos == 1)
-		return (died_philosopher(philo));
+		died_philosopher(philo, rsc);
 	// if (philo->id % 2 == 1)
 	// 	usleep(rsc->time_eat * 100);
 	// else if ((philo->id == rsc->n_philos - 1) && (rsc->n_philos % 2 == 1))
@@ -66,20 +66,23 @@ void	*philosopher(t_philo *philo)
 		jam(philo, rsc);
 		think(philo, rsc);
 	}
-	return (0);
+	exit(EXIT_SUCCESS);
 }
 
 void	init_table(t_resource *rsc)
 {
-	int	i;
+	int		i;
+	pid_t	pid;
 
 	i = -1;
 	while (++i < rsc->n_philos)
 	{
 		rsc->philos[i]->t_launch = get_time_ms();
 		rsc->philos[i]->t_last_meal = rsc->philos[i]->t_launch;
-		pthread_create(rsc->philosophers[i], NULL, 
-			(void *)philosopher, rsc->philos[i]);
+		// pthread_create(rsc->philosophers[i], NULL, (void *)philosopher, rsc->philos[i]);
+		rsc->philos[i]->pid = fork();
+		if (rsc->philos[i]->pid == 0)
+			philosopher(rsc->philos[i]);
 	}
 	return ;
 }
@@ -103,7 +106,7 @@ int	main(int argc, char *argv[])
 	}
 	i = -1;
 	while (++i < rsc->n_philos)
-		pthread_join(*(rsc->philosophers[i]), NULL);
+		kill(rsc->philos[i]->pid, SIGKILL);
 	free_resource();
 	return (0);
 }

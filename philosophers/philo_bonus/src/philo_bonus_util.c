@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus_util.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:12:35 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/17 14:14:55 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/19 15:12:20 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,15 @@ long long	get_time_ms(void)
 	return ((tv.tv_sec) * 1000 + (tv.tv_usec) / 1000);
 }
 
-void	print_status(t_philo *philo, t_resource *rsc, char *str, int nlock)
+void	print_status(t_philo *philo, t_resource *rsc, char *str)
 {
-	pthread_mutex_lock(rsc->printlock[nlock]);
+	sem_wait(rsc->printlock);
 	if (rsc->funeral != 1)
 	{
 		printf("%lld %u %s\n", get_time_ms() - philo->t_launch, \
 				philo->id + 1, str);
 	}
-	pthread_mutex_unlock(rsc->printlock[nlock]);
+	sem_post(rsc->printlock);
 }
 
 void	print_dead(t_philo *philo, t_resource *rsc)

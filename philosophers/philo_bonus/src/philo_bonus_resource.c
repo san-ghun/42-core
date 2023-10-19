@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_resource.c                                   :+:      :+:    :+:   */
+/*   philo_bonus_resource.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:48 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/11 23:30:42 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/19 15:21:49 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 t_resource	*single_rsc(void)
 {
@@ -28,9 +28,10 @@ t_resource	*single_rsc(void)
 		.time_table = NULL,
 		.next = NULL,
 		.philos = NULL,
-		.philosophers = NULL,
+		// .philosophers = NULL,
 		.forks = NULL,
-		.printlock = {},
+		.printlock = NULL,
+		.queuelock = NULL,
 		.funeral = 0,
 	};
 	is_init = 1;
@@ -44,11 +45,12 @@ void	free_rsc_arr(t_resource *rsc)
 	i = -1;
 	while (++i < rsc->n_philos)
 	{
-		pthread_mutex_destroy(rsc->forks[i]);
-		free(rsc->philosophers[i]);
-		free(rsc->forks[i]);
+		// free(rsc->philosophers[i]);
 		free(rsc->philos[i]);
 	}
+	sem_close(rsc->forks);
+	sem_unlink(SEM_FORKS);
+	// free(rsc->forks);
 	return ;
 }
 
@@ -59,15 +61,12 @@ void	free_resource(void)
 
 	rsc = single_rsc();
 	free_rsc_arr(rsc);
-	i = -1;
-	while (++i < 5)
-		pthread_mutex_destroy(rsc->printlock[i]);
+	sem_close(rsc->printlock);
+	sem_unlink(SEM_PLOCK);
+	sem_close(rsc->queuelock);
+	sem_unlink(SEM_QLOCK);
 	free(rsc->philos);
-	free(rsc->philosophers);
-	free(rsc->forks);
+	// free(rsc->philosophers);
 	free(rsc->time_table);
-	i = -1;
-	while (++i < 5)
-		free(rsc->printlock[i]);
 	return ;
 }

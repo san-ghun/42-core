@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:55 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/19 16:15:48 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/20 18:16:13 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@
 
 # define SEM_FORKS	"/philo_forks"
 # define SEM_PLOCK	"/philo_printlock"
-# define SEM_QLOCK	"/philo_queuelock"
+# define SEM_ELOCK	"/philo_eatlock"
+# define SEM_DLOCK	"/philo_deatlock"
 
 typedef struct s_philo
 {
@@ -50,18 +51,16 @@ typedef struct s_resource
 	long long	time_eat;
 	long long	time_jam;
 	int			n_eat_opt;
-	int			*time_table;
-	int			*next;
 	t_philo		**philos;
-	// int			**philosophers;
 	sem_t		*forks;
 	sem_t		*printlock;
-	sem_t		*queuelock;
+	sem_t		*eatlock;
+	sem_t		*deadlock;
+	int			n_done;
 	int			funeral;
 }				t_resource;
 
 /* philo_bonus.c */
-int			check_status(t_resource *rsc);
 
 /* philo_bonus_resource.c */
 t_resource	*single_rsc(void);
@@ -71,7 +70,7 @@ void		free_resource(void);
 t_resource	*init_resource(int n_philo, int t_die, int t_eat, int t_jam);
 
 /* philo_bonus_routine.c */
-void		update_next(t_resource *rsc);
+void		*check_status(t_philo *philo);
 void		eat(t_philo *philo, t_resource *rsc);
 void		jam(t_philo *philo, t_resource *rsc);
 void		think(t_philo *philo, t_resource *rsc);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus_resource.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:48 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/19 15:21:49 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/20 20:59:38 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,12 @@ t_resource	*single_rsc(void)
 		.time_eat = 0,
 		.time_jam = 0,
 		.n_eat_opt = -1,
-		.time_table = NULL,
-		.next = NULL,
 		.philos = NULL,
-		// .philosophers = NULL,
 		.forks = NULL,
 		.printlock = NULL,
-		.queuelock = NULL,
+		.eatlock = NULL,
+		.deadlock = NULL,
+		.n_done = 0,
 		.funeral = 0,
 	};
 	is_init = 1;
@@ -44,29 +43,24 @@ void	free_rsc_arr(t_resource *rsc)
 
 	i = -1;
 	while (++i < rsc->n_philos)
-	{
-		// free(rsc->philosophers[i]);
 		free(rsc->philos[i]);
-	}
 	sem_close(rsc->forks);
 	sem_unlink(SEM_FORKS);
-	// free(rsc->forks);
 	return ;
 }
 
 void	free_resource(void)
 {
 	t_resource	*rsc;
-	int			i;
 
 	rsc = single_rsc();
 	free_rsc_arr(rsc);
 	sem_close(rsc->printlock);
 	sem_unlink(SEM_PLOCK);
-	sem_close(rsc->queuelock);
-	sem_unlink(SEM_QLOCK);
+	sem_close(rsc->eatlock);
+	sem_unlink(SEM_ELOCK);
+	sem_close(rsc->deadlock);
+	sem_unlink(SEM_DLOCK);
 	free(rsc->philos);
-	// free(rsc->philosophers);
-	free(rsc->time_table);
 	return ;
 }

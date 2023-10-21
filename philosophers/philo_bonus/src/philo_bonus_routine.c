@@ -3,25 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus_routine.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:46 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/19 16:42:17 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/20 20:59:49 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void	update_next(t_resource *rsc)
+void	*check_status(t_philo *philo)
 {
-	static int	i;
+	t_resource	*rsc;
 
-	sem_wait(rsc->queuelock);
-	rsc->philos[*(rsc->next)]->t_last_meal = get_time_ms();
-	rsc->next = &(rsc->time_table[++i]);
-	if (i >= rsc->n_philos - 1)
-		i = -1;
-	sem_post(rsc->queuelock);
+	rsc = single_rsc();
+	while (rsc->funeral != 1)
+	{
+		if (rsc->time_die + philo->t_last_meal < get_time_ms())
+		{
+			print_dead(philo, rsc);
+			break ;
+		}
+		usleep(100);
+	}
+	return (NULL);
 }
 
 void	eat(t_philo *philo, t_resource *rsc)
@@ -32,8 +37,7 @@ void	eat(t_philo *philo, t_resource *rsc)
 	print_status(philo, rsc, "has taken a fork");
 	sem_wait(rsc->forks);
 	print_status(philo, rsc, "has taken a fork");
-	// update_next(rsc);
-	// philo->t_last_meal = get_time_ms();
+	philo->t_last_meal = get_time_ms();
 	print_status(philo, rsc, "is eating");
 	target_time = rsc->time_eat + philo->t_last_meal;
 	while (target_time > get_time_ms())

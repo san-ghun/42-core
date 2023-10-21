@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus_util.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:12:35 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/19 15:12:20 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/20 17:42:02 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	print_status(t_philo *philo, t_resource *rsc, char *str)
 
 void	print_dead(t_philo *philo, t_resource *rsc)
 {
+	sem_wait(rsc->printlock);
 	if (rsc->funeral != 1)
 	{
 		rsc->funeral = 1;
@@ -92,4 +93,5 @@ void	print_dead(t_philo *philo, t_resource *rsc)
 				philo->id + 1, "died");
 		usleep(1000);
 	}
+	sem_post(rsc->deadlock);
 }

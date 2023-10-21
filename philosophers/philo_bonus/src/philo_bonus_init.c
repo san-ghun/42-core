@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus_init.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:43 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/19 15:49:09 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/10/20 20:59:24 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,6 @@ t_philo	*new_philo(size_t id)
 	this->n_ate = 0;
 	this->status = 1;
 	return (this);
-}
-
-void	init_time_table(t_resource *rsc, int n_philo)
-{
-	int	i;
-	int	ph_id;
-
-	i = -1;
-	ph_id = 0;
-	while (ph_id < n_philo)
-	{
-		rsc->time_table[++i] = ph_id;
-		ph_id += 2;
-	}
-	ph_id = 1;
-	while (ph_id < n_philo)
-	{
-		rsc->time_table[++i] = ph_id;
-		ph_id += 2;
-	}
-	return ;
 }
 
 void	init_philos(t_resource *rsc, int n_philo)
@@ -61,25 +40,22 @@ t_resource	*init_resource(
 			int t_eat,
 			int t_jam)
 {
-	int				i;
 	t_resource		*rsc;
 
 	sem_unlink(SEM_FORKS);
 	sem_unlink(SEM_PLOCK);
-	sem_unlink(SEM_QLOCK);
+	sem_unlink(SEM_ELOCK);
+	sem_unlink(SEM_DLOCK);
 	rsc = single_rsc();
 	rsc->n_philos = n_philo;
 	rsc->time_die = (long long)t_die;
 	rsc->time_eat = (long long)t_eat;
 	rsc->time_jam = (long long)t_jam;
-	rsc->time_table = malloc(sizeof(int) * n_philo);
 	rsc->philos = malloc(sizeof(t_philo *) * n_philo);
-	// rsc->philosophers = malloc(sizeof(pthread_t *) * n_philo);
 	rsc->forks = sem_open(SEM_FORKS, O_CREAT, 0700, n_philo);
-	init_time_table(rsc, n_philo);
 	rsc->printlock = sem_open(SEM_PLOCK, O_CREAT, 0700, 1);
-	rsc->queuelock = sem_open(SEM_QLOCK, O_CREAT, 0700, 1);
+	rsc->eatlock = sem_open(SEM_ELOCK, O_CREAT, 0700, 0);
+	rsc->deadlock = sem_open(SEM_DLOCK, O_CREAT, 0700, 0);
 	init_philos(rsc, n_philo);
-	rsc->next = &(rsc->time_table[0]);
 	return (rsc);
 }

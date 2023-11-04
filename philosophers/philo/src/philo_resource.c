@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_resource.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:48 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/11 23:30:42 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/11/04 14:53:17 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ t_resource	*single_rsc(void)
 		.philos = NULL,
 		.philosophers = NULL,
 		.forks = NULL,
-		.printlock = {},
+		.printlock = NULL,
+		.arraylock = NULL,
 		.funeral = 0,
 	};
 	is_init = 1;
@@ -55,19 +56,16 @@ void	free_rsc_arr(t_resource *rsc)
 void	free_resource(void)
 {
 	t_resource	*rsc;
-	int			i;
 
 	rsc = single_rsc();
 	free_rsc_arr(rsc);
-	i = -1;
-	while (++i < 5)
-		pthread_mutex_destroy(rsc->printlock[i]);
+	pthread_mutex_destroy(rsc->printlock);
+	pthread_mutex_destroy(rsc->arraylock);
 	free(rsc->philos);
 	free(rsc->philosophers);
 	free(rsc->forks);
 	free(rsc->time_table);
-	i = -1;
-	while (++i < 5)
-		free(rsc->printlock[i]);
+	free(rsc->printlock);
+	free(rsc->arraylock);
 	return ;
 }

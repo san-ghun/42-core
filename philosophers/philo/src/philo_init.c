@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:43 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/11 23:30:18 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/11/04 14:53:11 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ void	init_thread_mutex(t_resource *rsc, int n_philo)
 	pthread_mutex_t	*left;
 	pthread_mutex_t	*right;
 
-	i = -1;
-	while (++i < 5)
-		pthread_mutex_init(rsc->printlock[i], NULL);
+	pthread_mutex_init(rsc->printlock, NULL);
+	pthread_mutex_init(rsc->arraylock, NULL);
 	i = -1;
 	while (++i < n_philo)
 	{
@@ -81,8 +80,7 @@ t_resource	*init_resource(
 			int t_eat,
 			int t_jam)
 {
-	int				i;
-	t_resource		*rsc;
+	t_resource	*rsc;
 
 	rsc = single_rsc();
 	rsc->n_philos = n_philo;
@@ -94,9 +92,8 @@ t_resource	*init_resource(
 	rsc->philosophers = malloc(sizeof(pthread_t *) * n_philo);
 	rsc->forks = malloc(sizeof(pthread_mutex_t *) * n_philo);
 	init_time_table(rsc, n_philo);
-	i = -1;
-	while (++i < 5)
-		rsc->printlock[i] = malloc(sizeof(pthread_mutex_t) * 1);
+	rsc->printlock = malloc(sizeof(pthread_mutex_t) * 1);
+	rsc->arraylock = malloc(sizeof(pthread_mutex_t) * 1);
 	init_thread_mutex(rsc, n_philo);
 	rsc->next = &(rsc->time_table[0]);
 	return (rsc);

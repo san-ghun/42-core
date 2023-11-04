@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:53 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/11 23:32:08 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/11/04 18:03:24 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,26 @@
 int	check_status(t_resource *rsc)
 {
 	int				i;
-	pthread_mutex_t	*printlock;
 
 	i = -1;
-	printlock = rsc->printlock[0];
-	pthread_mutex_lock(printlock);
+	pthread_mutex_lock(rsc->printlock);
 	while (++i < rsc->n_philos)
 	{
 		if (rsc->time_die + rsc->philos[i]->t_last_meal < get_time_ms())
 		{
 			print_dead(rsc->philos[i], rsc);
-			pthread_mutex_unlock(printlock);
+			pthread_mutex_unlock(rsc->printlock);
 			return (1);
 		}
 	}
-	pthread_mutex_unlock(printlock);
+	pthread_mutex_unlock(rsc->printlock);
 	return (0);
 }
 
 void	*died_philosopher(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left);
-	print_status(philo, single_rsc(), "has taken a fork", 0);
+	print_status(philo, single_rsc(), "has taken a fork");
 	usleep(single_rsc()->time_die * 1001);
 	pthread_mutex_unlock(philo->left);
 	return (NULL);
@@ -55,17 +53,23 @@ void	*philosopher(t_philo *philo)
 	// 	usleep(rsc->time_eat * 900);
 	while (rsc->funeral != 1)
 	{
+		pthread_mutex_unlock(rsc->printlock);
+		pthread_mutex_lock(rsc->arraylock);
 		if (philo->id != *(rsc->next))
 		{
+			pthread_mutex_unlock(rsc->arraylock);
 			usleep(10);
 			continue ;
 		}
+		pthread_mutex_unlock(rsc->arraylock);
 		eat(philo, rsc);
 		if (philo->n_ate == rsc->n_eat_opt)
 			break ;
 		jam(philo, rsc);
 		think(philo, rsc);
+		pthread_mutex_lock(rsc->printlock);
 	}
+	pthread_mutex_unlock(rsc->printlock);
 	return (0);
 }
 

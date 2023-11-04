@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:52 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/11 23:30:29 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/11/04 14:53:49 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ typedef struct s_resource
 	t_philo			**philos;
 	pthread_t		**philosophers;
 	pthread_mutex_t	**forks;
-	pthread_mutex_t	*printlock[5];
+	pthread_mutex_t	*printlock;
+	pthread_mutex_t	*arraylock;
 	int				funeral;
 }					t_resource;
 
@@ -72,7 +73,7 @@ int			die(t_philo *philo, t_resource *rsc);
 int			check_args(int argc, char *argv[]);
 int			ft_atoi(const char *str);
 long long	get_time_ms(void);
-void		print_status(t_philo *philo, t_resource *rsc, char *str, int nlock);
+void		print_status(t_philo *philo, t_resource *rsc, char *str);
 void		print_dead(t_philo *philo, t_resource *rsc);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:43 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/11/04 14:53:11 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/11/07 14:03:28 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,18 @@ void	init_thread_mutex(t_resource *rsc, int n_philo)
 	pthread_mutex_t	*right;
 
 	pthread_mutex_init(rsc->printlock, NULL);
-	pthread_mutex_init(rsc->arraylock, NULL);
+	// pthread_mutex_init(rsc->arraylock, NULL);
 	i = -1;
 	while (++i < n_philo)
 	{
 		rsc->philosophers[i] = malloc(sizeof(pthread_t) * 1);
 		rsc->forks[i] = malloc(sizeof(pthread_mutex_t) * 1);
+		pthread_mutex_init(rsc->forks[i], NULL);
 	}
 	i = -1;
 	while (++i < n_philo)
 	{
-		pthread_mutex_init(rsc->forks[i], NULL);
-		pthread_mutex_init(rsc->forks[(i + 1) % n_philo], NULL);
+		// pthread_mutex_init(rsc->forks[(i + 1) % n_philo], NULL);
 		left = rsc->forks[i];
 		right = rsc->forks[(i + 1) % n_philo];
 		rsc->philos[i] = new_philo(i, left, right);
@@ -93,7 +93,7 @@ t_resource	*init_resource(
 	rsc->forks = malloc(sizeof(pthread_mutex_t *) * n_philo);
 	init_time_table(rsc, n_philo);
 	rsc->printlock = malloc(sizeof(pthread_mutex_t) * 1);
-	rsc->arraylock = malloc(sizeof(pthread_mutex_t) * 1);
+	// rsc->arraylock = malloc(sizeof(pthread_mutex_t) * 1);
 	init_thread_mutex(rsc, n_philo);
 	rsc->next = &(rsc->time_table[0]);
 	return (rsc);

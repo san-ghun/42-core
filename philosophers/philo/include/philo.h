@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:52 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/11/04 14:53:49 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/11/07 14:11:16 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,14 @@ typedef struct s_resource
 	long long		time_eat;
 	long long		time_jam;
 	int				n_eat_opt;
+	int				n_eat_cnt;
 	int				*time_table;
 	int				*next;
 	t_philo			**philos;
 	pthread_t		**philosophers;
 	pthread_mutex_t	**forks;
 	pthread_mutex_t	*printlock;
-	pthread_mutex_t	*arraylock;
+	// pthread_mutex_t	*arraylock;
 	int				funeral;
 }					t_resource;
 
@@ -68,6 +69,7 @@ void		eat(t_philo *philo, t_resource *rsc);
 void		jam(t_philo *philo, t_resource *rsc);
 void		think(t_philo *philo, t_resource *rsc);
 int			die(t_philo *philo, t_resource *rsc);
+void		routine(t_philo *philo, t_resource *rsc);
 
 /* philo_util.c */
 int			check_args(int argc, char *argv[]);

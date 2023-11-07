@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
+#    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 12:21:54 by sanghupa          #+#    #+#              #
-#    Updated: 2023/11/04 18:26:13 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/11/07 14:13:51 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

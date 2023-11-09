@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:46 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/11/07 14:10:53 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:49:11 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,16 @@ void	jam(t_philo *philo, t_resource *rsc)
 	return ;
 }
 
-void	think(t_philo *philo, t_resource *rsc)
+int	check_meal(t_philo *philo, t_resource *rsc)
 {
-	print_status(philo, rsc, "is thinking");
-	return ;
+	if (philo->n_ate == rsc->n_eat_opt)
+	{
+		pthread_mutex_lock(rsc->printlock);
+		rsc->n_eat_cnt += 1;
+		pthread_mutex_unlock(rsc->printlock);
+		return (1);
+	}
+	return (0);
 }
 
 void	routine(t_philo *philo, t_resource *rsc)
@@ -83,13 +89,10 @@ void	routine(t_philo *philo, t_resource *rsc)
 		}
 		pthread_mutex_unlock(rsc->printlock);
 		eat(philo, rsc);
-		if (philo->n_ate == rsc->n_eat_opt)
-		{
-			rsc->n_eat_cnt += 1;
+		if (check_meal(philo, rsc) == 1)
 			break ;
-		}
 		jam(philo, rsc);
-		think(philo, rsc);
+		print_status(philo, rsc, "is thinking");
 	}
 	return ;
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
+#    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 12:21:54 by sanghupa          #+#    #+#              #
-#    Updated: 2023/11/07 14:13:51 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/11/09 11:46:23 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,8 +62,8 @@ re: fclean all
 
 dev:
 #		$(CC) -fsanitize=address -g -o $(NAME) $(SRC_NAME) $^ -I $(INC_DIR)
-		$(CC) -fsanitize=thread -g -o $(NAME) $(SRC_NAME) $^ -I $(INC_DIR) 
-#		$(CC) -g -o $(NAME) $(SRC_NAME) $^ -I $(INC_DIR) 
+#		$(CC) -fsanitize=thread -g -o $(NAME) $(SRC_NAME) $^ -I $(INC_DIR) 
+		$(CC) -g -o $(NAME) $(SRC_NAME) $^ -I $(INC_DIR) 
 
 # Sub Command
 

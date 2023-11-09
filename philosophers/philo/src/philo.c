@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:53 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/11/07 14:11:27 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:47:37 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,23 @@ void	*died_philosopher(t_philo *philo)
 	return (NULL);
 }
 
+int	monitor(t_resource *rsc)
+{
+	while (rsc->funeral != 1)
+	{
+		pthread_mutex_lock(rsc->printlock);
+		if (rsc->n_eat_cnt == rsc->n_philos)
+		{
+			pthread_mutex_unlock(rsc->printlock);
+			return (1);
+		}
+		pthread_mutex_unlock(rsc->printlock);
+		check_status(rsc);
+		usleep(100);
+	}
+	return (0);
+}
+
 void	*philosopher(t_philo *philo)
 {
 	t_resource	*rsc;
@@ -55,23 +72,6 @@ void	*philosopher(t_philo *philo)
 	return (0);
 }
 
-void	init_table(t_resource *rsc)
-{
-	int			i;
-	long long	time;
-
-	i = -1;
-	time = get_time_ms();
-	while (++i < rsc->n_philos)
-	{
-		rsc->philos[i]->t_launch = time;
-		rsc->philos[i]->t_last_meal = rsc->philos[i]->t_launch;
-		pthread_create(rsc->philosophers[i], NULL, 
-			(void *)philosopher, rsc->philos[i]);
-	}
-	return ;
-}
-
 int	main(int argc, char *argv[])
 {
 	int				i;
@@ -84,11 +84,7 @@ int	main(int argc, char *argv[])
 	if (argc == 6)
 		rsc->n_eat_opt = ft_atoi(argv[5]);
 	init_table(rsc);
-	while (rsc->funeral != 1 && rsc->n_eat_cnt != rsc->n_philos)
-	{
-		check_status(rsc);
-		usleep(100);
-	}
+	monitor(rsc);
 	i = -1;
 	while (++i < rsc->n_philos)
 		pthread_join(*(rsc->philosophers[i]), NULL);

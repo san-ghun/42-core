@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_resource.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:48 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/11/07 13:49:53 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/11/09 11:52:34 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_resource	*single_rsc(void)
 		.philosophers = NULL,
 		.forks = NULL,
 		.printlock = NULL,
-		// .arraylock = NULL,
 		.funeral = 0,
 	};
 	is_init = 1;
@@ -61,12 +60,10 @@ void	free_resource(void)
 	rsc = single_rsc();
 	free_rsc_arr(rsc);
 	pthread_mutex_destroy(rsc->printlock);
-	// pthread_mutex_destroy(rsc->arraylock);
 	free(rsc->philos);
 	free(rsc->philosophers);
 	free(rsc->forks);
 	free(rsc->time_table);
 	free(rsc->printlock);
-	// free(rsc->arraylock);
 	return ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:52 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/11/07 14:11:16 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:47:43 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ typedef struct s_resource
 	pthread_t		**philosophers;
 	pthread_mutex_t	**forks;
 	pthread_mutex_t	*printlock;
-	// pthread_mutex_t	*arraylock;
 	int				funeral;
 }					t_resource;
 
 /* philo.c */
 int			check_status(t_resource *rsc);
+void		*philosopher(t_philo *philo);
 
 /* philo_resource.c */
 t_resource	*single_rsc(void);
@@ -63,12 +63,11 @@ void		free_resource(void);
 
 /* philo_init.c */
 t_resource	*init_resource(int n_philo, int t_die, int t_eat, int t_jam);
+void		init_table(t_resource *rsc);
 
 /* philo_routine.c */
 void		eat(t_philo *philo, t_resource *rsc);
 void		jam(t_philo *philo, t_resource *rsc);
-void		think(t_philo *philo, t_resource *rsc);
-int			die(t_philo *philo, t_resource *rsc);
 void		routine(t_philo *philo, t_resource *rsc);
 
 /* philo_util.c */

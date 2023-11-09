@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:46 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/11/04 18:13:38 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:43:11 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,21 @@ void	jam(t_philo *philo, t_resource *rsc)
 void	think(t_philo *philo, t_resource *rsc)
 {
 	print_status(philo, rsc, "is thinking");
+	usleep(50);
+	return ;
+}
+
+void	routine(t_philo *philo, t_resource *rsc)
+{
+	while (1)
+	{
+		if (rsc->funeral == 1)
+			break ;
+		eat(philo, rsc);
+		if (philo->n_ate == rsc->n_eat_opt)
+			break ;
+		jam(philo, rsc);
+		think(philo, rsc);
+	}
 	return ;
 }

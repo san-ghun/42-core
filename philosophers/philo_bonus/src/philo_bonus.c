@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:57 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/20 21:06:33 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:42:23 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,21 @@ void	*philosopher(t_philo *philo)
 		usleep(rsc->time_eat * 100);
 	else if ((philo->id == rsc->n_philos - 1) && (rsc->n_philos % 2 == 1))
 		usleep(rsc->time_eat * 900);
-	while (rsc->funeral != 1)
-	{
-		eat(philo, rsc);
-		if (philo->n_ate == rsc->n_eat_opt)
-			break ;
-		jam(philo, rsc);
-		think(philo, rsc);
-	}
+	routine(philo, rsc);
 	sem_post(rsc->eatlock);
 	exit(EXIT_SUCCESS);
 }
 
 void	init_table(t_resource *rsc)
 {
-	int		i;
+	int			i;
+	long long	time;
 
 	i = -1;
+	time = get_time_ms();
 	while (++i < rsc->n_philos)
 	{
-		rsc->philos[i]->t_launch = get_time_ms();
+		rsc->philos[i]->t_launch = time;
 		rsc->philos[i]->t_last_meal = rsc->philos[i]->t_launch;
 		rsc->philos[i]->pid = fork();
 		if (rsc->philos[i]->pid == 0)

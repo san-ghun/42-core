@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 12:21:54 by sanghupa          #+#    #+#              #
-#    Updated: 2023/11/04 18:08:22 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/11/09 14:34:31 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,8 +45,8 @@ re: fclean all
 
 dev:
 #		$(CC) -fsanitize=address -g -o $(NAME) $(SRC_NAME) $^ -I $(INC_DIR)
-		$(CC) -fsanitize=thread -g -o $(NAME) $(SRC_NAME) $^ -I $(INC_DIR) 
-#		$(CC) -g -o $(NAME) $(SRC_NAME) $^ -I $(INC_DIR) 
+#		$(CC) -fsanitize=thread -g -o $(NAME) $(SRC_NAME) $^ -I $(INC_DIR) 
+		$(CC) -g -o $(NAME) $(SRC_NAME) $^ -I $(INC_DIR) 
 
 %.o: %.c
 		@$(CC) $(CFLAGS) -c -o $@ $< -I $(INC_DIR)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:55 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/10/20 18:16:13 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:42:15 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void		*check_status(t_philo *philo);
 void		eat(t_philo *philo, t_resource *rsc);
 void		jam(t_philo *philo, t_resource *rsc);
 void		think(t_philo *philo, t_resource *rsc);
-int			die(t_philo *philo, t_resource *rsc);
+void		routine(t_philo *philo, t_resource *rsc);
 
 /* philo_bonus_util.c */
 int			check_args(int argc, char *argv[]);

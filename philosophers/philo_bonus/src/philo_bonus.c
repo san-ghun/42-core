@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 22:07:57 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/11/09 14:42:23 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:55:39 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	*philosopher(t_philo *philo)
 		died_philosopher(philo, rsc);
 	pthread_create(&th, NULL, (void *)check_status, philo);
 	pthread_detach(th);
+	print_status(philo, rsc, "is thinking");
 	if (philo->id % 2 == 1)
 		usleep(rsc->time_eat * 100);
 	else if ((philo->id == rsc->n_philos - 1) && (rsc->n_philos % 2 == 1))

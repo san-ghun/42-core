@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:46:46 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/11/09 14:49:11 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:49:01 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	check_meal(t_philo *philo, t_resource *rsc)
 
 void	routine(t_philo *philo, t_resource *rsc)
 {
+	print_status(philo, rsc, "is thinking");
 	while (1)
 	{
 		pthread_mutex_lock(rsc->printlock);

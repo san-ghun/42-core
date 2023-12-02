@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
+#    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 12:21:54 by sanghupa          #+#    #+#              #
-#    Updated: 2023/12/02 17:46:19 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/12/02 22:29:43 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,14 +74,21 @@ re: fclean all
 re_bonus: fclean bonus
 
 dev:
+#	for linux
 #		$(CC) -fsanitize=address -g -o $(NAME) $(SRC_NAME) $^ $(HEADERS) $(MLX_LINKER)
 #		$(CC) -fsanitize=thread -g -o $(NAME) $(SRC_NAME) $^ $(HEADERS) $(MLX_LINKER)
-		$(CC) -g -o $(NAME) $(SRC_NAME) $^ $(HEADERS) $(MLX_LINKER)
+#		$(CC) -g -o $(NAME) $(SRC_NAME) $^ $(HEADERS) $(MLX_LINKER)
+#	for macos
+		$(CC) $(CFLAGS) -g -o $(NAME) $(SRC_NAME) $^ $(HEADERS) -I $(DYLD) -L $(DYLD) -l mlx -framework OpenGL -framework AppKit
+		install_name_tool -change $(DYLIB) $(DYLD)/$(DYLIB) $(NAME)
 
 # Sub Command
 
 %.o: %.c
-		@$(CC) $(CFLAGS) -c -o $@ $< $(HEADERS) $(MLX_LINKER)
+#	for linux
+#		@$(CC) $(CFLAGS) -c -o $@ $< $(HEADERS) $(MLX_LINKER)
+#	for macos
+		$(CC) $(CFLAGS) -c -o $@ $< $(HEADERS) -I $(DYLD)
 
 $(LIBFT):
 		@make -C $(LIBFT_DIR)
@@ -89,11 +96,11 @@ $(LIBFT):
 
 $(NAME): $(OBJ_NAME) $(LIBFT) 
 #	for linux
-		@$(CC) $(CFLAGS) -o $@ $^ $(MLX_PATH) $(HEADERS) $(MLX_LINKER)
+#		@$(CC) $(CFLAGS) -o $@ $^ $(MLX_PATH) $(HEADERS) $(MLX_LINKER)
 #		@$(CC) $(CFLAGS) -fsanitize=address -g -o $@ $^ $(HEADERS) $(MLX_LINKER)
 #	for macos
-#		$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) -I $(DYLD) -L $(DYLD) -l mlx -framework OpenGL -framework AppKit
-#		install_name_tool -change $(DYLIB) $(DYLD)/$(DYLIB) $(NAME)
+		$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) -I $(DYLD) -L $(DYLD) -l mlx -framework OpenGL -framework AppKit
+		install_name_tool -change $(DYLIB) $(DYLD)/$(DYLIB) $(NAME)
 
 $(NAME_B): $(OBJ_NAME_B) $(LIBFT) 
 		@$(CC) $(CFLAGS) -o $@ $^ $(MLX_PATH) $(HEADERS) $(MLX_LINKER)

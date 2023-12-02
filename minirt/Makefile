@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 12:21:54 by sanghupa          #+#    #+#              #
-#    Updated: 2023/12/02 13:50:07 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/12/02 15:57:11 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,9 @@ LIBFT_PATH	= $(LIBFT_DIR)/$(LIBFT)
 LIB_DIR		= ./lib
 MLX			= libmlx_Linux.a 
 MLX_PATH	= $(LIB_DIR)/$(MLX)
+MLX_LINKER	= -lXext -lX11 -lm -lz
 
-HEADERS		= -I $(INC_DIR) -I $(LIBFT_I_DIR)
+HEADERS		= -I $(INC_DIR) -I $(LIBFT_I_DIR) $(MLX_LINKER)
 
 SRC_DIR		= ./src
 

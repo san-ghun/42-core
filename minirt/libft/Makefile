@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
+#    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 22:48:59 by sanghupa          #+#    #+#              #
-#    Updated: 2023/12/02 14:13:17 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/12/02 22:28:02 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS		= -Wall -Werror -Wextra
 
 RM			= rm
 
-AR			= ar -rcv
+AR			= ar -rc
 # -r : replace or add the specified files to the archive.
 # -c : create archive without message. `ar: creating archive libft.a`
 # -v : provide verbose output. `a` if the file is added and \

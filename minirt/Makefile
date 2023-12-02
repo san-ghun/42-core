@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 12:21:54 by sanghupa          #+#    #+#              #
-#    Updated: 2023/12/02 22:29:43 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/12/02 23:08:07 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ dev:
 #		$(CC) -fsanitize=thread -g -o $(NAME) $(SRC_NAME) $^ $(HEADERS) $(MLX_LINKER)
 #		$(CC) -g -o $(NAME) $(SRC_NAME) $^ $(HEADERS) $(MLX_LINKER)
 #	for macos
-		$(CC) $(CFLAGS) -g -o $(NAME) $(SRC_NAME) $^ $(HEADERS) -I $(DYLD) -L $(DYLD) -l mlx -framework OpenGL -framework AppKit
+		$(CC) -g -o $(NAME) $(SRC_NAME) $^ $(HEADERS) -I $(DYLD) -L $(DYLD) -l mlx -framework OpenGL -framework AppKit
 		install_name_tool -change $(DYLIB) $(DYLD)/$(DYLIB) $(NAME)
 
 # Sub Command

@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 12:21:54 by sanghupa          #+#    #+#              #
-#    Updated: 2023/12/02 15:57:11 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/12/02 17:46:19 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,13 @@ MLX			= libmlx_Linux.a
 MLX_PATH	= $(LIB_DIR)/$(MLX)
 MLX_LINKER	= -lXext -lX11 -lm -lz
 
-HEADERS		= -I $(INC_DIR) -I $(LIBFT_I_DIR) $(MLX_LINKER)
+# for macos
+DYLD		= ./mlx
+DYLIB		= libmlx.dylib
+DYL_LINKER	= -framework OpenGL -framework AppKit
+
+
+HEADERS		= -I $(INC_DIR) -I $(LIBFT_I_DIR)
 
 SRC_DIR		= ./src
 
@@ -67,21 +73,30 @@ re: fclean all
 
 re_bonus: fclean bonus
 
+dev:
+#		$(CC) -fsanitize=address -g -o $(NAME) $(SRC_NAME) $^ $(HEADERS) $(MLX_LINKER)
+#		$(CC) -fsanitize=thread -g -o $(NAME) $(SRC_NAME) $^ $(HEADERS) $(MLX_LINKER)
+		$(CC) -g -o $(NAME) $(SRC_NAME) $^ $(HEADERS) $(MLX_LINKER)
+
 # Sub Command
 
 %.o: %.c
-		@$(CC) $(CFLAGS) -c -o $@ $< $(HEADERS)
+		@$(CC) $(CFLAGS) -c -o $@ $< $(HEADERS) $(MLX_LINKER)
 
 $(LIBFT):
 		@make -C $(LIBFT_DIR)
 		@mv $(LIBFT_PATH) ./
 
 $(NAME): $(OBJ_NAME) $(LIBFT) 
-		@$(CC) $(CFLAGS) -o $@ $^ $(MLX_PATH) $(HEADERS)
-#		@$(CC) $(CFLAGS) -fsanitize=address -g -o $@ $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
+#	for linux
+		@$(CC) $(CFLAGS) -o $@ $^ $(MLX_PATH) $(HEADERS) $(MLX_LINKER)
+#		@$(CC) $(CFLAGS) -fsanitize=address -g -o $@ $^ $(HEADERS) $(MLX_LINKER)
+#	for macos
+#		$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) -I $(DYLD) -L $(DYLD) -l mlx -framework OpenGL -framework AppKit
+#		install_name_tool -change $(DYLIB) $(DYLD)/$(DYLIB) $(NAME)
 
 $(NAME_B): $(OBJ_NAME_B) $(LIBFT) 
-		@$(CC) $(CFLAGS) -o $@ $^ $(MLX_PATH) $(HEADERS)
+		@$(CC) $(CFLAGS) -o $@ $^ $(MLX_PATH) $(HEADERS) $(MLX_LINKER)
 
 
 # Test Code 
@@ -91,7 +106,7 @@ TMP 		= $(SRC_DIR)/$(NAME).c \
 				$(SRC_DIR)/$(NAME)_util.c \
 
 test: $(LIBFT)
-		$(CC) $(TEST) -o $(TEST:.c=.out) $(TMP) $^ -I $(INC_DIR) -I $(LIBFT_I_DIR)
+		$(CC) $(TEST) -o $(TEST:.c=.out) $(TMP) $^ $(HEADERS) $(MLX_LINKER)
 
 tclean: 
 		make fclean -C $(LIBFT_DIR)

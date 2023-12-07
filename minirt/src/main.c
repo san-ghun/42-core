@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:22:52 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/07 21:10:50 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:59:51 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 typedef struct s_data {
 	void	*img;
 	char	*addr;
+	int		h;
+	int		w;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -23,6 +25,8 @@ typedef struct s_data {
 typedef struct s_vars {
 	void	*mlx;
 	void	*win;
+	int		height;
+	int		width;
 }				t_vars;
 
 int	close_mlx(int keycode, t_vars *vars)
@@ -43,6 +47,14 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+t_vars	new_program(int w, int h, char *str)
+{
+	void	*mlx_ptr;
+
+	mlx_ptr = mlx_init();
+	return ((t_vars){mlx_ptr, mlx_new_window(mlx_ptr, w, h, str), w, h});
+}
+
 int	main(int argc, char *argv[])
 {
 	t_vars	vars;
@@ -50,8 +62,9 @@ int	main(int argc, char *argv[])
 
 	(void)argc;
 	(void)argv;
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920 / 2, 1080 / 2, "Hello");
+	vars = new_program(300, 300, "New Program");
+	if (!vars.mlx || !vars.win)
+		return (1);
 	img.img = mlx_new_image(vars.mlx, 1920 / 2, 1080 / 2);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 

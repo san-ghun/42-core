@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 12:21:54 by sanghupa          #+#    #+#              #
-#    Updated: 2023/12/07 21:07:23 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/12/07 21:55:42 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,7 +108,7 @@ re: fclean all
 
 $(LIBFT):
 		@make -sC $(LIBFT_DIR)
-		@mv $($(LIBFT_DIR)/$(LIBFT)) ./
+		@mv $(LIBFT_DIR)/$(LIBFT) ./
 
 $(MLX):
 		@tar -xf $(MLX_AR_DIR)/minilibx-linux.tgz

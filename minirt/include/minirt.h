@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:23:17 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/08 17:45:29 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:58:54 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,13 @@
 ** Structure
 ** =============================================================================
 */
+
+typedef struct s_square {
+	unsigned int	x;
+	unsigned int	y;
+	unsigned int	size;
+	int				color;
+}				t_square;
 
 typedef struct s_data {
 	void	*img;

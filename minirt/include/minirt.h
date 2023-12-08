@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:23:17 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/08 19:42:59 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/08 20:44:05 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,11 @@ typedef struct s_square {
 	int				color;
 }				t_square;
 
+typedef struct s_temp {
+	int		size;
+	int		color;
+}				t_temp;
+
 typedef struct s_data {
 	void	*img;
 	char	*addr;
@@ -119,6 +124,7 @@ int		get_b(int trgb);
 
 /// hook_key.c
 int		key_hooks(int keycode, t_data *img);
+int		close_mlx(t_data *img);
 
 /// hook_mouse.c
 int		mouse_hooks(int button, int m_x, int m_y, t_data *img);
@@ -126,5 +132,6 @@ int		mouse_hooks(int button, int m_x, int m_y, t_data *img);
 /// mlx_util.c
 void	put_pixel_data(t_data *data, int x, int y, int color);
 void	draw_square(t_square square, t_data *img);
+t_temp	*single_temp(void);
 
 #endif

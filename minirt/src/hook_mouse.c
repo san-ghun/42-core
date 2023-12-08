@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:01:26 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/08 19:43:26 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/08 20:13:47 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ int	mouse_hooks(int button, int m_x, int m_y, t_data *img)
 	int		x;
 	int		y;
 	int		size;
+	int		color;
 
-
-	size = 10;
+	size = single_temp()->size;
+	color = single_temp()->color;
 	vars = single_vars();
 	if (button == M_CLK_L)
 	{
@@ -28,7 +29,7 @@ int	mouse_hooks(int button, int m_x, int m_y, t_data *img)
 			return (2);
 		x = ((m_x % img->w) / size) * size;
 		y = ((m_y % img->h) / size) * size;
-		draw_square((t_square){x, y, size, 0x0000FF}, img);
+		draw_square((t_square){x, y, size, color}, img);
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, img->img, 0, 0);
 	return (0);

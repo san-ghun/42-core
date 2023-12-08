@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:22:52 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/07 21:59:51 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/08 14:33:15 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,21 @@ int	main(int argc, char *argv[])
 	vars = new_program(300, 300, "New Program");
 	if (!vars.mlx || !vars.win)
 		return (1);
-	img.img = mlx_new_image(vars.mlx, 1920 / 2, 1080 / 2);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-
-	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
+	else 
+	{
+		img.img = mlx_new_image(vars.mlx, 4, 4);
+		img.addr = mlx_get_data_addr(\
+			img.img, &(img.bits_per_pixel), \
+			&(img.line_length), &(img.endian));
+		img.w = 4;
+		img.h = 4;
+		printf("img_ptr		: [%p]\n", img.img);
+		printf("bpp		: [%d]\n", img.bits_per_pixel);
+		printf("line_len	: [%d]\n", img.line_length);
+		printf("endian		: [%d]\n", img.endian);
+		printf("addr		: [%p]\n", img.addr);
+	}
+	my_mlx_pixel_put(&img, 2, 2, 0x00FF0000);
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 
 	mlx_key_hook(vars.win, close_mlx, &vars);

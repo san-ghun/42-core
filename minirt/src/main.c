@@ -6,29 +6,11 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:22:52 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/08 18:05:12 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/08 20:01:18 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-void	draw_square(t_square square, t_data *img)
-{
-	unsigned int	i;
-	unsigned int	j;
-
-	i = 0;
-	while (i < square.size && i + square.y < img->h)
-	{
-		j = 0;
-		while (j < square.size && j + square.x < img->w)
-		{
-			put_pixel_data(img, j + square.x, i + square.y, square.color);
-			j++;
-		}
-		i++;
-	}
-}
 
 int	main(int argc, char *argv[])
 {
@@ -46,9 +28,9 @@ int	main(int argc, char *argv[])
 	put_pixel_data(img, 150, 150, 0x00FFFFF);
 	mlx_put_image_to_window(vars->mlx, vars->win, img->img, 0, 0);
 
-	mlx_key_hook(vars->win, close_mlx, vars);
+	mlx_key_hook(vars->win, key_hooks, img);
+	mlx_mouse_hook(vars->win, mouse_hooks, img);
 	mlx_loop(vars->mlx);
-	free(img);
 
 	// check arguments
 	// initialize mlx

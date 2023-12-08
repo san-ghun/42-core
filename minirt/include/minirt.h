@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:23:17 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/08 17:58:54 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/08 19:42:59 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,15 @@
 ** =============================================================================
 */
 
+/// Limit Loop: use addition to while condition (dev)
+# define MAX_ITER	5000
+
+/// Prevent Heap mem leak: use addition to char or array (dev)
+# define DATA_SIZE	3072
+
+# define INTMAX		2147483647
+# define INTMIN		-2147483648
+
 /*
 ** =============================================================================
 ** Structure
@@ -108,10 +117,14 @@ int		get_r(int trgb);
 int		get_g(int trgb);
 int		get_b(int trgb);
 
-/// hook.c
-int		close_mlx(int keycode, t_vars *vars);
+/// hook_key.c
+int		key_hooks(int keycode, t_data *img);
+
+/// hook_mouse.c
+int		mouse_hooks(int button, int m_x, int m_y, t_data *img);
 
 /// mlx_util.c
 void	put_pixel_data(t_data *data, int x, int y, int color);
+void	draw_square(t_square square, t_data *img);
 
 #endif

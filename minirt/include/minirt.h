@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:23:17 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/09 16:35:28 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/09 17:19:26 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,13 @@
 
 typedef int				t_bool;
 typedef pthread_mutex_t	t_mux;
+
+typedef struct s_vec3
+{
+	double		x;
+	double		y;
+	double		z;
+}				t_vec3;
 
 typedef struct s_square {
 	int			x;

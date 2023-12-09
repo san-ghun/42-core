@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:15:54 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/09 11:37:11 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/09 17:16:04 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,23 @@ void	draw_square(t_square square, t_data *img)
 {
 	int	i;
 	int	j;
+	int	color;
 
 	i = 0;
 	while (i < square.size && i + square.y < img->h)
 	{
+		printf("\rScan lines remaining: %d", img->h - i);
+		fflush(stdout);
 		j = 0;
 		while (j < square.size && j + square.x < img->w)
 		{
-			put_pixel_data(img, j + square.x, i + square.y, square.color);
+			color = get_trgb(1, i, j, 0);
+			put_pixel_data(img, j + square.x, i + square.y, color);
 			j++;
 		}
 		i++;
 	}
+	printf("\nDone.\n");
 }
 
 t_temp	*single_temp(void)

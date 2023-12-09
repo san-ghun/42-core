@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:23:17 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/08 20:44:05 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/09 11:37:33 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@
 */
 
 typedef struct s_square {
-	unsigned int	x;
-	unsigned int	y;
-	unsigned int	size;
-	int				color;
+	int			x;
+	int			y;
+	int			size;
+	int			color;
 }				t_square;
 
 typedef struct s_temp {

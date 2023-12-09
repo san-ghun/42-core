@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:57:57 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/08 17:49:12 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/09 11:36:23 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_vars	*single_vars(void)
 t_vars	*new_program(int w, int h, char *str)
 {
 	t_vars	*vars;
-	void	*mlx_ptr;
 
 	vars = single_vars();
 	vars->mlx = mlx_init();

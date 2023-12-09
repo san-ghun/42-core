@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:15:54 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/08 20:11:24 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/09 11:37:11 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	put_pixel_data(t_data *data, int x, int y, int color)
 
 void	draw_square(t_square square, t_data *img)
 {
-	unsigned int	i;
-	unsigned int	j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < square.size && i + square.y < img->h)

@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 12:21:54 by sanghupa          #+#    #+#              #
-#    Updated: 2023/12/07 21:55:42 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/12/09 12:20:16 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ OBJ_NAME 	= $(SRC_NAME:.c=.o)
 
 # OBJ_NAME_B 	= $(SRC_NAME_B:.c=.o)
 
-HEADERS		= -I $(INC_DIR) -I $(LIBFT_I_DIR) -I $(MLX_I_DIR)
+HEADERS		= -I $(INC_DIR) -I $(LIBFT_I_DIR)
 
 INC_DIR		= ./include
 LIB_DIR		= ./lib
@@ -49,25 +49,23 @@ LIBFT_I_DIR	= $(LIBFT_DIR)/include
 # =============================================================================
 
 MLX			= libmlx.a
-MLX_AR_DIR	= ./mlx
 MLX_DIR		= ./minilibx-linux
 MLX_I_DIR	= $(MLX_DIR)
 MLX_PATH	= $(MLX_DIR)/$(MLX)
-MLX_FLAGS	= -lmlx
+MLX_FLAGS	= -lft -lmlx
 
 ifeq ($(UNAME), Darwin) # iMac / iOS
 	CC			= gcc
+	HEADERS		+= -I $(LIB_DIR)
 	MLX			= libmlx.dylib
-	MLX_DIR		= ./mlx
-	MLX_FLAGS	+= -framework OpenGL -framework AppKit
+	MLX_FLAGS	+= -L $(LIB_DIR) -framework OpenGL -framework AppKit
 else ifeq ($(UNAME), FreeBSD) # FreeBSD
 	CC			= clang
 else #Linux and others...
 	CC			= cc
-	HEADERS		+= -I /usr/include
+	HEADERS		+= -I /usr/include -I $(MLX_I_DIR)
 	MLX			= libmlx.a
-	MLX_DIR		= ./minilibx-linux
-	MLX_FLAGS	+= -lXext -lX11 -lm -lz -lbsd
+	MLX_FLAGS	+= -lXext -lX11 -lm -lz -lbsd -L $(LIB_DIR) -L /usr/include
 endif
 
 
@@ -88,8 +86,8 @@ clean:
 fclean:
 		@make fclean -sC $(LIBFT_DIR)
 		@make clean -sC $(MLX_DIR)
-		@$(RM) $(LIBFT)
-		@$(RM) $(MLX)
+		@$(RM) $(LIB_DIR)/$(LIBFT)
+		@$(RM) $(LIB_DIR)/$(MLX)
 		@$(RM) $(OBJ_NAME)
 		@$(RM) $(OBJ_NAME_B)
 		@$(RM) $(NAME)
@@ -104,38 +102,38 @@ re: fclean all
 # =============================================================================
 
 %.o: %.c
-		$(CC) $(CFLAGS) -c -o $@ $< $(HEADERS) -I $(MLX_AR_DIR)  
+		$(CC) $(CFLAGS) -c -o $@ $< $(HEADERS) 
 
 $(LIBFT):
 		@make -sC $(LIBFT_DIR)
-		@mv $(LIBFT_DIR)/$(LIBFT) ./
+		@mv $(LIBFT_DIR)/$(LIBFT) $(LIB_DIR)
 
 $(MLX):
-		@tar -xf $(MLX_AR_DIR)/minilibx-linux.tgz
+		@tar -xf $(LIB_DIR)/minilibx-linux.tgz
 		@make -sC $(MLX_DIR)
-		@mv $(MLX_DIR)/libmlx.a ./$(MLX)
+		@cp $(MLX_DIR)/libmlx.a $(LIB_DIR)
 
 dev: $(LIBFT) $(MLX)
 ifeq ($(UNAME), Darwin) # iMac / iOS
-		$(CC) -g -o $(NAME) $(SRC_NAME) $^ $(HEADERS) -I $(MLX_AR_DIR) -L $(MLX_AR_DIR) $(MLX_FLAGS)
-		install_name_tool -change $(MLX) $(MLX_AR_DIR)/$(MLX) $(NAME)
+		$(CC) -g -o $(NAME) $(SRC_NAME) $(HEADERS) $(MLX_FLAGS)
+		install_name_tool -change $(MLX) $(LIB_DIR)/$(MLX) $(NAME)
 else #Linux and others...
-#		$(CC) -fsanitize=thread -g -o $(NAME) $(SRC_NAME) $^ $(HEADERS) $(MLX_FLAGS)
-#		$(CC) -fsanitize=address -g -o $(NAME) $(SRC_NAME) $^ $(HEADERS) $(MLX_FLAGS)
-		$(CC) -g -o $(NAME) $(SRC_NAME) $^ $(HEADERS) -I $(MLX_AR_DIR) $(MLX_FLAGS)
+#		$(CC) -fsanitize=thread -g -o $(NAME) $(SRC_NAME) $(HEADERS) $(MLX_FLAGS)
+#		$(CC) -fsanitize=address -g -o $(NAME) $(SRC_NAME) $(HEADERS) $(MLX_FLAGS)
+		$(CC) -g -o $(NAME) $(SRC_NAME) $(HEADERS) $(MLX_FLAGS)
 endif
 
 $(NAME): $(OBJ_NAME) $(LIBFT) $(MLX)
 ifeq ($(UNAME), Darwin) # iMac / iOS
-		$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) -I $(MLX_AR_DIR) -L $(MLX_AR_DIR) $(MLX_FLAGS)
-		install_name_tool -change $(MLX) $(MLX_AR_DIR)/$(MLX) $(NAME)
+		$(CC) $(CFLAGS) -o $@ $(OBJ_NAME) $(HEADERS) $(MLX_FLAGS)
+		install_name_tool -change $(MLX) $(LIB_DIR)/$(MLX) $(NAME)
 else #Linux and others...
-#		$(CC) $(CFLAGS) -fsanitize=address -g -o $@ $^ $(HEADERS) $(MLX_FLAGS)
-		$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) -I $(MLX_AR_DIR) $(MLX_FLAGS)
+#		$(CC) $(CFLAGS) -fsanitize=address -g -o $@ $(OBJ_NAME) $(HEADERS) $(MLX_FLAGS)
+		$(CC) $(CFLAGS) -o $@ $(OBJ_NAME) $(HEADERS) $(MLX_FLAGS)
 endif
 
 # $(NAME_B): $(OBJ_NAME_B) $(LIBFT) 
-# 		@$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) -I $(MLX_AR_DIR) $(MLX_FLAGS)
+# 		@$(CC) $(CFLAGS) -o $@ $^ $(HEADERS) $(MLX_FLAGS)
 
 show:
 		@printf "UNAME		: $(UNAME)\n"

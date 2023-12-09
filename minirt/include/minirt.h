@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:23:17 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/09 11:37:33 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/09 13:06:49 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,8 @@
 # include <stdint.h>
 # include <pthread.h>
 
-// =============================================================================
-
 /// minilibx
 # include "mlx.h"
-// # include "mlx_int.h"
 
 /// libft
 # include "libft.h"
@@ -58,7 +55,7 @@
 ** =============================================================================
 ** Macro
 ** =============================================================================
-*/
+*/ 
 
 /// Limit Loop: use addition to while condition (dev)
 # define MAX_ITER	5000
@@ -70,10 +67,29 @@
 # define INTMIN		-2147483648
 
 /*
+** -----------------------------------------------------------------------------
+** Result Macros
+** -----------------------------------------------------------------------------
+*/
+
+# define TRUE 			1
+# define FALSE 			0
+# define VALID			0
+# define INVALID		1
+# define CHECK			1
+# define PARSE			0
+# define SUCCESS		1
+# define END			0
+# define ERROR 			-1
+
+/*
 ** =============================================================================
 ** Structure
 ** =============================================================================
 */
+
+typedef int				t_bool;
+typedef pthread_mutex_t	t_mux;
 
 typedef struct s_square {
 	int			x;

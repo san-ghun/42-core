@@ -6,15 +6,15 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:22:52 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/10 21:33:45 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/10 21:57:36 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_bool	hit_sphere(t_vec3 center, double radius, t_vec3 ray)
+t_vec3	ray_at(t_ray r, double t)
 {
-	
+	return (add(r.origin, scale(r.direction, t)));
 }
 
 t_vec3	get_rgb(double opacity, double red, double green, double blue)
@@ -26,12 +26,38 @@ t_vec3	get_rgb(double opacity, double red, double green, double blue)
 	return ((t_vec3){red, green, blue});
 }
 
+double	hit_sphere(t_vec3 center, double radius, t_ray ray)
+{
+	t_vec3	oc = subtract(ray.origin, center);
+	double 	a = dot(ray.direction, ray.direction);
+	double	b = 2.0 * dot(oc, ray.direction);
+	double	c = dot(oc, oc) - radius * radius;
+	double	discriminant = b * b - 4 * a * c;
+	
+	if (discriminant < 0)
+		return (-1.0);
+	else
+		return ((- b - sqrt(discriminant)) / (2.0 * a));
+}
+
 int	ray_color(t_ray ray)
 {
-	t_vec3	unit_direction = unit(ray.direction);
-	double	a = 0.5 * (unit_direction.y + 1.0);
-	t_vec3	color = scale(get_rgb(0, 1.0, 1.0, 1.0), 1.0 - a);
-	color = add(color, scale(get_rgb(0, 0.5, 0.7, 1.0), a));
+	t_vec3	color;
+	double	t;
+
+	t = hit_sphere((t_vec3){0, 0, -1}, 0.5, ray);
+	if (t > 0.0)
+	{
+		t_vec3	N = unit(subtract(ray_at(ray, t), (t_vec3){0, 0, -1}));
+		color = scale(get_rgb(0, N.x + 1, N.y + 1, N.z + 1), 0.5);
+	}
+	else
+	{
+		t_vec3	unit_direction = unit(ray.direction);
+		double	a = 0.5 * (unit_direction.y + 1.0);
+		color = scale(get_rgb(0, 1.0, 1.0, 1.0), 1.0 - a);
+		color = add(color, scale(get_rgb(0, 0.5, 0.7, 1.0), a));
+	}
 	return (get_trgb(0, (int)color.x, (int)color.y, (int)color.z));
 }
 

@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:23:17 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/10 19:45:54 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:59:57 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ void	put_pixel_data(t_data *data, int x, int y, int color);
 void	draw_square(t_square square, t_data *img);
 t_temp	*single_temp(void);
 
-/// vector/vector_oprt1.c
+/// vector operations
 
 /// @brief addition of two vectors
 /// @param u vector
@@ -189,5 +189,11 @@ double	dot(t_vec3 u, t_vec3 v);
 /// @param v vector
 /// @return a vector
 t_vec3	cross(t_vec3 u, t_vec3 v);
+
+t_vec3	flip(t_vec3 v);
+double	len_pow(t_vec3 v);
+double	len_sqrt(t_vec3 v);
+t_vec3	unit(t_vec3 v);
+t_bool	near_zero(t_vec3 v);
 
 #endif

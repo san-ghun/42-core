@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:57:57 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/10 19:21:03 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/11 00:17:59 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,5 @@ t_data	*new_img(int w, int h, t_vars *vars)
 		&(this->line_length), &(this->endian));
 	this->w = w;
 	this->h = h;
-	return (this);
-}
-
-t_vec3	init_vector(double x, double y, double z)
-{
-	t_vec3	this;
-
-	this.x = x;
-	this.y = y;
-	this.z = z;
 	return (this);
 }

@@ -6,11 +6,11 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 16:44:26 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/10 19:46:04 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/11 00:29:01 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "vector.h"
 
 t_vec3	add(t_vec3 u, t_vec3 v)
 {

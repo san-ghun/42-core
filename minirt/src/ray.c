@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_oprt2.c                                     :+:      :+:    :+:   */
+/*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/10 16:44:26 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/11 00:29:05 by sanghupa         ###   ########.fr       */
+/*   Created: 2023/12/11 00:28:34 by sanghupa          #+#    #+#             */
+/*   Updated: 2023/12/11 00:31:44 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "ray.h"
 
-t_vec3	flip(t_vec3 v)
+t_ray	init_ray(t_vec3 origin, t_vec3 direction)
 {
-	return (scale(v, -1));
+	t_ray	this;
+
+	this.origin = origin;
+	this.direction = direction;
+	return (this);
 }
 
-double	len_pow(t_vec3 v)
+t_vec3	ray_at(t_ray r, double t)
 {
-	return ((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
-}
-
-double	len_sqrt(t_vec3 v)
-{
-	return (sqrt(len_pow(v)));
-}
-
-t_vec3	unit(t_vec3 v)
-{
-	return (scale(v, (1.0 / len_sqrt(v))));
-}
-
-t_bool	near_zero(t_vec3 v)
-{
-	double	e;
-
-	e = 1e-8;
-	return ((fabs(v.x) < e) && (fabs(v.y) < e) && (fabs(v.z) < e));
+	return (add(r.origin, scale(r.direction, t)));
 }

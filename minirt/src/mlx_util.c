@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:15:54 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/09 17:16:04 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:48:25 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	draw_square(t_square square, t_data *img)
 	i = 0;
 	while (i < square.size && i + square.y < img->h)
 	{
-		printf("\rScan lines remaining: %d", img->h - i);
-		fflush(stdout);
 		j = 0;
 		while (j < square.size && j + square.x < img->w)
 		{
@@ -44,7 +42,6 @@ void	draw_square(t_square square, t_data *img)
 		}
 		i++;
 	}
-	printf("\nDone.\n");
 }
 
 t_temp	*single_temp(void)

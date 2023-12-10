@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:23:17 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/10 19:59:57 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/10 21:30:47 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,12 @@ typedef struct s_vec3
 	double		y;
 	double		z;
 }				t_vec3;
+
+typedef struct s_ray
+{
+	t_vec3		origin;
+	t_vec3		direction;
+}				t_ray;
 
 typedef struct s_square {
 	int			x;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+         #
+#    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 12:21:54 by sanghupa          #+#    #+#              #
-#    Updated: 2023/12/09 12:20:16 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/12/10 01:13:14 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,22 +50,22 @@ LIBFT_I_DIR	= $(LIBFT_DIR)/include
 
 MLX			= libmlx.a
 MLX_DIR		= ./minilibx-linux
-MLX_I_DIR	= $(MLX_DIR)
 MLX_PATH	= $(MLX_DIR)/$(MLX)
-MLX_FLAGS	= -lft -lmlx
+MLX_FLAGS	= -L $(LIB_DIR) -lft -lmlx
 
 ifeq ($(UNAME), Darwin) # iMac / iOS
 	CC			= gcc
-	HEADERS		+= -I $(LIB_DIR)
+	HEADERS		+= -I $(MLX_DIR)
 	MLX			= libmlx.dylib
-	MLX_FLAGS	+= -L $(LIB_DIR) -framework OpenGL -framework AppKit
+	MLX_DIR		= ./minilibx_mms_20200219
+	MLX_FLAGS	+= -framework OpenGL -framework AppKit
 else ifeq ($(UNAME), FreeBSD) # FreeBSD
 	CC			= clang
 else #Linux and others...
 	CC			= cc
-	HEADERS		+= -I /usr/include -I $(MLX_I_DIR)
+	HEADERS		+= -I /usr/include -I $(MLX_DIR)
 	MLX			= libmlx.a
-	MLX_FLAGS	+= -lXext -lX11 -lm -lz -lbsd -L $(LIB_DIR) -L /usr/include
+	MLX_FLAGS	+= -L /usr/include -lXext -lX11 -lm -lz -lbsd 
 endif
 
 
@@ -87,7 +87,10 @@ fclean:
 		@make fclean -sC $(LIBFT_DIR)
 		@make clean -sC $(MLX_DIR)
 		@$(RM) $(LIB_DIR)/$(LIBFT)
+ifeq ($(UNAME), Linux) # iMac / iOS
 		@$(RM) $(LIB_DIR)/$(MLX)
+endif
+		@rm -rf $(MLX_DIR)
 		@$(RM) $(OBJ_NAME)
 		@$(RM) $(OBJ_NAME_B)
 		@$(RM) $(NAME)
@@ -109,11 +112,17 @@ $(LIBFT):
 		@mv $(LIBFT_DIR)/$(LIBFT) $(LIB_DIR)
 
 $(MLX):
-		@tar -xf $(LIB_DIR)/minilibx-linux.tgz
+ifeq ($(UNAME), Darwin) # iMac / iOS
+		tar -xf $(LIB_DIR)/minilibx_mms_20200219_beta.tgz
+#		@make -sC $(MLX_DIR)
+#		@cp $(MLX_DIR)/libmlx.dylib $(LIB_DIR)
+else #Linux and others...
+		tar -xf $(LIB_DIR)/minilibx-linux.tgz
 		@make -sC $(MLX_DIR)
 		@cp $(MLX_DIR)/libmlx.a $(LIB_DIR)
+endif
 
-dev: $(LIBFT) $(MLX)
+dev: $(MLX) $(LIBFT)
 ifeq ($(UNAME), Darwin) # iMac / iOS
 		$(CC) -g -o $(NAME) $(SRC_NAME) $(HEADERS) $(MLX_FLAGS)
 		install_name_tool -change $(MLX) $(LIB_DIR)/$(MLX) $(NAME)
@@ -123,7 +132,7 @@ else #Linux and others...
 		$(CC) -g -o $(NAME) $(SRC_NAME) $(HEADERS) $(MLX_FLAGS)
 endif
 
-$(NAME): $(OBJ_NAME) $(LIBFT) $(MLX)
+$(NAME): $(MLX) $(LIBFT) $(OBJ_NAME)
 ifeq ($(UNAME), Darwin) # iMac / iOS
 		$(CC) $(CFLAGS) -o $@ $(OBJ_NAME) $(HEADERS) $(MLX_FLAGS)
 		install_name_tool -change $(MLX) $(LIB_DIR)/$(MLX) $(NAME)

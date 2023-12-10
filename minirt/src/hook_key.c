@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:01:26 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/08 20:44:12 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/10 00:32:22 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	close_mlx(t_data *img)
 	vars = single_vars();
 	mlx_destroy_image(vars->mlx, img->img);
 	mlx_destroy_window(vars->mlx, vars->win);
-	mlx_destroy_display(vars->mlx);
+	// mlx_destroy_display(vars->mlx);	// NOT available in MacOS
 	free(img);
 	free(vars->mlx);
 	exit(EXIT_SUCCESS);

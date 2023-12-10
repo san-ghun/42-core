@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:23:17 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/09 17:19:26 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:45:54 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ typedef struct s_vars {
 t_vars	*single_vars(void);
 t_vars	*new_program(int w, int h, char *str);
 t_data	*new_img(int w, int h, t_vars *vars);
+t_vec3	init_vector(double x, double y, double z);
 
 /// color.c
 int		get_trgb(int opacity, int red, int green, int blue);
@@ -156,5 +157,37 @@ int		mouse_hooks(int button, int m_x, int m_y, t_data *img);
 void	put_pixel_data(t_data *data, int x, int y, int color);
 void	draw_square(t_square square, t_data *img);
 t_temp	*single_temp(void);
+
+/// vector/vector_oprt1.c
+
+/// @brief addition of two vectors
+/// @param u vector
+/// @param v vector
+/// @return a vector
+t_vec3	add(t_vec3 u, t_vec3 v);
+
+/// @brief subtraction of two vectors
+/// @param u vector
+/// @param v vector
+/// @return a vector
+t_vec3	subtract(t_vec3 u, t_vec3 v);
+
+/// @brief scale (scalar multiplication) of a vector
+/// @param v vector
+/// @param s scalar
+/// @return a vector
+t_vec3	scale(t_vec3 v, double s);
+
+/// @brief dot (inner) product of two vectors
+/// @param u vector
+/// @param v vector
+/// @return (double) a scalar
+double	dot(t_vec3 u, t_vec3 v);
+
+/// @brief cross product of two vectors
+/// @param u vector
+/// @param v vector
+/// @return a vector
+t_vec3	cross(t_vec3 u, t_vec3 v);
 
 #endif

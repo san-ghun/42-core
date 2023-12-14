@@ -6,16 +6,15 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:01:26 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/10 01:20:44 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/14 21:23:17 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	close_mlx(t_data *img);
 int	get_color(void);
 
-int	key_hooks(int keycode, t_data *img)
+int	key_hooks(int keycode, t_container *img)
 {
 	t_vars	*vars;
 	t_temp	*temp;
@@ -40,21 +39,6 @@ int	key_hooks(int keycode, t_data *img)
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, img->img, 0, 0);
 	return (0);
-}
-
-int	close_mlx(t_data *img)
-{
-	t_vars	*vars;
-
-	vars = single_vars();
-	mlx_destroy_image(vars->mlx, img->img);
-	mlx_destroy_window(vars->mlx, vars->win);
-	/// NOT available in MacOS
-	/// Un-comment following if you are compiling on Linux
-	// mlx_destroy_display(vars->mlx);
-	free(img);
-	free(vars->mlx);
-	exit(EXIT_SUCCESS);
 }
 
 int	get_color(void)

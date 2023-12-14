@@ -6,28 +6,11 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:57:57 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/11 00:17:59 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/14 22:33:02 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-t_vars	*single_vars(void)
-{
-	static t_vars	this;
-	static int		is_init;
-
-	if (is_init)
-		return (&this);
-	this = (t_vars){
-		.mlx = NULL,
-		.win = NULL,
-		.width = 0,
-		.height = 0,
-	};
-	is_init = 1;
-	return (&this);
-}
 
 t_vars	*new_program(int w, int h, char *str)
 {
@@ -41,11 +24,11 @@ t_vars	*new_program(int w, int h, char *str)
 	return (vars);
 }
 
-t_data	*new_img(int w, int h, t_vars *vars)
+t_container	*new_container(int w, int h, t_vars *vars)
 {
-	t_data	*this;
+	t_container	*this;
 
-	this = (t_data *)malloc(sizeof(t_data));
+	this = (t_container *)malloc(sizeof(t_container));
 	this->img = mlx_new_image(vars->mlx, w, h);
 	this->addr = mlx_get_data_addr(\
 		this->img, &(this->bits_per_pixel), \
@@ -53,4 +36,21 @@ t_data	*new_img(int w, int h, t_vars *vars)
 	this->w = w;
 	this->h = h;
 	return (this);
+}
+
+t_resource	*new_resource(int n_obj)
+{
+	t_resource	*rsc;
+	int			i;
+
+	rsc = single_rsc();
+	rsc->objs = malloc(sizeof(t_obj *) * (n_obj + 1));
+	i = 0;
+	while (i < n_obj + 1)
+	{
+		rsc->objs[i] = NULL;
+		i++;
+	}
+	rsc->len_objs = 0;
+	return (rsc);
 }

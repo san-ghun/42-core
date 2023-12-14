@@ -6,7 +6,7 @@
 #    By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 12:21:54 by sanghupa          #+#    #+#              #
-#    Updated: 2023/12/10 01:13:14 by sanghupa         ###   ########.fr        #
+#    Updated: 2023/12/14 22:29:09 by sanghupa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,7 +124,7 @@ endif
 
 dev: $(MLX) $(LIBFT)
 ifeq ($(UNAME), Darwin) # iMac / iOS
-		$(CC) -g -o $(NAME) $(SRC_NAME) $(HEADERS) $(MLX_FLAGS)
+		$(CC) -fsanitize=address -g -o $(NAME) $(SRC_NAME) $(HEADERS) $(MLX_FLAGS)
 		install_name_tool -change $(MLX) $(LIB_DIR)/$(MLX) $(NAME)
 else #Linux and others...
 #		$(CC) -fsanitize=thread -g -o $(NAME) $(SRC_NAME) $(HEADERS) $(MLX_FLAGS)

@@ -6,7 +6,7 @@
 /*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:22:52 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/11 00:36:34 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/14 22:03:16 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,36 +20,43 @@ t_vec3	get_rgb(double red, double green, double blue)
 	return ((t_vec3){red, green, blue});
 }
 
-double	hit_sphere(t_vec3 center, double radius, t_ray ray)
-{
-	t_vec3	oc = subtract(ray.origin, center);
-	double 	a = dot(ray.direction, ray.direction);
-	double	b = 2.0 * dot(oc, ray.direction);
-	double	c = dot(oc, oc) - radius * radius;
-	double	discriminant = b * b - 4 * a * c;
+// double	hit_sphere(t_vec3 center, double radius, t_ray ray)
+// {
+// 	t_vec3	oc = subtract(ray.origin, center);
+// 	double 	a = dot(ray.direction, ray.direction);
+// 	double	b = 2.0 * dot(oc, ray.direction);
+// 	double	c = dot(oc, oc) - radius * radius;
+// 	double	discriminant = b * b - 4 * a * c;
 	
-	// double 	a = len_sqrt(ray.direction);
-	// double	half_b = dot(oc, ray.direction);
-	// double	c = len_sqrt(oc) - radius * radius;
-	// double	discriminant = half_b * half_b - a * c;
+// 	// double 	a = len_sqrt(ray.direction);
+// 	// double	half_b = dot(oc, ray.direction);
+// 	// double	c = len_sqrt(oc) - radius * radius;
+// 	// double	discriminant = half_b * half_b - a * c;
 	
-	if (discriminant < 0)
-		return (-1.0);
-	else
-		return ((- b - sqrt(discriminant)) / (2.0 * a));
-		// return ((-half_b - sqrt(discriminant)) / a);
-}
+// 	if (discriminant < 0)
+// 		return (-1.0);
+// 	else
+// 		return ((- b - sqrt(discriminant)) / (2.0 * a));
+// 		// return ((-half_b - sqrt(discriminant)) / a);
+// }
 
-int	ray_color(t_ray ray)
+int	ray_color(t_ray ray, t_obj *objs[])
 {
 	t_vec3	color;
-	double	t;
+	// double	t;
 
-	t = hit_sphere((t_vec3){0, 0, -1}, 0.5, ray);
-	if (t > 0.0)
+	// t = hit_sphere((t_vec3){0, 0, -1}, 0.5, ray);
+	// if (t > 0.0)
+	// {
+	// 	t_vec3	N = unit(subtract(ray_at(ray, t), (t_vec3){0, 0, -1}));
+	// 	color = scale(get_rgb(N.x + 1, N.y + 1, N.z + 1), 0.5);
+	// }
+	t_hit	rec;
+
+	if (hit_objs(objs, ray, 0.001, INFINITY, &rec))
 	{
-		t_vec3	N = unit(subtract(ray_at(ray, t), (t_vec3){0, 0, -1}));
-		color = scale(get_rgb(N.x + 1, N.y + 1, N.z + 1), 0.5);
+		color = get_rgb(rec.normal.x + 1.0, rec.normal.y + 1.0, rec.normal.z + 1.0);
+		color = scale(color, 0.5);
 	}
 	else
 	{
@@ -63,12 +70,22 @@ int	ray_color(t_ray ray)
 
 int	main(int argc, char *argv[])
 {
-	t_vars	*vars;
-	t_data	*img;
+	t_vars			*vars;
+	t_container		*container;
+	t_resource		*rsc;
 
 	double	aspect_ratio = 16.0 / 9.0;
 	int		image_w = 400;
 	int		image_h = (int)(image_w / aspect_ratio);
+
+	rsc = new_resource(2);
+	t_obj	*obj;
+	obj = init_obj((void *)init_sphere(init_vector(0, -100.5, -1), 100), SPHERE);
+	append_obj(obj);
+	obj = init_obj((void *)init_sphere(init_vector(0.0, 0.0, -1.0), 0.5), SPHERE);
+	append_obj(obj);
+	// rsc->objs[0] = (void *)init_sphere(init_vector(0, -100.5, -1), 100);
+	// rsc->objs[1] = (void *)init_sphere(init_vector(0.0, 0.0, -1.0), 0.5);
 
 	double	focal_len = 1.0;
 	double	viewport_h = 2.0;
@@ -102,7 +119,7 @@ int	main(int argc, char *argv[])
 	if (!(vars->mlx) || !(vars->win))
 		return (1);
 	/// init image
-	img = new_img(vars->width, vars->height, vars);
+	container = new_container(vars->width, vars->height, vars);
 
 	/// init rt and draw
 	int	i;
@@ -122,19 +139,19 @@ int	main(int argc, char *argv[])
 				.origin = camera_center,
 				.direction = ray_direction,
 			};
-			color = ray_color(r);
-			put_pixel_data(img, i, j, color);
+			color = ray_color(r, rsc->objs);
+			put_pixel_data(container, i, j, color);
 			i++;
 		}
 		j++;
 	}
 
-	mlx_put_image_to_window(vars->mlx, vars->win, img->img, 0, 0);
+	mlx_put_image_to_window(vars->mlx, vars->win, container->img, 0, 0);
 	
 	/// hoooks
-	mlx_hook(vars->win, 17, 0, close_mlx, img);
-	mlx_key_hook(vars->win, key_hooks, img);
-	mlx_mouse_hook(vars->win, mouse_hooks, img);
+	mlx_hook(vars->win, 17, 0, close_mlx, container);
+	mlx_key_hook(vars->win, key_hooks, container);
+	mlx_mouse_hook(vars->win, mouse_hooks, container);
 	mlx_loop(vars->mlx);
 
 	return (0);

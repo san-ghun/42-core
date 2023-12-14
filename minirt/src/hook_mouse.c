@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   hook_mouse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:01:26 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/08 20:13:47 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/14 20:51:07 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	mouse_hooks(int button, int m_x, int m_y, t_data *img)
+int	mouse_hooks(int button, int m_x, int m_y, t_container *img)
 {
 	t_vars	*vars;
 	int		x;

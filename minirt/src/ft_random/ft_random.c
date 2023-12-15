@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   ft_random.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 15:49:40 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/08 17:10:27 by sanghupa         ###   ########.fr       */
+/*   Created: 2023/12/15 16:22:20 by sanghupa          #+#    #+#             */
+/*   Updated: 2023/12/15 16:25:06 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "ft_random.h"
 
-int	get_trgb(int opacity, int red, int green, int blue)
+int	ft_randint(void)
 {
-	if (opacity > 255 || red > 255 || green > 255 || blue > 255)
-		return (0);
-	return (opacity << 24 | red << 16 | green << 8 | blue);
+	static int	seed;
+
+	seed = (seed * 1103515245 + 12345) & 0x7FFFFFFF;
+	return (seed);
 }
 
-int	get_opacity(int trgb)
+double	ft_randdouble(void)
 {
-	return ((trgb >> 24) & 0XFF);
+	static int	seed;
+
+	seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+	return ((double)seed / (double)0x80000000);
 }
 
-int	get_r(int trgb)
+double	ft_random(double min, double max)
 {
-	return ((trgb >> 16) & 0XFF);
-}
-
-int	get_g(int trgb)
-{
-	return ((trgb >> 8) & 0XFF);
-}
-
-int	get_b(int trgb)
-{
-	return (trgb & 0XFF);
+	return ((ft_randdouble() * (max - min)) + min);
 }

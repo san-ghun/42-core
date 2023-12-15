@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:23:17 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/14 21:52:42 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:22:23 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,14 @@
 # include "from_ms.h"
 
 /// extra
-// # include "key_linux.h"
-# include "key_macos.h"
+# include "key_linux.h"
+// # include "key_macos.h"
+# include "color.h"
 # include "vector.h"
 # include "ray.h"
 # include "hittable.h"
+# include "interval.h"
+# include "camera.h"
 
 /*
 ** =============================================================================
@@ -166,13 +169,6 @@ t_resource	*single_rsc(void);
 /// close.c
 void		ft_free_2d(void **targets);
 int			close_mlx(t_container *img);
-
-/// color.c
-int			get_trgb(int opacity, int red, int green, int blue);
-int			get_opacity(int trgb);
-int			get_r(int trgb);
-int			get_g(int trgb);
-int			get_b(int trgb);
 
 /// hook_key.c
 int			key_hooks(int keycode, t_container *img);

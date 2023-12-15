@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hittable.h                                         :+:      :+:    :+:   */
+/*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 00:47:39 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/15 15:07:41 by sanghupa         ###   ########.fr       */
+/*   Created: 2023/12/15 15:26:36 by sanghupa          #+#    #+#             */
+/*   Updated: 2023/12/15 19:18:34 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HITTABLE_H
-# define HITTABLE_H
+#ifndef CAMERA_H
+# define CAMERA_H
 
 /*
 ** =============================================================================
@@ -19,9 +19,11 @@
 ** =============================================================================
 */
 
-# include "libft.h"
+# include "vector.h"
 # include "ray.h"
-# include "interval.h"
+# include "hittable.h"
+# include "color.h"
+# include "ft_random.h"
 
 /*
 ** =============================================================================
@@ -29,28 +31,19 @@
 ** =============================================================================
 */
 
-typedef struct s_sphere
+typedef int		t_bool;
+
+typedef struct s_camera
 {
+	double		aspect_ratio;
+	int			image_width;
+	int			image_height;
+	int			samples_per_pixel;
 	t_vec3		center;
-	double		radius;
-}				t_sphere;
-
-typedef struct s_obj
-{
-	int			id;
-	int			type;
-	int			nth;
-	void		*data;
-}				t_obj;
-
-typedef struct s_hit
-{
-	t_vec3		point;
-	t_vec3		normal;
-	double		t;
-	t_bool		front_face;
-}				t_hit;
-
+	t_vec3		pixel00_loc;	// Location of pixel 0, 0
+	t_vec3		pixel_delta_u;	// Offset to pixel to the right
+	t_vec3		pixel_delta_v;	// Offset to pixel below
+}				t_camera;
 
 /*
 ** =============================================================================
@@ -58,13 +51,9 @@ typedef struct s_hit
 ** =============================================================================
 */
 
-t_obj		*init_obj(void *data, int type);
-
-t_hit		init_rec(void);
-void		set_face_normal(t_hit *rec, t_ray ray, t_vec3 outward_normal);
-t_bool		hit_objs(t_obj *objs[], t_ray ray, t_interval interval, t_hit *rec);
-
-t_sphere	*init_sphere(t_vec3 center, double radius);
-t_bool		hit_sphere(void *data, t_ray ray, t_interval interval, t_hit *rec);
+t_camera	init_camera(double aspect_ratio, int image_width);
+t_vec3		get_rgb(double red, double green, double blue);
+t_ray		get_ray(t_camera camera, int i, int j);
+t_vec3		ray_color(t_ray ray, t_obj *objs[]);
 
 #endif

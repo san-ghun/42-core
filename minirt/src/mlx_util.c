@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:15:54 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/14 21:25:09 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:32:03 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ void	draw_square(t_square square, t_container *img)
 		}
 		i++;
 	}
+}
+
+double	degree_to_radians(double degree)
+{
+	return (degree * M_PI / 180.0);
 }
 
 t_temp	*single_temp(void)

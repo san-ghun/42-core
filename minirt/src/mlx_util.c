@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:15:54 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/10 19:48:25 by sanghupa         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:32:03 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	put_pixel_data(t_data *data, int x, int y, int color)
+void	put_pixel_data(t_container *cont, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x >= 0 && y >= 0 && x < data->w && y < data->h)
+	if (x >= 0 && y >= 0 && x < cont->w && y < cont->h)
 	{
-		dst = data->addr + \
-			(y * data->line_length + x * (data->bits_per_pixel / 8));
+		dst = cont->addr + \
+			(y * cont->line_length + x * (cont->bits_per_pixel / 8));
 		*(unsigned int *)dst = color;
 	}
 }
 
-void	draw_square(t_square square, t_data *img)
+void	draw_square(t_square square, t_container *img)
 {
 	int	i;
 	int	j;
@@ -44,6 +44,11 @@ void	draw_square(t_square square, t_data *img)
 	}
 }
 
+double	degree_to_radians(double degree)
+{
+	return (degree * M_PI / 180.0);
+}
+
 t_temp	*single_temp(void)
 {
 	static t_temp	this;
@@ -54,6 +59,7 @@ t_temp	*single_temp(void)
 	this = (t_temp){
 		.size = 10,
 		.color = 0xFFFFFF,
+		.counter = 0,
 	};
 	is_init = 1;
 	return (&this);

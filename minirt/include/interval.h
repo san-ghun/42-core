@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   interval.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 00:26:31 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/11 01:23:20 by sanghupa         ###   ########.fr       */
+/*   Created: 2023/12/15 14:53:45 by sanghupa          #+#    #+#             */
+/*   Updated: 2023/12/15 17:57:45 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef RAY_H
-# define RAY_H
+#ifndef INTERVAL_H
+# define INTERVAL_H
 
 /*
 ** =============================================================================
 ** Dependency
 ** =============================================================================
 */
-
-# include <stdlib.h>
-# include <math.h>
-# include <stdint.h>
-# include <pthread.h>
-
-# include "vector.h"
 
 /*
 ** =============================================================================
@@ -35,11 +27,11 @@
 
 typedef int		t_bool;
 
-typedef struct s_ray
+typedef struct s_interval
 {
-	t_vec3		origin;
-	t_vec3		direction;
-}				t_ray;
+	double		min;
+	double		max;
+}				t_interval;
 
 /*
 ** =============================================================================
@@ -47,7 +39,9 @@ typedef struct s_ray
 ** =============================================================================
 */
 
-t_ray	init_ray(t_vec3 origin, t_vec3 direction);
-t_vec3	ray_at(t_ray r, double t);
+t_interval	init_interval(double min, double max);
+t_bool		contains(t_interval interval, double x);
+t_bool		surrounds(t_interval interval, double x);
+double		clamp(t_interval interval, double x);
 
 #endif

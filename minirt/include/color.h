@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghupa <sanghupa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: sanghupa <sanghupa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 00:26:31 by sanghupa          #+#    #+#             */
-/*   Updated: 2023/12/11 01:23:20 by sanghupa         ###   ########.fr       */
+/*   Created: 2023/12/15 16:12:40 by sanghupa          #+#    #+#             */
+/*   Updated: 2023/12/15 16:15:34 by sanghupa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef RAY_H
-# define RAY_H
+#ifndef COLOR_H
+# define COLOR_H
 
 /*
 ** =============================================================================
 ** Dependency
 ** =============================================================================
 */
-
-# include <stdlib.h>
-# include <math.h>
-# include <stdint.h>
-# include <pthread.h>
 
 # include "vector.h"
 
@@ -33,21 +27,17 @@
 ** =============================================================================
 */
 
-typedef int		t_bool;
-
-typedef struct s_ray
-{
-	t_vec3		origin;
-	t_vec3		direction;
-}				t_ray;
-
 /*
 ** =============================================================================
 ** Function
 ** =============================================================================
 */
 
-t_ray	init_ray(t_vec3 origin, t_vec3 direction);
-t_vec3	ray_at(t_ray r, double t);
+/// color.c
+int			get_trgb(int opacity, int red, int green, int blue);
+int			get_opacity(int trgb);
+int			get_r(int trgb);
+int			get_g(int trgb);
+int			get_b(int trgb);
 
 #endif
